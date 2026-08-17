@@ -1570,6 +1570,501 @@ footer strong{
     color:var(--pink);
 }
 
+
+/* =========================================================
+   KAMRAN — WRITING ARCHIVE ADD-ON
+   Combined with the original Creative License site.
+========================================================= */
+.wa-archive, .wa-interlude, .wa-reader {
+    --paper:#f3eee2;
+    --dark-pink:#a91f5d;
+    --light-gray:#b8b2a6;
+}
+/* =========================================================
+   ARCHIVE INTRO
+========================================================= */
+
+.wa-archive {
+    padding: 130px 20px;
+    position: relative;
+}
+
+.wa-container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.wa-section-number {
+    font-size: 10px;
+    color: var(--pink);
+    letter-spacing: .2em;
+    margin-bottom: 15px;
+}
+
+.wa-archive-title {
+    font-family: var(--anton);
+    font-size: clamp(55px, 9vw, 110px);
+    line-height: .9;
+}
+
+.wa-archive-description {
+    max-width: 600px;
+    margin-top: 25px;
+    color: var(--gray);
+    line-height: 1.8;
+    font-size: 13px;
+}
+
+/* =========================================================
+   WRITING CARDS
+========================================================= */
+
+.wa-writings {
+    margin-top: 80px;
+    display: grid;
+    gap: 35px;
+}
+
+.wa-writing-card {
+    position: relative;
+    background: var(--paper);
+    color: #111;
+    padding: 35px;
+    cursor: pointer;
+    transition:
+        transform .35s cubic-bezier(.2,.8,.2,1),
+        box-shadow .35s ease;
+    box-shadow: 8px 10px 0 rgba(232,62,134,.18);
+    overflow: hidden;
+}
+
+.wa-writing-card:nth-child(1) {
+    transform: rotate(-1deg);
+}
+
+.wa-writing-card:nth-child(2) {
+    transform: rotate(.8deg);
+}
+
+.wa-writing-card:nth-child(3) {
+    transform: rotate(-.5deg);
+}
+
+.wa-writing-card:nth-child(4) {
+    transform: rotate(1deg);
+}
+
+.wa-writing-card:hover {
+    transform: rotate(0deg) translateY(-10px) scale(1.01);
+    box-shadow: 12px 18px 0 rgba(232,62,134,.35);
+}
+
+.wa-writing-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: .13;
+    pointer-events: none;
+    background-image:
+        radial-gradient(
+            circle,
+            #111 1px,
+            transparent 1.4px
+        );
+    background-size: 7px 7px;
+}
+
+.wa-paper-tape {
+    position: absolute;
+    top: -7px;
+    left: 45%;
+    width: 90px;
+    height: 23px;
+    background: rgba(232,62,134,.45);
+    transform: rotate(-3deg);
+}
+
+.wa-writing-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+}
+
+.wa-writing-number {
+    font-size: 11px;
+    color: var(--dark-pink);
+    letter-spacing: .15em;
+}
+
+.wa-writing-date {
+    font-size: 9px;
+    color: #777;
+}
+
+.wa-writing-title {
+    font-family: var(--anton);
+    font-size: clamp(38px, 6vw, 70px);
+    line-height: .9;
+    margin-top: 40px;
+}
+
+.wa-writing-subtitle {
+    font-family: var(--hand);
+    font-size: 25px;
+    color: var(--dark-pink);
+    margin-top: 15px;
+}
+
+.wa-writing-tags {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.wa-tag {
+    border: 1px solid #111;
+    padding: 5px 8px;
+    font-size: 8px;
+    letter-spacing: .1em;
+}
+
+.wa-read {
+    margin-top: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px dashed #888;
+    padding-top: 15px;
+    font-size: 10px;
+    letter-spacing: .15em;
+}
+
+.wa-read-arrow {
+    font-size: 20px;
+    transition: transform .2s;
+}
+
+.wa-writing-card:hover .wa-read-arrow {
+    transform: translateX(8px);
+}
+
+/* =========================================================
+   RANDOM HANDWRITING
+========================================================= */
+
+.wa-note {
+    position: absolute;
+    font-family: var(--hand);
+    color: var(--pink);
+    font-size: 28px;
+    transform: rotate(-8deg);
+    pointer-events: none;
+}
+
+.wa-note.one {
+    top: 25%;
+    right: 3%;
+}
+
+.wa-note.two {
+    bottom: 10%;
+    left: 2%;
+    transform: rotate(8deg);
+}
+
+/* =========================================================
+   READER MODAL
+========================================================= */
+
+.wa-reader {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    background: rgba(9,9,9,.96);
+    display: none;
+    overflow-y: auto;
+    padding: 70px 20px;
+}
+
+.wa-reader.active {
+    display: block;
+    animation: readerIn .4s ease;
+}
+
+@keyframes readerIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.wa-reader-inner {
+    max-width: 850px;
+    margin: auto;
+}
+
+.wa-reader-close {
+    position: fixed;
+    top: 22px;
+    right: 25px;
+    z-index: 10;
+    background: var(--pink);
+    color: #090909;
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.wa-reader-meta {
+    color: var(--pink);
+    font-size: 10px;
+    letter-spacing: .2em;
+    margin-bottom: 25px;
+}
+
+.wa-reader-title {
+    font-family: var(--anton);
+    font-size: clamp(55px, 10vw, 120px);
+    line-height: .85;
+    margin-bottom: 50px;
+}
+
+.wa-reader-paper {
+    background: var(--paper);
+    color: #111;
+    padding: clamp(30px, 6vw, 70px);
+    position: relative;
+    box-shadow: 15px 18px 0 rgba(232,62,134,.25);
+}
+
+.wa-reader-paper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .08;
+    background-image:
+        radial-gradient(
+            circle,
+            #111 1px,
+            transparent 1.5px
+        );
+    background-size: 7px 7px;
+}
+
+.wa-reader-content {
+    position: relative;
+    z-index: 2;
+    font-family: Georgia, serif;
+    font-size: clamp(16px, 2vw, 20px);
+    line-height: 1.95;
+}
+
+.wa-reader-content p {
+    margin-bottom: 25px;
+}
+
+.wa-reader-content .quote {
+    font-family: var(--hand);
+    color: var(--dark-pink);
+    font-size: 28px;
+    line-height: 1.3;
+    margin: 35px 0;
+}
+
+.wa-reader-footer {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px dashed #888;
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: #777;
+}
+
+/* =========================================================
+   TYPEWRITER EFFECT
+========================================================= */
+
+.wa-typewriter {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--pink);
+    width: 0;
+    animation:
+        typing 4s steps(50,end) forwards,
+        cursorblink .8s infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes cursorblink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* =========================================================
+   BETWEEN SECTION
+========================================================= */
+
+.wa-interlude {
+    min-height: 55vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.wa-interlude-text {
+    font-family: var(--hand);
+    font-size: clamp(38px, 7vw, 80px);
+    max-width: 850px;
+    color: var(--cream);
+}
+
+.wa-interlude-text span {
+    color: var(--pink);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    border-top: 1px solid rgba(238,233,221,.15);
+    padding: 80px 25px 40px;
+}
+
+.footer-inner {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.footer-title {
+    font-family: var(--anton);
+    font-size: clamp(60px, 12vw, 150px);
+    line-height: .8;
+}
+
+.footer-title span {
+    color: var(--pink);
+}
+
+.footer-message {
+    margin-top: 30px;
+    font-family: var(--hand);
+    font-size: 30px;
+    color: var(--gray);
+}
+
+.footer-links {
+    margin-top: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.footer-links a {
+    border: 1px solid rgba(238,233,221,.4);
+    padding: 10px 14px;
+    font-size: 10px;
+    transition: .2s;
+}
+
+.footer-links a:hover {
+    background: var(--pink);
+    color: #090909;
+    border-color: var(--pink);
+}
+
+.copyright {
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-between;
+    color: var(--gray);
+    font-size: 9px;
+    letter-spacing: .1em;
+}
+
+@media(max-width:600px) {
+
+    .wa-writing-card {
+        padding: 25px;
+    }
+
+    .wa-writing-title {
+        font-size: 45px;
+    }
+
+    .wa-reader {
+        padding: 70px 10px 30px;
+    }
+
+    .wa-reader-paper {
+        padding: 30px 22px;
+    }
+
+    .copyright {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.wa-reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+.wa-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
 </style>
 
 </head>
@@ -1597,6 +2092,8 @@ KAMRAN<span>®</span>
 
 <a href="#work">WORK</a>
 
+<a href="#writing-archive">WRITINGS</a>
+
 <a href="#contact">CONTACT</a>
 
 </div>
@@ -1622,6 +2119,8 @@ id="mobileMenu">
 <a href="#experience" onclick="toggleMenu()">EXPERIENCE</a>
 
 <a href="#work" onclick="toggleMenu()">WORK</a>
+
+<a href="#writing-archive" onclick="toggleMenu()">WRITINGS</a>
 
 <a href="#contact" onclick="toggleMenu()">CONTACT</a>
 
@@ -3299,6 +3798,304 @@ Muhammad_Kamran_CV.pdf
 </section>
 
 
+
+<!-- ======================================================
+     WRITING ARCHIVE — ADDED TO ORIGINAL SITE
+====================================================== -->
+<section class="wa-archive" id="writing-archive">
+
+    <div class="wa-container">
+
+        <div class="wa-section-number">
+            01 / WRITINGS
+        </div>
+
+        <h2 class="wa-archive-title wa-reveal">
+            THE THINGS<br>
+            I NEVER SAID.
+        </h2>
+
+        <p class="wa-archive-description wa-reveal">
+            Some things are easier to write than they are to say.
+            These are pieces of memory, love, loss, regret,
+            growing up, and everything that somehow ended up
+            on a page.
+        </p>
+
+
+        <div class="wa-writings">
+
+
+            <!-- ==================================================
+                 WRITING 01
+            ================================================== -->
+
+            <article
+                class="wa-writing-card wa-reveal"
+                onclick="waOpenReader(1)"
+            >
+
+                <div class="wa-paper-tape"></div>
+
+                <div class="wa-writing-top">
+
+                    <div class="wa-writing-number">
+                        001 / POET
+                    </div>
+
+                    <div class="wa-writing-date">
+                        PERSONAL
+                    </div>
+
+                </div>
+
+                <h3 class="wa-writing-title">
+                    THE POET
+                </h3>
+
+                <div class="wa-writing-subtitle">
+                    "a poet fell in love with you..."
+                </div>
+
+                <div class="wa-writing-tags">
+                    <span class="wa-tag">LOVE</span>
+                    <span class="wa-tag">LOSS</span>
+                    <span class="wa-tag">POETRY</span>
+                    <span class="wa-tag">UNWRITTEN</span>
+                </div>
+
+                <div class="wa-read">
+                    <span>OPEN THE PAGE</span>
+                    <span class="wa-read-arrow">→</span>
+                </div>
+
+            </article>
+
+
+            <!-- ==================================================
+                 WRITING 02
+            ================================================== -->
+
+            <article
+                class="wa-writing-card wa-reveal"
+                onclick="waOpenReader(2)"
+            >
+
+                <div class="wa-paper-tape"></div>
+
+                <div class="wa-writing-top">
+
+                    <div class="wa-writing-number">
+                        002 / THE LAST VOICE
+                    </div>
+
+                    <div class="wa-writing-date">
+                        MEMORY
+                    </div>
+
+                </div>
+
+                <h3 class="wa-writing-title">
+                    THE LAST<br>VOICE
+                </h3>
+
+                <div class="wa-writing-subtitle">
+                    "you never think the last time is the last time."
+                </div>
+
+                <div class="wa-writing-tags">
+                    <span class="wa-tag">GOODBYE</span>
+                    <span class="wa-tag">MEMORY</span>
+                    <span class="wa-tag">SILENCE</span>
+                </div>
+
+                <div class="wa-read">
+                    <span>OPEN THE PAGE</span>
+                    <span class="wa-read-arrow">→</span>
+                </div>
+
+            </article>
+
+
+            <!-- ==================================================
+                 WRITING 03
+            ================================================== -->
+
+            <article
+                class="wa-writing-card wa-reveal"
+                onclick="waOpenReader(3)"
+            >
+
+                <div class="wa-paper-tape"></div>
+
+                <div class="wa-writing-top">
+
+                    <div class="wa-writing-number">
+                        003 / THE FIRST MORNING
+                    </div>
+
+                    <div class="wa-writing-date">
+                        AFTER
+                    </div>
+
+                </div>
+
+                <h3 class="wa-writing-title">
+                    THE FIRST<br>MORNING
+                </h3>
+
+                <div class="wa-writing-subtitle">
+                    "there's death, and then there's the first morning..."
+                </div>
+
+                <div class="wa-writing-tags">
+                    <span class="wa-tag">LOSS</span>
+                    <span class="wa-tag">LONELINESS</span>
+                    <span class="wa-tag">LOVE</span>
+                </div>
+
+                <div class="wa-read">
+                    <span>OPEN THE PAGE</span>
+                    <span class="wa-read-arrow">→</span>
+                </div>
+
+            </article>
+
+
+            <!-- ==================================================
+                 WRITING 04
+            ================================================== -->
+
+            <article
+                class="wa-writing-card wa-reveal"
+                onclick="waOpenReader(4)"
+            >
+
+                <div class="wa-paper-tape"></div>
+
+                <div class="wa-writing-top">
+
+                    <div class="wa-writing-number">
+                        004 / SEVEN MINUTES
+                    </div>
+
+                    <div class="wa-writing-date">
+                        LAST WORDS
+                    </div>
+
+                </div>
+
+                <h3 class="wa-writing-title">
+                    MY LAST<br>SEVEN MINUTES
+                </h3>
+
+                <div class="wa-writing-subtitle">
+                    "what will I think about in my last seven minutes?"
+                </div>
+
+                <div class="wa-writing-tags">
+                    <span class="wa-tag">LIFE</span>
+                    <span class="wa-tag">FAMILY</span>
+                    <span class="wa-tag">REGRET</span>
+                    <span class="wa-tag">MEMORY</span>
+                </div>
+
+                <div class="wa-read">
+                    <span>OPEN THE PAGE</span>
+                    <span class="wa-read-arrow">→</span>
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     INTERLUDE
+====================================================== -->
+
+<section class="wa-interlude" id="writing-about">
+
+    <div class="wa-note one">
+        don't delete this.
+    </div>
+
+    <div class="wa-note two">
+        unfinished thought →
+    </div>
+
+    <div class="wa-interlude-text wa-reveal">
+
+        Maybe writing isn't about
+        <span>being understood.</span>
+
+        Maybe sometimes it's just about
+        leaving proof that
+        <span>you felt something.</span>
+
+    </div>
+
+</section>
+
+
+
+<!-- ======================================================
+     READER
+====================================================== -->
+
+<div class="wa-reader" id="wa-reader">
+
+    <button
+        class="wa-reader-close"
+        onclick="waCloseReader()"
+        aria-label="Close"
+    >
+        ×
+    </button>
+
+    <div class="wa-reader-inner">
+
+        <div class="wa-reader-meta" id="wa-readerMeta">
+            001 / ARCHIVE
+        </div>
+
+        <h2
+            class="wa-reader-title"
+            id="wa-readerTitle"
+        ></h2>
+
+        <div class="wa-reader-paper">
+
+            <div
+                class="wa-reader-content"
+                id="wa-readerContent"
+            ></div>
+
+            <div class="wa-reader-footer">
+
+                <span>
+                    END OF PAGE
+                </span>
+
+                <span>
+                    KAMRAN'S ARCHIVE
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
 <!-- ======================================================
      FOOTER
 ====================================================== -->
@@ -3507,6 +4304,693 @@ function randomProject(){
         "> PROJECT DETECTED: " + item;
 
 }
+
+
+
+
+/* =========================================================
+   WRITING ARCHIVE JAVASCRIPT
+========================================================= */
+
+
+/* =========================================================
+   WRITINGS
+========================================================= */
+
+const waWritings = {
+
+    1: {
+
+        meta: "001 / LOVE / LOSS / UNWRITTEN",
+
+        title: "THE POET",
+
+        content: `
+
+        <p>
+        a poet fell in love with you, and you thought you'd walk away unwritten?
+        </p>
+
+        <p>
+        yeah, i used to feel the same. like, who are these people who are always writing about someone's eyes, their smile, their love? i never understood it. until i saw you for the very first time.
+        </p>
+
+        <p>
+        and suddenly, i wanted to be a poet.
+        </p>
+
+        <p>
+        i wanted to write something about you, something like Faiz wrote,
+        </p>
+
+        <p class="quote">
+        "تیری آنکھوں کے سوا دنیا میں رکھا کیا ہے"
+        </p>
+
+        <p>
+        i wanted all of my pen to write about you. every page, every empty space, every stupid little thought i had. somehow, you made me understand why people write about the person they love.
+        </p>
+
+        <p>
+        but i never thought it was a curse.
+        </p>
+
+        <p>
+        i never knew i was digging a hole for myself.
+        </p>
+
+        <p>
+        because at the end, all of my writings were still with me, all those pages, all those words, all those things i never said—and you were not.
+        </p>
+
+        <p>
+        at the end, it was just me, my pen, and a pile of papers full of someone who no longer existed in my life.
+        </p>
+
+        <p>
+        and i never dared to show any of it to you. maybe because somewhere inside me, i always felt like it was never enough for you. like no matter how beautifully i wrote about you, i could never write something beautiful enough to make you stay.
+        </p>
+
+        <p>
+        and there was another curse to it.
+        </p>
+
+        <p>
+        i became a poet, but i was never the poem.
+        </p>
+
+        <p>
+        for once in my life, i wanted to be the poem so badly. i wanted someone to look at me and feel the need to write. i wanted someone to sit with a pen in their hand and think, how do i put this person into words?
+        </p>
+
+        <p>
+        but i guess that's the cruel part of being a poet—you spend so much of your life turning someone else into poetry that you forget you were waiting for someone to do the same for you.
+        </p>
+
+        <p>
+        being a poet who writes for someone who no longer exists in their life is heavier than one kilogram of steel.
+        </p>
+
+        <p>
+        maybe i should smoke a cigarette and write something about you again.
+        </p>
+
+        <p>
+        but this time, i think i'll write about me.
+        </p>
+
+        <p>
+        not about the way you looked at me.
+        </p>
+
+        <p>
+        not about your eyes.
+        </p>
+
+        <p>
+        not about how much i loved you.
+        </p>
+
+        <p>
+        just me.
+        </p>
+
+        <p>
+        the person who stayed after you left.
+        </p>
+
+        <p>
+        the person who kept all those poems.
+        </p>
+
+        <p>
+        the person who was so busy writing about someone else
+        that he forgot he deserved to be written about too.
+        </p>
+
+        `
+
+    },
+
+
+    2: {
+
+        meta: "002 / MEMORY / GOODBYE / SILENCE",
+
+        title: "THE LAST VOICE",
+
+        content: `
+
+        <p>
+        They say if I knew it was the last time I’d hear your voice, I would’ve memorized it better.
+        </p>
+
+        <p>
+        But the truth is, I did hear it and I still can't remember how it sounded. Not exactly. Not clearly. It slips away when I try too hard.
+        </p>
+
+        <p>
+        I remember everything else from that day. The way the light hit her face through the windshield. The quiet hum of the engine waiting. My heart was racing like it always did when I was near her, but somehow heavier, quieter this time, like even it knew something I didn’t.
+        </p>
+
+        <p>
+        We stood by her car, and the goodbye was… not what I expected.
+        </p>
+
+        <p>
+        I told her I loved her because I did. I still do, maybe. Maybe always will in some cursed, quiet corner of me.
+        </p>
+
+        <p>
+        She looked at me with eyes that didn’t match the smile she tried to wear. And then she said, almost like a whisper wrapped in a sigh:
+        </p>
+
+        <p class="quote">
+        "Just... take care of yourself, okay?"
+        </p>
+
+        <p>
+        And that was it.
+        </p>
+
+        <p>
+        No promises. No “I’ll see you soon.” Just a line that felt like the closing of a chapter I didn’t want to finish reading.
+        </p>
+
+        <p>
+        She got into her car.
+        </p>
+
+        <p>
+        Sat there for a second that felt like a lifetime. And then she drove off.
+        </p>
+
+        <p>
+        No look back.
+        </p>
+
+        <p>
+        Not even in the mirror.
+        </p>
+
+        <p>
+        I stood there like a fool, staring at the road long after she was gone, half-expecting the car to turn around, half-hoping this was just one of those weird dreams where the ending rewrites itself if you wait long enough.
+        </p>
+
+        <p>
+        But it didn’t.
+        </p>
+
+        <p>
+        She was gone.
+        </p>
+
+        <p>
+        And now, sometimes I try to replay that last moment in my head. I can see her driving off. I can remember the cold in my chest.
+        </p>
+
+        <p>
+        But I still can't hear her voice.
+        </p>
+
+        <p>
+        Funny, isn’t it? You never think the last time is the last time.
+        </p>
+
+        <p>
+        And even when you do, it still doesn’t prepare you for the silence that comes after.
+        </p>
+
+        `
+
+    },
+
+
+    3: {
+
+        meta: "003 / LOSS / LONELINESS / LOVE",
+
+        title: "THE FIRST MORNING",
+
+        content: `
+
+        <p>
+        There’s death,
+        </p>
+
+        <p>
+        and then there’s the first morning after letting someone go.
+        </p>
+
+        <p>
+        For most of my life, I thought it was just a myth, this idea that the first morning hurts the most.
+        </p>
+
+        <p>
+        But it’s not. It’s real.
+        </p>
+
+        <p>
+        You spend the whole night unable to sleep, your mind replaying everything.
+        </p>
+
+        <p>
+        And when you finally do drift off for a little while, you wake up and the first thing you do is check your phone.
+        </p>
+
+        <p>
+        But there are no good morning messages.
+        </p>
+
+        <p>
+        No calls.
+        </p>
+
+        <p>
+        No trace of them.
+        </p>
+
+        <p>
+        That’s when it truly hits you.
+        </p>
+
+        <p>
+        You’ve lost the love of your life.
+        </p>
+
+        <p>
+        So you just lay back down, take a deep breath, and start thinking.
+        </p>
+
+        <p>
+        What really happened? How did it all slip away so quickly?
+        </p>
+
+        <p>
+        You stare at the ceiling, or the wall, and suddenly,
+        there’s this strange, heavy kind of loneliness sitting in your chest.
+        </p>
+
+        <p>
+        It’s not just sadness.
+        </p>
+
+        <p>
+        It’s emptiness.
+        </p>
+
+        <p>
+        It physically hurts.
+        </p>
+
+        <p class="quote">
+        Yes, there’s death.
+        <br>
+        And then there’s the first morning after letting someone go.
+        </p>
+
+        `
+
+    },
+
+
+    4: {
+
+        meta: "004 / LIFE / FAMILY / REGRET / MEMORY",
+
+        title: "MY LAST SEVEN MINUTES",
+
+        content: `
+
+        <p>
+        What will I think about in my last seven minutes?
+        </p>
+
+        <p>
+        Will I think about the happy moments I made with my family and friends, or will I think about every regret I've carried my whole life?
+        </p>
+
+        <p>
+        Will my mind go back to those cold winter mornings when I used to sit beside my dadi, and we would just sit there in silence without saying a single word, yet somehow that silence meant everything?
+        </p>
+
+        <p>
+        Or will I remember the days I was lying in a hospital bed while she stayed by my side, making me feel like nothing bad could ever happen to me?
+        </p>
+
+        <p>
+        Or maybe I'll think about the day she left this world and took a part of me with her, because the truth is, I was never really complete after that.
+        </p>
+
+        <p>
+        Will I think about my childhood friends?
+        </p>
+
+        <p>
+        The endless cricket matches in the streets, the football games that made us forget time, the scraped knees, the arguments over whose turn it was, and how every evening felt like it would last forever.
+        </p>
+
+        <p>
+        Back then, happiness was so simple.
+        </p>
+
+        <p>
+        Or maybe I'll think about the girl I loved with everything I had.
+        </p>
+
+        <p>
+        The one who knew every broken part of me, every fear, every dream, every scar, yet still chose to leave.
+        </p>
+
+        <p>
+        Maybe I'll remember how the whole world disappeared whenever I was with her, and how empty the world felt when she wasn't.
+        </p>
+
+        <p>
+        Will I think about my college friends?
+        </p>
+
+        <p>
+        The random jokes, the loud laughter, the unforgettable memories, the days that didn't seem important back then but somehow became the moments I miss the most.
+        </p>
+
+        <p>
+        Or maybe I'll remember the version of myself that used to be the loudest person in the room, the one who laughed without forcing it, before life slowly taught me how to stay quiet.
+        </p>
+
+        <p>
+        Will I think about the people who hurt me the most, or the people I hurt without ever getting the chance to say I'm sorry?
+        </p>
+
+        <p>
+        Maybe both.
+        </p>
+
+        <p>
+        Maybe regret doesn't care whose fault it was.
+        </p>
+
+        <p>
+        Will I think about my amma and abba?
+        </p>
+
+        <p>
+        About how they gave me everything they could, while I kept telling myself I'd spend more time with them tomorrow.
+        </p>
+
+        <p>
+        Tomorrow became next week, next month, next year, and somehow life kept getting in the way.
+        </p>
+
+        <p>
+        I spent so much time chasing a future that I forgot to live in the present with the people who mattered the most.
+        </p>
+
+        <p>
+        Maybe I'll think about all those evenings after work, exhausted, convincing myself I was doing it all for a better tomorrow.
+        </p>
+
+        <p>
+        The nights that turned into mornings before I even realized another day had passed.
+        </p>
+
+        <p>
+        The responsibilities I carried so quietly that nobody noticed how heavy they actually were.
+        </p>
+
+        <p>
+        Or maybe I'll think about football.
+        </p>
+
+        <p>
+        About the feeling of stepping onto the pitch, where for ninety minutes nothing else existed.
+        </p>
+
+        <p>
+        No stress, no overthinking, no responsibilities—just the ball, the game, and the feeling of being free.
+        </p>
+
+        <p>
+        Maybe I'll think about all the words I never said but wrote instead.
+        </p>
+
+        <p>
+        Every page that knew my secrets better than people did.
+        </p>
+
+        <p>
+        Every sentence that carried the weight I couldn't explain out loud.
+        </p>
+
+        <p>
+        Will I think about my colleagues?
+        </p>
+
+        <p>
+        The people who, even for a little while, made me forget that life was falling apart outside those walls.
+        </p>
+
+        <p>
+        The random conversations, the stupid jokes, the moments that made difficult days a little easier.
+        </p>
+
+        <p>
+        Or maybe I'll think about the afterlife.
+        </p>
+
+        <p>
+        About finally getting the chance to meet Allah and telling Him everything I couldn't explain to anyone else.
+        </p>
+
+        <p>
+        Every fear, every mistake, every prayer I whispered at 3 a.m., every time I thought I wasn't strong enough but somehow kept going anyway.
+        </p>
+
+        <p>
+        Will I think about everything I wanted but never had?
+        </p>
+
+        <p>
+        The dreams I kept postponing.
+        </p>
+
+        <p>
+        The words I never said.
+        </p>
+
+        <p>
+        The people I never became brave enough to hold onto.
+        </p>
+
+        <p>
+        Or will I just lie there, staring at the ceiling, wondering what I'm supposed to think when I only have seven minutes left?
+        </p>
+
+        <p>
+        Maybe I won't think about anything at all.
+        </p>
+
+        <p>
+        Maybe I'll just be numb.
+        </p>
+
+        <p>
+        But what scares me the most is this...
+        </p>
+
+        <p>
+        For most of my life, whenever I needed someone, there were only a few people standing beside me.
+        </p>
+
+        <p>
+        Yet when I'm finally lying on my deathbed, everyone might gather around me when I don't need them anymore.
+        </p>
+
+        <p>
+        Isn't that strange?
+        </p>
+
+        <p>
+        We spend our whole lives waiting for people to stay, and they only realize our value when we're about to leave.
+        </p>
+
+        <p>
+        Maybe my last seven minutes won't be filled with fear.
+        </p>
+
+        <p>
+        Maybe they'll be filled with regret.
+        </p>
+
+        <p>
+        The regret of sleeping instead of trying one more time.
+        </p>
+
+        <p>
+        The regret of believing I wasn't enough for someone to choose me.
+        </p>
+
+        <p>
+        The regret of letting people leave without asking them to stay.
+        </p>
+
+        <p>
+        The regret of wasting time thinking I had more of it.
+        </p>
+
+        <p>
+        Or maybe those happy memories weren't really as happy as I remember them.
+        </p>
+
+        <p>
+        Maybe my mind only paints them that way because it's about to lose them forever.
+        </p>
+
+        <p>
+        I don't know what I'll think about in my last seven minutes.
+        </p>
+
+        <p class="quote">
+        I just hope... when those seven minutes finally come,
+        I won't spend them wishing I had lived differently.
+        </p>
+
+        `
+
+    }
+
+};
+
+
+/* =========================================================
+   OPEN READER
+========================================================= */
+
+function waOpenReader(number) {
+
+    const article = waWritings[number];
+
+    document.getElementById("wa-readerMeta").textContent =
+        article.meta;
+
+    document.getElementById("wa-readerTitle").textContent =
+        article.title;
+
+    document.getElementById("wa-readerContent").innerHTML =
+        article.content;
+
+    document.getElementById("wa-reader").classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+    window.scrollTo(0, 0);
+}
+
+
+/* =========================================================
+   CLOSE READER
+========================================================= */
+
+function waCloseReader() {
+
+    document.getElementById("wa-reader").classList.remove("active");
+
+    document.body.style.overflow = "";
+
+}
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+        waCloseReader();
+    }
+
+});
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const observer = new IntersectionObserver(
+
+    entries => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("visible");
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold: .12
+    }
+
+);
+
+
+document.querySelectorAll(".wa-reveal").forEach(element => {
+
+    observer.observe(element);
+
+});
+
+
+/* =========================================================
+   CARD PARALLAX
+========================================================= */
+
+document.querySelectorAll(".wa-writing-card").forEach(card => {
+
+    card.addEventListener("mousemove", function(event) {
+
+        const rect = card.getBoundingClientRect();
+
+        const x =
+            event.clientX - rect.left;
+
+        const y =
+            event.clientY - rect.top;
+
+        const centerX =
+            rect.width / 2;
+
+        const centerY =
+            rect.height / 2;
+
+        const rotateX =
+            ((y - centerY) / centerY) * -2;
+
+        const rotateY =
+            ((x - centerX) / centerX) * 2;
+
+        card.style.transform =
+            `perspective(800px)
+             rotateX(${rotateX}deg)
+             rotateY(${rotateY}deg)
+             translateY(-8px)`;
+
+    });
+
+
+    card.addEventListener("mouseleave", function() {
+
+        card.style.transform = "";
+
+    });
+
+});
 
 
 </script>
