@@ -4,526 +4,967 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Kamran — Creative License</title>
+<title>KAMRAN — Creative License</title>
+
+<meta name="description"
+content="Kamran — Creative Generalist, designer, photographer, writer and professional collector of random interests.">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&display=swap');
 
-:root {
-    --black: #090909;
-    --cream: #f3ead9;
-    --pink: #ed3f86;
-    --blue: #214bc0;
-    --gray: #77736c;
+/* =========================================================
+   KAMRAN — PERSONAL WEBSITE
+   SINGLE FILE / GITHUB PAGES READY
+========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root{
+    --black:#080808;
+    --black2:#111111;
+    --cream:#f2eadb;
+    --pink:#ed3f86;
+    --pink2:#b51e5e;
+    --blue:#244fc4;
+    --gray:#77736d;
+    --white:#faf8f2;
 }
 
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    margin: 0;
-    background: var(--black);
-    color: var(--cream);
-    font-family: "Space Mono", monospace;
-    overflow-x: hidden;
+body{
+    background:var(--black);
+    color:var(--cream);
+    font-family:"Space Mono",monospace;
+    overflow-x:hidden;
 }
 
-/* ---------------- NAV ---------------- */
-
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 30px;
-}
-
-.logo {
-    border: 1px solid var(--cream);
-    padding: 8px 12px;
-    font-size: 12px;
-    background: #090909;
-}
-
-.logo span {
-    color: var(--pink);
-}
-
-nav a {
-    color: var(--cream);
-    text-decoration: none;
-    font-size: 11px;
-    border: 1px solid #555;
-    padding: 7px 11px;
-    margin-left: 5px;
-}
-
-nav a:hover {
-    background: var(--pink);
-    color: black;
-}
-
-/* ---------------- HERO ---------------- */
-
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 100px 20px 60px;
-    background:
-        radial-gradient(circle at 15% 20%, #ed3f861c, transparent 35%),
-        radial-gradient(circle at 85% 80%, #214bc01c, transparent 35%),
-        #090909;
-}
-
-.card {
-    width: min(600px, 94vw);
-    min-height: 350px;
-    background: var(--cream);
-    color: #090909;
-    border-radius: 20px;
-    padding: 30px;
-    position: relative;
-    overflow: hidden;
-
-    box-shadow:
-        0 30px 80px #000,
-        8px 8px 0 var(--pink);
-
-    transform: rotate(-1deg);
-}
-
-.card:after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:9999;
+    opacity:.04;
     background-image:
-        radial-gradient(#0002 1px, transparent 1px);
-
-    background-size: 5px 5px;
-    opacity: .35;
+    radial-gradient(#fff 1px,transparent 1px);
+    background-size:4px 4px;
 }
 
-.stars {
-    position: absolute;
-    top: 15px;
-    left: 18px;
-    color: var(--pink);
-    font-size: 18px;
+a{
+    color:inherit;
+    text-decoration:none;
 }
 
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    position: relative;
-    z-index: 2;
+button{
+    font:inherit;
 }
 
-.creative {
-    font-family: "Caveat", cursive;
-    font-size: 54px;
-    line-height: .8;
-    transform: rotate(-3deg);
+::selection{
+    background:var(--pink);
+    color:#000;
 }
 
-.license {
-    font-family: Anton, sans-serif;
-    font-size: 30px;
-    color: #b82061;
-    letter-spacing: 1px;
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:500;
+    padding:18px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:linear-gradient(#080808dd,transparent);
 }
 
-.tag {
-    font-size: 9px;
-    border: 1px solid #777;
-    padding: 6px;
-    text-align: right;
+.logo{
+    border:1px solid var(--cream);
+    padding:7px 11px;
+    font-size:11px;
+    background:#080808;
 }
 
-.line {
-    border: 0;
-    border-top: 1px dashed #777;
-    margin: 20px 0;
+.logo span{
+    color:var(--pink);
 }
 
-.info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-    position: relative;
-    z-index: 2;
+.nav-links{
+    display:flex;
+    gap:6px;
 }
 
-.label {
-    font-size: 8px;
-    letter-spacing: 2px;
-    color: #a51d59;
+.nav-links a{
+    border:1px solid #555;
+    padding:7px 10px;
+    font-size:10px;
+    background:#080808dd;
+    transition:.2s;
 }
 
-.value {
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 4px;
+.nav-links a:hover{
+    background:var(--pink);
+    color:#000;
+    border-color:var(--pink);
 }
 
-.full {
-    grid-column: 1 / -1;
+.menu{
+    display:none;
+    border:1px solid var(--cream);
+    background:#080808;
+    color:var(--cream);
+    padding:8px 12px;
 }
 
-.bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    margin-top: 25px;
-    position: relative;
-    z-index: 2;
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+section{
+    position:relative;
 }
 
-.stamp {
-    width: 90px;
-    height: 90px;
-    border: 3px solid var(--blue);
-    border-radius: 50%;
-    color: var(--blue);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: Anton, sans-serif;
-    font-size: 11px;
-    transform: rotate(-12deg);
+.container{
+    width:min(1120px,92%);
+    margin:auto;
 }
 
-.signature {
-    text-align: right;
+.eyebrow{
+    color:var(--pink);
+    font-size:10px;
+    letter-spacing:4px;
+    margin-bottom:18px;
 }
 
-.signature-name {
-    font-family: Caveat, cursive;
-    font-size: 32px;
+.section-title{
+    font-family:Anton,sans-serif;
+    font-size:clamp(50px,9vw,105px);
+    line-height:.85;
+    margin-bottom:45px;
 }
 
-.signature small {
-    display: block;
-    color: #777;
-    font-size: 8px;
+.section{
+    padding:130px 0;
 }
 
-.barcode {
-    height: 30px;
-    margin-top: 15px;
 
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:120px 20px 80px;
     background:
-        repeating-linear-gradient(
-            90deg,
-            #000 0px,
-            #000 2px,
-            transparent 2px,
-            transparent 5px,
-            #000 5px,
-            #000 6px,
-            transparent 6px,
-            transparent 9px
-        );
+    radial-gradient(circle at 15% 15%,#ed3f861c,transparent 35%),
+    radial-gradient(circle at 85% 80%,#244fc41c,transparent 35%);
 }
 
-.barcode-number {
-    text-align: center;
-    font-size: 8px;
-    letter-spacing: 4px;
-    margin-top: 3px;
+.hero-content{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
-.sticker {
-    position: absolute;
-    right: -10px;
-    top: 90px;
-    background: var(--pink);
-    color: white;
-    padding: 8px 14px;
-    font-family: Caveat, cursive;
-    font-size: 18px;
-    transform: rotate(8deg);
-    z-index: 5;
+.id-card{
+    width:min(620px,94vw);
+    min-height:370px;
+    background:var(--cream);
+    color:#080808;
+    border-radius:20px;
+    padding:30px;
+    position:relative;
+    overflow:hidden;
+    transform:rotate(-1deg);
+    box-shadow:
+        0 35px 90px #000,
+        8px 8px 0 var(--pink);
+    transition:.3s;
 }
 
-/* ---------------- INTRO ---------------- */
-
-.intro {
-    padding: 120px 20px;
-    max-width: 1100px;
-    margin: auto;
+.id-card:hover{
+    transform:rotate(0deg) translateY(-8px);
 }
 
-.eyebrow {
-    color: var(--pink);
-    font-size: 11px;
-    letter-spacing: 4px;
+.id-card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:.25;
+    background-image:
+    radial-gradient(#000 1px,transparent 1px);
+    background-size:5px 5px;
 }
 
-h1 {
-    font-family: Anton, sans-serif;
-    font-size: clamp(60px, 12vw, 150px);
-    line-height: .85;
-    margin: 20px 0;
+.stars{
+    position:absolute;
+    top:14px;
+    left:17px;
+    color:var(--pink);
+    font-size:16px;
 }
 
-.pink {
-    color: var(--pink);
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    position:relative;
+    z-index:2;
 }
 
-.description {
-    max-width: 650px;
-    font-size: 15px;
-    line-height: 1.9;
-    color: #aaa;
+.creative{
+    font-family:Caveat,cursive;
+    font-weight:700;
+    font-size:58px;
+    line-height:.7;
+    transform:rotate(-3deg);
 }
 
-/* ---------------- SKILLS ---------------- */
-
-.section {
-    padding: 100px 20px;
-    max-width: 1100px;
-    margin: auto;
+.license{
+    font-family:Anton,sans-serif;
+    color:var(--pink2);
+    font-size:30px;
+    margin-top:10px;
 }
 
-.section-title {
-    font-family: Anton, sans-serif;
-    font-size: clamp(45px, 8vw, 90px);
-    margin-bottom: 35px;
+.card-code{
+    font-size:8px;
+    line-height:1.6;
+    text-align:right;
+    border:1px solid #777;
+    padding:5px;
 }
 
-.skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
+.card-line{
+    border:0;
+    border-top:1px dashed #888;
+    margin:22px 0;
 }
 
-.skill {
-    background: var(--cream);
-    color: #090909;
-    padding: 12px 16px;
-    font-size: 12px;
-    box-shadow: 4px 4px 0 var(--pink);
-    transform: rotate(var(--rotation));
+.card-info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    position:relative;
+    z-index:2;
 }
 
-.skill:nth-child(1) { --rotation: -2deg; }
-.skill:nth-child(2) { --rotation: 1deg; }
-.skill:nth-child(3) { --rotation: -1deg; }
-.skill:nth-child(4) { --rotation: 2deg; }
-.skill:nth-child(5) { --rotation: -2deg; }
-.skill:nth-child(6) { --rotation: 1deg; }
-.skill:nth-child(7) { --rotation: -1deg; }
-.skill:nth-child(8) { --rotation: 2deg; }
-
-/* ---------------- SOFTWARE ---------------- */
-
-.software-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
+.field label{
+    display:block;
+    color:var(--pink2);
+    font-size:8px;
+    letter-spacing:2px;
 }
 
-.software {
-    border: 1px dashed #555;
-    padding: 20px;
+.field p{
+    font-size:13px;
+    font-weight:bold;
+    margin-top:3px;
 }
 
-.software strong {
-    font-family: Anton, sans-serif;
-    font-size: 20px;
+.full{
+    grid-column:1/-1;
 }
 
-.software span {
-    display: block;
-    color: var(--pink);
-    font-size: 9px;
-    margin-top: 8px;
+.card-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-top:25px;
+    position:relative;
+    z-index:2;
 }
 
-/* ---------------- PORTFOLIO ---------------- */
-
-.projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
+.stamp{
+    width:92px;
+    height:92px;
+    border:3px solid var(--blue);
+    color:var(--blue);
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-family:Anton,sans-serif;
+    font-size:10px;
+    transform:rotate(-12deg);
 }
 
-.project {
-    background: var(--cream);
-    color: #090909;
-    padding: 15px;
-    transform: rotate(var(--rotation));
-    transition: .2s;
+.signature{
+    text-align:right;
 }
 
-.project:nth-child(1) { --rotation: -1deg; }
-.project:nth-child(2) { --rotation: 2deg; }
-.project:nth-child(3) { --rotation: -2deg; }
-.project:nth-child(4) { --rotation: 1deg; }
-
-.project:hover {
-    transform: rotate(0) translateY(-8px);
-    box-shadow: 7px 7px 0 var(--pink);
+.signature strong{
+    display:block;
+    font-family:Caveat,cursive;
+    font-size:33px;
 }
 
-.project-image {
-    height: 150px;
+.signature small{
+    font-size:8px;
+    color:#777;
+}
+
+.barcode{
+    height:28px;
+    margin-top:18px;
     background:
-        radial-gradient(#fff4 1px, transparent 1px),
-        linear-gradient(135deg, #ed3f86, #214bc0);
-    background-size: 6px 6px, auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-family: Anton, sans-serif;
-    font-size: 25px;
+    repeating-linear-gradient(
+        90deg,
+        #000 0 2px,
+        transparent 2px 5px,
+        #000 5px 6px,
+        transparent 6px 9px
+    );
 }
 
-.project h3 {
-    font-family: Anton, sans-serif;
-    font-size: 23px;
-    margin: 12px 0 5px;
+.barcode-number{
+    text-align:center;
+    font-size:8px;
+    letter-spacing:5px;
 }
 
-.project p {
-    font-size: 11px;
-    line-height: 1.6;
-    color: #666;
+.card-sticker{
+    position:absolute;
+    right:-12px;
+    top:85px;
+    background:var(--pink);
+    color:white;
+    padding:8px 15px;
+    font-family:Caveat,cursive;
+    font-size:17px;
+    transform:rotate(8deg);
+    z-index:5;
 }
 
-/* ---------------- JACK ---------------- */
-
-.jack {
-    text-align: center;
-    padding: 130px 20px;
-    border-top: 1px dashed #333;
-    border-bottom: 1px dashed #333;
+.hero-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:45px;
+    flex-wrap:wrap;
+    justify-content:center;
 }
 
-.jack h2 {
-    font-family: Anton, sans-serif;
-    font-size: clamp(55px, 12vw, 140px);
-    line-height: .8;
+.btn{
+    border:1px solid var(--cream);
+    padding:12px 18px;
+    font-size:10px;
+    letter-spacing:1px;
+    transition:.2s;
 }
 
-.jack p {
-    color: #777;
-    font-family: Caveat, cursive;
-    font-size: 28px;
+.btn:hover{
+    background:var(--pink);
+    color:#000;
+    border-color:var(--pink);
 }
 
-.marquee {
-    overflow: hidden;
-    margin-top: 50px;
-    border-top: 1px dashed #444;
-    border-bottom: 1px dashed #444;
-    padding: 15px 0;
+.btn.primary{
+    background:var(--pink);
+    color:#000;
+    border-color:var(--pink);
 }
 
-.marquee div {
-    white-space: nowrap;
-    font-family: Anton, sans-serif;
-    font-size: 30px;
-    animation: move 18s linear infinite;
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about{
+    padding:140px 0;
 }
 
-@keyframes move {
-    from {
-        transform: translateX(0);
+.about-grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:60px;
+}
+
+.about-text{
+    font-size:15px;
+    line-height:2;
+    color:#aaa;
+}
+
+.about-text strong{
+    color:var(--cream);
+}
+
+.about-quote{
+    margin-top:30px;
+    color:var(--pink);
+    font-family:Caveat,cursive;
+    font-size:30px;
+}
+
+.identity-box{
+    border:1px dashed #555;
+    padding:25px;
+}
+
+.identity-row{
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px dashed #333;
+    padding:13px 0;
+    font-size:10px;
+}
+
+.identity-row span:last-child{
+    color:var(--pink);
+}
+
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+.skills{
+    background:#0d0d0d;
+}
+
+.skill-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+}
+
+.skill{
+    background:var(--cream);
+    color:#000;
+    padding:13px 17px;
+    box-shadow:4px 4px 0 var(--pink);
+    font-size:11px;
+    transition:.2s;
+}
+
+.skill:hover{
+    transform:translateY(-5px)rotate(0);
+    box-shadow:7px 7px 0 var(--pink);
+}
+
+
+/* =========================================================
+   SOFTWARE
+========================================================= */
+
+.software-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:15px;
+}
+
+.software{
+    border:1px dashed #555;
+    padding:22px;
+    transition:.2s;
+}
+
+.software:hover{
+    border-color:var(--pink);
+    transform:translateY(-4px);
+}
+
+.software h3{
+    font-family:Anton,sans-serif;
+    font-size:21px;
+}
+
+.software span{
+    color:var(--pink);
+    font-size:8px;
+    display:block;
+    margin-top:8px;
+}
+
+
+/* =========================================================
+   EXPERIENCE
+========================================================= */
+
+.timeline{
+    border-left:1px solid #444;
+    padding-left:30px;
+}
+
+.job{
+    position:relative;
+    margin-bottom:50px;
+}
+
+.job::before{
+    content:"";
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:var(--pink);
+    position:absolute;
+    left:-35px;
+    top:5px;
+}
+
+.job-date{
+    color:var(--pink);
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+.job h3{
+    font-family:Anton,sans-serif;
+    font-size:28px;
+    margin:8px 0;
+}
+
+.job p{
+    color:#888;
+    font-size:12px;
+    line-height:1.8;
+    max-width:650px;
+}
+
+
+/* =========================================================
+   EDUCATION
+========================================================= */
+
+.education{
+    background:#0d0d0d;
+}
+
+.edu-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.edu-card{
+    border:1px solid #333;
+    padding:25px;
+}
+
+.edu-card h3{
+    font-family:Anton,sans-serif;
+    font-size:25px;
+}
+
+.edu-card span{
+    display:block;
+    margin-top:10px;
+    color:var(--pink);
+    font-size:10px;
+}
+
+
+/* =========================================================
+   PORTFOLIO
+========================================================= */
+
+.project-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:20px;
+}
+
+.project{
+    background:var(--cream);
+    color:#000;
+    padding:14px;
+    transition:.25s;
+}
+
+.project:hover{
+    transform:translateY(-8px)rotate(0deg)!important;
+    box-shadow:8px 8px 0 var(--pink);
+}
+
+.project:nth-child(odd){
+    transform:rotate(-1deg);
+}
+
+.project:nth-child(even){
+    transform:rotate(1deg);
+}
+
+.project-image{
+    height:170px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+    radial-gradient(#ffffff33 1px,transparent 1px),
+    linear-gradient(135deg,var(--pink),var(--blue));
+    background-size:6px 6px,auto;
+    color:white;
+    font-family:Anton,sans-serif;
+    font-size:27px;
+}
+
+.project h3{
+    font-family:Anton,sans-serif;
+    font-size:24px;
+    margin:13px 0 5px;
+}
+
+.project p{
+    color:#666;
+    font-size:11px;
+    line-height:1.6;
+}
+
+
+/* =========================================================
+   PHOTO / WRITING
+========================================================= */
+
+.archive{
+    background:#0d0d0d;
+}
+
+.archive-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+}
+
+.archive-card{
+    border:1px solid #333;
+    padding:25px;
+    min-height:200px;
+    position:relative;
+    transition:.2s;
+}
+
+.archive-card:hover{
+    border-color:var(--pink);
+    transform:translateY(-5px);
+}
+
+.archive-card .number{
+    color:var(--pink);
+    font-size:10px;
+}
+
+.archive-card h3{
+    font-family:Caveat,cursive;
+    font-size:32px;
+    margin:30px 0 10px;
+}
+
+.archive-card p{
+    color:#777;
+    font-size:11px;
+    line-height:1.7;
+}
+
+
+/* =========================================================
+   CURRENTLY LEARNING
+========================================================= */
+
+.learning-item{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    border-bottom:1px dashed #333;
+    padding:18px 0;
+}
+
+.learning-number{
+    color:var(--pink);
+    width:30px;
+}
+
+.learning-item h3{
+    font-family:Anton,sans-serif;
+    font-size:24px;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats{
+    background:var(--pink);
+    color:#000;
+    padding:90px 0;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:20px;
+    text-align:center;
+}
+
+.stat strong{
+    display:block;
+    font-family:Anton,sans-serif;
+    font-size:55px;
+}
+
+.stat span{
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+
+/* =========================================================
+   KAMRAN.EXE
+========================================================= */
+
+.exe{
+    padding:140px 0;
+}
+
+.terminal{
+    border:1px solid #444;
+    background:#050505;
+    max-width:750px;
+    margin:auto;
+    box-shadow:10px 10px 0 var(--pink);
+}
+
+.terminal-top{
+    border-bottom:1px solid #333;
+    padding:12px 15px;
+    font-size:9px;
+    color:#777;
+}
+
+.terminal-body{
+    padding:25px;
+}
+
+.terminal-line{
+    color:#aaa;
+    font-size:11px;
+    line-height:2;
+}
+
+.terminal-line span{
+    color:var(--pink);
+}
+
+.terminal-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:20px;
+}
+
+.terminal-buttons button{
+    background:#111;
+    border:1px solid #555;
+    color:var(--cream);
+    padding:9px 12px;
+    font-size:9px;
+    cursor:pointer;
+}
+
+.terminal-buttons button:hover{
+    background:var(--pink);
+    color:#000;
+}
+
+
+/* =========================================================
+   PHILOSOPHY
+========================================================= */
+
+.philosophy{
+    text-align:center;
+    padding:160px 20px;
+}
+
+.philosophy h2{
+    font-family:Caveat,cursive;
+    font-size:clamp(55px,10vw,120px);
+    line-height:.8;
+}
+
+.philosophy p{
+    max-width:650px;
+    margin:35px auto 0;
+    color:#777;
+    line-height:1.9;
+    font-size:13px;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact{
+    background:#0d0d0d;
+    padding:140px 0;
+}
+
+.contact-title{
+    font-family:Anton,sans-serif;
+    font-size:clamp(60px,12vw,140px);
+    line-height:.8;
+    margin-bottom:50px;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+}
+
+.contact-text{
+    color:#888;
+    line-height:1.9;
+    font-size:13px;
+}
+
+.contact-links{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.contact-link{
+    border:1px solid #444;
+    padding:15px;
+    font-size:11px;
+    transition:.2s;
+}
+
+.contact-link:hover{
+    background:var(--pink);
+    color:#000;
+    border-color:var(--pink);
+}
+
+.available{
+    display:inline-block;
+    margin-top:25px;
+    border:1px solid var(--pink);
+    padding:8px 12px;
+    color:var(--pink);
+    font-size:9px;
+}
+
+.dot{
+    display:inline-block;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#42d66b;
+    margin-right:6px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    padding:80px 20px;
+    text-align:center;
+    color:#555;
+    font-size:9px;
+}
+
+footer strong{
+    color:var(--pink);
+}
+
+.footer-big{
+    font-family:Caveat,cursive;
+    font-size:35px;
+    color:var(--cream);
+    margin-bottom:15px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:750px){
+
+    .nav-links{
+        display:none;
     }
 
-    to {
-        transform: translateX(-50%);
+    .menu{
+        display:block;
+    }
+
+    .about-grid,
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .card-info{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .creative{
+        font-size:42px;
+    }
+
+    .license{
+        font-size:22px;
+    }
+
+    .id-card{
+        padding:23px;
+    }
+
+    .card-bottom{
+        gap:10px;
+    }
+
+    .stamp{
+        width:75px;
+        height:75px;
+        font-size:8px;
+    }
+
+    .signature strong{
+        font-size:27px;
+    }
+
+    .section{
+        padding:90px 0;
     }
 }
 
-/* ---------------- FOOTER ---------------- */
-
-footer {
-    text-align: center;
-    padding: 80px 20px;
-    color: #666;
-}
-
-footer strong {
-    color: var(--pink);
-}
-
-footer .big {
-    font-family: Caveat, cursive;
-    font-size: 35px;
-    color: var(--cream);
-    margin-bottom: 15px;
-}
-
-/* ---------------- MOBILE ---------------- */
-
-@media(max-width:700px) {
-
-    nav {
-        padding: 15px;
-    }
-
-    nav div:last-child {
-        display: none;
-    }
-
-    .card {
-        padding: 22px;
-    }
-
-    .creative {
-        font-size: 40px;
-    }
-
-    .license {
-        font-size: 22px;
-    }
-
-    .info {
-        grid-template-columns: 1fr;
-    }
-
-    .full {
-        grid-column: auto;
-    }
-
-    .stamp {
-        width: 75px;
-        height: 75px;
-        font-size: 9px;
-    }
-
-    .signature-name {
-        font-size: 27px;
-    }
-
-    h1 {
-        font-size: 70px;
-    }
-}
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
+
+<!-- ======================================================
+     NAV
+====================================================== -->
 
 <nav>
 
@@ -531,361 +972,1205 @@ footer .big {
         KAMRAN<span>®</span>
     </div>
 
-    <div>
+    <div class="nav-links">
+
         <a href="#about">ABOUT</a>
-        <a href="#skills">SKILLS</a>
         <a href="#work">WORK</a>
+        <a href="#experience">EXPERIENCE</a>
+        <a href="#contact">CONTACT</a>
+
     </div>
+
+    <button class="menu" onclick="alert('Scroll down — everything is here. ✦')">
+        MENU
+    </button>
 
 </nav>
 
 
-<!-- HERO -->
+<!-- ======================================================
+     HERO / CREATIVE LICENSE
+====================================================== -->
 
 <section class="hero">
 
-    <div>
+<div class="hero-content">
 
-        <div class="card">
+<div class="id-card">
 
-            <div class="stars">✦ ✦ ✦</div>
+<div class="stars">✦ ✦ ✦</div>
 
-            <div class="card-header">
+<div class="card-top">
 
-                <div>
-                    <div class="creative">
-                        CREATIVE
-                    </div>
+<div>
 
-                    <div class="license">
-                        LICENSE
-                    </div>
-                </div>
+<div class="creative">
+CREATIVE
+</div>
 
-                <div class="tag">
-                    ID: KG-2005<br>
-                    CLASS: CHAOTIC
-                </div>
+<div class="license">
+LICENSE
+</div>
 
-            </div>
+</div>
 
-            <hr class="line">
+<div class="card-code">
 
-            <div class="info">
+ID: KG-2005<br>
+CLASS: CHAOTIC<br>
+STATUS: ACTIVE
 
-                <div>
-                    <div class="label">NAME</div>
-                    <div class="value">KAMRAN</div>
-                </div>
+</div>
 
-                <div>
-                    <div class="label">USERNAME</div>
-                    <div class="value">@kamithegrape</div>
-                </div>
-
-                <div>
-                    <div class="label">DATE OF BIRTH</div>
-                    <div class="value">24 SEP 2005</div>
-                </div>
-
-                <div>
-                    <div class="label">NATIONALITY</div>
-                    <div class="value">PAKISTANI</div>
-                </div>
-
-                <div class="full">
-                    <div class="label">POSITION</div>
-                    <div class="value">CREATIVE GENERALIST / DELULU MANAGER</div>
-                </div>
-
-                <div class="full">
-                    <div class="label">SPECIALIZATION</div>
-                    <div class="value">JACK OF ALL TRADES</div>
-                </div>
-
-            </div>
-
-            <div class="bottom">
-
-                <div class="stamp">
-                    LICENSED<br>
-                    TO CREATE<br>
-                    CHAOS
-                </div>
-
-                <div class="signature">
-
-                    <div class="signature-name">
-                        Kamran
-                    </div>
-
-                    <small>
-                        AUTHORIZED CREATIVE
-                    </small>
-
-                </div>
-
-            </div>
-
-            <div class="barcode"></div>
-
-            <div class="barcode-number">
-                9 7 8 2 0 0 5 0 9 2 4
-            </div>
-
-            <div class="sticker">
-                probably making something
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
+</div>
 
 
-<!-- ABOUT -->
-
-<section class="intro" id="about">
-
-    <div class="eyebrow">
-        001 / IDENTITY
-    </div>
-
-    <h1>
-        I DON'T<br>
-        REALLY HAVE<br>
-        A <span class="pink">NICHE.</span>
-    </h1>
-
-    <p class="description">
-
-        I'm Kamran — a creative generalist who enjoys learning
-        random things, making stuff, experimenting with ideas,
-        designing things that probably didn't need to exist,
-        and somehow turning all of it into projects.
-
-        <br><br>
-
-        Photography. Design. Writing. Technology.
-        Coding. Editing. AI. Business.
-
-        <br><br>
-
-        If something looks interesting, I'll probably try it.
-
-    </p>
-
-</section>
+<hr class="card-line">
 
 
-<!-- SKILLS -->
+<div class="card-info">
 
-<section class="section" id="skills">
+<div class="field">
 
-    <div class="eyebrow">
-        002 / ABILITIES
-    </div>
+<label>NAME</label>
 
-    <div class="section-title">
-        THINGS I DO
-    </div>
+<p>KAMRAN</p>
 
-    <div class="skills">
+</div>
 
-        <div class="skill">GRAPHIC DESIGN</div>
-        <div class="skill">PHOTOGRAPHY</div>
-        <div class="skill">WRITING</div>
-        <div class="skill">VIDEO EDITING</div>
-        <div class="skill">CODING</div>
-        <div class="skill">WEB DESIGN</div>
-        <div class="skill">AI</div>
-        <div class="skill">CYBERSECURITY</div>
-        <div class="skill">MARKETING</div>
-        <div class="skill">CREATIVE DIRECTION</div>
-        <div class="skill">IDEA GENERATION</div>
-        <div class="skill">PROBLEM SOLVING</div>
 
-    </div>
+<div class="field">
+
+<label>USERNAME</label>
+
+<p>@kamithegrape</p>
+
+</div>
+
+
+<div class="field">
+
+<label>DATE OF BIRTH</label>
+
+<p>24 SEP 2005</p>
+
+</div>
+
+
+<div class="field">
+
+<label>NATIONALITY</label>
+
+<p>PAKISTANI</p>
+
+</div>
+
+
+<div class="field full">
+
+<label>POSITION</label>
+
+<p>CREATIVE GENERALIST / DELULU MANAGER</p>
+
+</div>
+
+
+<div class="field full">
+
+<label>CLASSIFICATION</label>
+
+<p>JACK OF ALL TRADES</p>
+
+</div>
+
+</div>
+
+
+<div class="card-bottom">
+
+<div class="stamp">
+
+LICENSED<br>
+TO CREATE<br>
+CHAOS
+
+</div>
+
+
+<div class="signature">
+
+<strong>Kamran</strong>
+
+<small>
+AUTHORIZED CREATIVE
+</small>
+
+</div>
+
+</div>
+
+
+<div class="barcode"></div>
+
+<div class="barcode-number">
+97820050924
+</div>
+
+
+<div class="card-sticker">
+probably making something
+</div>
+
+</div>
+
+
+<div class="hero-buttons">
+
+<a class="btn primary" href="#contact">
+HIRE / CONTACT
+</a>
+
+<a class="btn" href="#work">
+VIEW WORK
+</a>
+
+<a class="btn" href="#about">
+WHO AM I?
+</a>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- SOFTWARE -->
+<!-- ======================================================
+     ABOUT
+====================================================== -->
+
+<section class="about" id="about">
+
+<div class="container">
+
+<div class="eyebrow">
+001 / IDENTITY
+</div>
+
+<div class="about-grid">
+
+<div>
+
+<div class="section-title">
+
+I DON'T<br>
+REALLY HAVE<br>
+A <span style="color:#ed3f86">NICHE.</span>
+
+</div>
+
+
+<div class="about-text">
+
+I'm <strong>Kamran</strong> — a creative generalist
+who likes knowing a little about a lot of things.
+
+<br><br>
+
+I move between design, photography, writing,
+technology, coding, editing, AI, cybersecurity,
+business and whatever else catches my attention.
+
+<br><br>
+
+I don't really believe in staying inside one box.
+
+If something looks interesting, I'll probably try it.
+
+If I don't know how to do it, I'll probably learn it.
+
+<br><br>
+
+Basically:
+
+<strong>I make things.</strong>
+
+</div>
+
+
+<div class="about-quote">
+
+"I don't really have a niche.
+I just make stuff."
+
+</div>
+
+</div>
+
+
+<div class="identity-box">
+
+<div class="identity-row">
+<span>NAME</span>
+<span>KAMRAN</span>
+</div>
+
+<div class="identity-row">
+<span>HANDLE</span>
+<span>@KAMITHEGRAPE</span>
+</div>
+
+<div class="identity-row">
+<span>AGE</span>
+<span>20</span>
+</div>
+
+<div class="identity-row">
+<span>NATIONALITY</span>
+<span>PAKISTANI</span>
+</div>
+
+<div class="identity-row">
+<span>EDUCATION</span>
+<span>BS AI</span>
+</div>
+
+<div class="identity-row">
+<span>TYPE</span>
+<span>GENERALIST</span>
+</div>
+
+<div class="identity-row">
+<span>NICHE</span>
+<span>NONE</span>
+</div>
+
+<div class="identity-row">
+<span>CURRENT STATUS</span>
+<span>BUILDING</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     SKILLS
+====================================================== -->
+
+<section class="section skills">
+
+<div class="container">
+
+<div class="eyebrow">
+002 / ABILITIES
+</div>
+
+<div class="section-title">
+THINGS I DO
+</div>
+
+
+<div class="skill-grid">
+
+<div class="skill">GRAPHIC DESIGN</div>
+<div class="skill">PHOTOGRAPHY</div>
+<div class="skill">WRITING</div>
+<div class="skill">VIDEO EDITING</div>
+<div class="skill">WEB DESIGN</div>
+<div class="skill">CODING</div>
+<div class="skill">AI</div>
+<div class="skill">CYBERSECURITY</div>
+<div class="skill">MARKETING</div>
+<div class="skill">LEAD GENERATION</div>
+<div class="skill">CREATIVE DIRECTION</div>
+<div class="skill">PROBLEM SOLVING</div>
+<div class="skill">BRANDING</div>
+<div class="skill">CONTENT</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     SOFTWARE
+====================================================== -->
 
 <section class="section">
 
-    <div class="eyebrow">
-        003 / TOOLS
-    </div>
+<div class="container">
 
-    <div class="section-title">
-        SOFTWARE
-    </div>
+<div class="eyebrow">
+003 / TOOLS
+</div>
 
-    <div class="software-grid">
+<div class="section-title">
+SOFTWARE
+</div>
 
-        <div class="software">
-            <strong>ADOBE ILLUSTRATOR</strong>
-            <span>DESIGN</span>
-        </div>
 
-        <div class="software">
-            <strong>PHOTOSHOP</strong>
-            <span>IMAGE EDITING</span>
-        </div>
+<div class="software-grid">
 
-        <div class="software">
-            <strong>FIGMA</strong>
-            <span>UI / UX</span>
-        </div>
+<div class="software">
+<h3>ILLUSTRATOR</h3>
+<span>GRAPHIC DESIGN</span>
+</div>
 
-        <div class="software">
-            <strong>CAPCUT</strong>
-            <span>VIDEO</span>
-        </div>
+<div class="software">
+<h3>PHOTOSHOP</h3>
+<span>IMAGE EDITING</span>
+</div>
 
-        <div class="software">
-            <strong>GITHUB</strong>
-            <span>CODE / PROJECTS</span>
-        </div>
+<div class="software">
+<h3>FIGMA</h3>
+<span>UI / UX</span>
+</div>
 
-        <div class="software">
-            <strong>TERMUX</strong>
-            <span>TECH / LINUX</span>
-        </div>
+<div class="software">
+<h3>CAPCUT</h3>
+<span>VIDEO EDITING</span>
+</div>
 
-    </div>
+<div class="software">
+<h3>GITHUB</h3>
+<span>CODE / PROJECTS</span>
+</div>
+
+<div class="software">
+<h3>TERMUX</h3>
+<span>LINUX / TECH</span>
+</div>
+
+<div class="software">
+<h3>HTML / CSS</h3>
+<span>WEB DEVELOPMENT</span>
+</div>
+
+<div class="software">
+<h3>JAVA</h3>
+<span>PROGRAMMING</span>
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- WORK -->
+<!-- ======================================================
+     EXPERIENCE
+====================================================== -->
+
+<section class="section" id="experience">
+
+<div class="container">
+
+<div class="eyebrow">
+004 / EXPERIENCE
+</div>
+
+<div class="section-title">
+WHERE I'VE<br>WORKED
+</div>
+
+
+<div class="timeline">
+
+
+<div class="job">
+
+<div class="job-date">
+2025 — PRESENT
+</div>
+
+<h3>MEDIFIER SOLUTIONS</h3>
+
+<p>
+Working in medical operations and client support,
+handling communication, requests, workflows and
+day-to-day administrative processes.
+</p>
+
+</div>
+
+
+<div class="job">
+
+<div class="job-date">
+2025 — PRESENT
+</div>
+
+<h3>DYNAMICZONE</h3>
+
+<p>
+Virtual Medical Assistant experience involving
+patient communication, medication requests,
+referrals, administrative workflows and
+healthcare-related systems.
+</p>
+
+</div>
+
+
+<div class="job">
+
+<div class="job-date">
+2025 — PRESENT
+</div>
+
+<h3>MEDIZONE BILLING</h3>
+
+<p>
+Lead generation and cold calling, communicating
+with prospects and helping generate opportunities
+through outbound communication.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     EDUCATION
+====================================================== -->
+
+<section class="section education">
+
+<div class="container">
+
+<div class="eyebrow">
+005 / EDUCATION
+</div>
+
+<div class="section-title">
+THE PAPERWORK
+</div>
+
+
+<div class="edu-grid">
+
+
+<div class="edu-card">
+
+<h3>BS ARTIFICIAL INTELLIGENCE</h3>
+
+<span>
+FUUAST
+</span>
+
+</div>
+
+
+<div class="edu-card">
+
+<h3>FSc — ICS</h3>
+
+<span>
+70%
+</span>
+
+</div>
+
+
+<div class="edu-card">
+
+<h3>MATRIC</h3>
+
+<span>
+92%
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     PORTFOLIO
+====================================================== -->
 
 <section class="section" id="work">
 
-    <div class="eyebrow">
-        004 / PROJECTS
-    </div>
+<div class="container">
 
-    <div class="section-title">
-        STUFF I'VE MADE
-    </div>
+<div class="eyebrow">
+006 / PORTFOLIO
+</div>
 
-    <div class="projects">
-
-        <div class="project">
-
-            <div class="project-image">
-                MOMENTRIX
-            </div>
-
-            <h3>MOMENTRIX</h3>
-
-            <p>
-                Customized calendars, Polaroids,
-                tote bags and other physical creations.
-            </p>
-
-        </div>
+<div class="section-title">
+STUFF I'VE<br>MADE
+</div>
 
 
-        <div class="project">
-
-            <div class="project-image">
-                LOST THINGS
-            </div>
-
-            <h3>THE LOST THINGS</h3>
-
-            <p>
-                A digital museum of forgotten objects,
-                experiences and little pieces of the past.
-            </p>
-
-        </div>
+<div class="project-grid">
 
 
-        <div class="project">
+<div class="project">
 
-            <div class="project-image">
-                DESIGN
-            </div>
+<div class="project-image">
+MOMENTRIX
+</div>
 
-            <h3>GRAPHIC DESIGN</h3>
+<h3>MOMENTRIX</h3>
 
-            <p>
-                Posters, identities, social media graphics,
-                experimental visuals and random ideas.
-            </p>
+<p>
+A creative product project involving customized
+calendars, Polaroids, tote bags and personalized
+physical products.
+</p>
 
-        </div>
-
-
-        <div class="project">
-
-            <div class="project-image">
-                WRITING
-            </div>
-
-            <h3>WRITING</h3>
-
-            <p>
-                Poetry, stories, thoughts and things
-                that probably should have stayed in my notes.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
+</div>
 
 
-<!-- JACK -->
+<div class="project">
 
-<section class="jack">
+<div class="project-image">
+LOST THINGS
+</div>
 
-    <div class="eyebrow">
-        005 / WARNING
-    </div>
+<h3>THE LOST THINGS</h3>
 
-    <h2>
-        JACK OF<br>
-        <span class="pink">ALL TRADES.</span>
-    </h2>
+<p>
+A digital museum concept built around forgotten
+objects, experiences and pieces of everyday life
+that used to feel special.
+</p>
 
-    <p>
-        master of none. probably doing something I shouldn't be.
-    </p>
+</div>
 
-    <div class="marquee">
 
-        <div>
-            DESIGN ✦ CODE ✦ WRITE ✦ CREATE ✦ PHOTOGRAPHY ✦
-            DESIGN ✦ CODE ✦ WRITE ✦ CREATE ✦ PHOTOGRAPHY ✦
-        </div>
+<div class="project">
 
-    </div>
+<div class="project-image">
+DESIGN
+</div>
+
+<h3>GRAPHIC DESIGN</h3>
+
+<p>
+Posters, identities, social media graphics,
+typography experiments and visual concepts.
+</p>
+
+</div>
+
+
+<div class="project">
+
+<div class="project-image">
+WRITING
+</div>
+
+<h3>WRITING ARCHIVE</h3>
+
+<p>
+Poetry, stories, thoughts and personal writing
+built around memories, people and ideas.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- FOOTER -->
+<!-- ======================================================
+     ARCHIVE
+====================================================== -->
+
+<section class="section archive">
+
+<div class="container">
+
+<div class="eyebrow">
+007 / ARCHIVE
+</div>
+
+<div class="section-title">
+THINGS I KEEP
+</div>
+
+
+<div class="archive-grid">
+
+
+<div class="archive-card">
+
+<div class="number">
+01 / PHOTOGRAPHY
+</div>
+
+<h3>Through A Camera</h3>
+
+<p>
+Street scenes, architecture, people,
+random moments and things that looked
+interesting enough to photograph.
+</p>
+
+</div>
+
+
+<div class="archive-card">
+
+<div class="number">
+02 / WRITING
+</div>
+
+<h3>The Writing Archive</h3>
+
+<p>
+Poetry, stories, unfinished thoughts,
+memories and things that were easier
+to write than say.
+</p>
+
+</div>
+
+
+<div class="archive-card">
+
+<div class="number">
+03 / IDEAS
+</div>
+
+<h3>The Idea Drawer</h3>
+
+<p>
+Projects that exist as sketches,
+notes, concepts or that one random
+idea that refuses to disappear.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     CURRENTLY LEARNING
+====================================================== -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="eyebrow">
+008 / CURRENTLY
+</div>
+
+<div class="section-title">
+LEARNING
+</div>
+
+
+<div class="learning-item">
+
+<div class="learning-number">
+01
+</div>
+
+<h3>ARTIFICIAL INTELLIGENCE</h3>
+
+</div>
+
+
+<div class="learning-item">
+
+<div class="learning-number">
+02
+</div>
+
+<h3>CYBERSECURITY</h3>
+
+</div>
+
+
+<div class="learning-item">
+
+<div class="learning-number">
+03
+</div>
+
+<h3>WEB DEVELOPMENT</h3>
+
+</div>
+
+
+<div class="learning-item">
+
+<div class="learning-number">
+04
+</div>
+
+<h3>JAVA / OOP</h3>
+
+</div>
+
+
+<div class="learning-item">
+
+<div class="learning-number">
+05
+</div>
+
+<h3>UI / UX</h3>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     STATS
+====================================================== -->
+
+<section class="stats">
+
+<div class="container">
+
+<div class="stats-grid">
+
+
+<div class="stat">
+<strong>20</strong>
+<span>YEARS OLD</span>
+</div>
+
+
+<div class="stat">
+<strong>∞</strong>
+<span>IDEAS</span>
+</div>
+
+
+<div class="stat">
+<strong>14+</strong>
+<span>SKILLS</span>
+</div>
+
+
+<div class="stat">
+<strong>8+</strong>
+<span>TOOLS</span>
+</div>
+
+
+<div class="stat">
+<strong>0</strong>
+<span>NICHE</span>
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     KAMRAN.EXE
+====================================================== -->
+
+<section class="exe">
+
+<div class="container">
+
+<div class="eyebrow">
+009 / SYSTEM
+</div>
+
+<div class="section-title">
+KAMRAN.EXE
+</div>
+
+
+<div class="terminal">
+
+<div class="terminal-top">
+KAMRAN.EXE — PERSONAL SYSTEM
+</div>
+
+
+<div class="terminal-body">
+
+<div class="terminal-line">
+> booting Kamran.exe...
+</div>
+
+<div class="terminal-line">
+> loading personality...
+</div>
+
+<div class="terminal-line">
+> loading random interests...
+</div>
+
+<div class="terminal-line">
+> status: <span>ACTIVE</span>
+</div>
+
+
+<div id="randomOutput"
+style="margin-top:20px;color:#ed3f86;font-size:13px;">
+> waiting for command...
+</div>
+
+
+<div class="terminal-buttons">
+
+<button onclick="randomFact()">
+RANDOM FACT
+</button>
+
+<button onclick="randomMood()">
+CURRENT STATUS
+</button>
+
+<button onclick="randomSkill()">
+RANDOM SKILL
+</button>
+
+<button onclick="randomProject()">
+RANDOM PROJECT
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     PHILOSOPHY
+====================================================== -->
+
+<section class="philosophy">
+
+<div class="eyebrow">
+010 / PHILOSOPHY
+</div>
+
+<h2>
+I JUST<br>
+MAKE STUFF.
+</h2>
+
+<p>
+
+I don't think everything needs to become a startup.
+
+Sometimes an idea is worth making simply because
+it wouldn't leave you alone.
+
+I like learning.
+
+I like experimenting.
+
+I like making strange things.
+
+And I like seeing an idea that existed only in my
+head become something another person can actually see.
+
+</p>
+
+</section>
+
+
+<!-- ======================================================
+     CONTACT
+====================================================== -->
+
+<section class="contact" id="contact">
+
+<div class="container">
+
+<div class="eyebrow">
+011 / CONTACT
+</div>
+
+<div class="contact-title">
+LET'S MAKE<br>
+SOMETHING.
+</div>
+
+
+<div class="contact-grid">
+
+
+<div class="contact-text">
+
+Have a project?
+
+Need a designer?
+
+Need someone who can figure something out?
+
+Have a weird idea?
+
+Want to collaborate?
+
+Or maybe you just want to say hi.
+
+<br><br>
+
+Send me a message.
+
+<br>
+
+<div class="available">
+
+<span class="dot"></span>
+OPEN TO OPPORTUNITIES
+
+</div>
+
+</div>
+
+
+<div class="contact-links">
+
+
+<a class="contact-link"
+href="mailto:YOUR_EMAIL@example.com">
+
+✉ EMAIL
+</a>
+
+
+<a class="contact-link"
+href="https://github.com/kamithegrape"
+target="_blank">
+
+⌘ GITHUB — @kamithegrape
+</a>
+
+
+<a class="contact-link"
+href="#">
+
+LINKEDIN
+</a>
+
+
+<a class="contact-link"
+href="#">
+
+INSTAGRAM
+</a>
+
+
+<a class="contact-link"
+href="#">
+
+DOWNLOAD CV
+</a>
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
 
 <footer>
 
-    <div class="big">
-        Licensed to create.
-    </div>
+<div class="footer-big">
+You made it this far.
+</div>
 
-    <strong>@kamithegrape</strong>
+<p>
+So you probably have an idea.
+</p>
 
-    <br><br>
+<br>
 
-    © 2026 KAMRAN
+<strong>
+@kamithegrape
+</strong>
+
+<br><br>
+
+© 2026 KAMRAN
 
 </footer>
+
+
+<!-- ======================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+const output =
+document.getElementById("randomOutput");
+
+const facts = [
+
+"I probably have another project idea saved somewhere.",
+
+"I don't really have a niche.",
+
+"I like learning things just because they're interesting.",
+
+"Photography started as a hobby and became an excuse to notice things.",
+
+"I can spend way too long making something look slightly better.",
+
+"Some of my best ideas appear at completely unreasonable hours.",
+
+"Jack of all trades. Still working on the master part."
+
+];
+
+const moods = [
+
+"currently pretending this is organized.",
+
+"probably thinking about another project.",
+
+"building something that didn't need to exist.",
+
+"learning something random.",
+
+"opening another browser tab.",
+
+"creative mode: ON.",
+
+"professional overthinker mode: ACTIVE."
+
+];
+
+const skills = [
+
+"Graphic Design",
+
+"Photography",
+
+"Writing",
+
+"Video Editing",
+
+"Web Design",
+
+"Java",
+
+"AI",
+
+"Cybersecurity",
+
+"Marketing",
+
+"Creative Direction"
+
+];
+
+const projects = [
+
+"Momentrix",
+
+"The Lost Things",
+
+"Graphic Design",
+
+"Writing Archive",
+
+"Photography Archive",
+
+"The Next Random Idea"
+
+];
+
+
+function randomFact(){
+
+    const item =
+    facts[Math.floor(Math.random()*facts.length)];
+
+    output.innerHTML =
+    "> " + item;
+
+}
+
+
+function randomMood(){
+
+    const item =
+    moods[Math.floor(Math.random()*moods.length)];
+
+    output.innerHTML =
+    "> STATUS: " + item;
+
+}
+
+
+function randomSkill(){
+
+    const item =
+    skills[Math.floor(Math.random()*skills.length)];
+
+    output.innerHTML =
+    "> RANDOM SKILL: " + item;
+
+}
+
+
+function randomProject(){
+
+    const item =
+    projects[Math.floor(Math.random()*projects.length)];
+
+    output.innerHTML =
+    "> PROJECT DETECTED: " + item;
+
+}
+
+</script>
 
 </body>
 </html>
