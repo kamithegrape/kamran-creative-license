@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>KAMRAN — Creative License</title>
 
 <meta name="description"
-content="Kamran — Creative Generalist, designer, photographer, writer and professional collector of random interests.">
+content="Kamran — Creative Generalist, AI Student, Designer and Remote Healthcare Professional.">
 
 <style>
 
 /* =========================================================
-   KAMRAN — PERSONAL WEBSITE
-   SINGLE FILE / GITHUB PAGES READY
+   KAMRAN — CREATIVE LICENSE
+   PERSONAL WEBSITE
+   SINGLE FILE — GITHUB PAGES READY
 ========================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
+
 :root{
     --black:#080808;
-    --black2:#111111;
-    --cream:#f2eadb;
+    --black2:#101010;
+    --cream:#f1eadc;
     --pink:#ed3f86;
-    --pink2:#b51e5e;
-    --blue:#244fc4;
+    --pink-dark:#ad1c5b;
+    --blue:#2450c5;
     --gray:#77736d;
-    --white:#faf8f2;
+    --light:#f9f7f1;
 }
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
     box-sizing:border-box;
@@ -50,12 +58,14 @@ body::before{
     content:"";
     position:fixed;
     inset:0;
-    pointer-events:none;
     z-index:9999;
-    opacity:.04;
+    pointer-events:none;
+    opacity:.035;
+
     background-image:
-    radial-gradient(#fff 1px,transparent 1px);
-    background-size:4px 4px;
+        radial-gradient(#fff 1px,transparent 1px);
+
+    background-size:5px 5px;
 }
 
 a{
@@ -83,18 +93,29 @@ nav{
     left:0;
     right:0;
     z-index:500;
-    padding:18px 25px;
+
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    background:linear-gradient(#080808dd,transparent);
+    justify-content:space-between;
+
+    padding:18px 25px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(8,8,8,.95),
+            rgba(8,8,8,.55),
+            transparent
+        );
 }
 
 .logo{
+    background:#080808;
     border:1px solid var(--cream);
     padding:7px 11px;
-    font-size:11px;
-    background:#080808;
+
+    font-size:10px;
+    letter-spacing:1px;
 }
 
 .logo span{
@@ -107,25 +128,35 @@ nav{
 }
 
 .nav-links a{
-    border:1px solid #555;
     padding:7px 10px;
-    font-size:10px;
+
+    border:1px solid #444;
+
     background:#080808dd;
+
+    font-size:9px;
+    letter-spacing:1px;
+
     transition:.2s;
 }
 
 .nav-links a:hover{
     background:var(--pink);
-    color:#000;
     border-color:var(--pink);
+    color:#000;
 }
 
 .menu{
     display:none;
-    border:1px solid var(--cream);
+
     background:#080808;
     color:var(--cream);
+
+    border:1px solid var(--cream);
+
     padding:8px 12px;
+
+    cursor:pointer;
 }
 
 
@@ -133,31 +164,33 @@ nav{
    GENERAL
 ========================================================= */
 
-section{
-    position:relative;
-}
-
 .container{
     width:min(1120px,92%);
     margin:auto;
 }
 
+.section{
+    padding:130px 0;
+}
+
 .eyebrow{
     color:var(--pink);
+
     font-size:10px;
     letter-spacing:4px;
+
     margin-bottom:18px;
 }
 
 .section-title{
     font-family:Anton,sans-serif;
-    font-size:clamp(50px,9vw,105px);
-    line-height:.85;
-    margin-bottom:45px;
-}
 
-.section{
-    padding:130px 0;
+    font-size:
+        clamp(55px,9vw,110px);
+
+    line-height:.84;
+
+    margin-bottom:50px;
 }
 
 
@@ -166,37 +199,67 @@ section{
 ========================================================= */
 
 .hero{
+
     min-height:100vh;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     padding:120px 20px 80px;
+
     background:
-    radial-gradient(circle at 15% 15%,#ed3f861c,transparent 35%),
-    radial-gradient(circle at 85% 80%,#244fc41c,transparent 35%);
+
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(237,63,134,.12),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(36,80,197,.12),
+            transparent 35%
+        );
 }
 
 .hero-content{
     width:100%;
+
     display:flex;
     flex-direction:column;
     align-items:center;
 }
 
+
+/* =========================================================
+   ID CARD
+========================================================= */
+
 .id-card{
-    width:min(620px,94vw);
-    min-height:370px;
+
+    width:min(650px,95vw);
+
+    min-height:400px;
+
     background:var(--cream);
     color:#080808;
+
     border-radius:20px;
+
     padding:30px;
+
     position:relative;
+
     overflow:hidden;
+
     transform:rotate(-1deg);
+
     box-shadow:
-        0 35px 90px #000,
+        0 35px 90px rgba(0,0,0,.9),
         8px 8px 0 var(--pink);
-    transition:.3s;
+
+    transition:.35s;
 }
 
 .id-card:hover{
@@ -204,78 +267,124 @@ section{
 }
 
 .id-card::after{
+
     content:"";
+
     position:absolute;
     inset:0;
+
     pointer-events:none;
-    opacity:.25;
+
+    opacity:.22;
+
     background-image:
-    radial-gradient(#000 1px,transparent 1px);
+        radial-gradient(
+            #000 1px,
+            transparent 1px
+        );
+
     background-size:5px 5px;
 }
 
 .stars{
+
     position:absolute;
-    top:14px;
+
+    top:13px;
     left:17px;
+
     color:var(--pink);
-    font-size:16px;
+
+    font-size:15px;
+
+    z-index:2;
 }
 
 .card-top{
+
     display:flex;
     justify-content:space-between;
+
     position:relative;
+
     z-index:2;
 }
 
 .creative{
+
     font-family:Caveat,cursive;
+
+    font-size:61px;
     font-weight:700;
-    font-size:58px;
+
     line-height:.7;
+
     transform:rotate(-3deg);
 }
 
 .license{
+
     font-family:Anton,sans-serif;
-    color:var(--pink2);
-    font-size:30px;
+
+    font-size:31px;
+
+    color:var(--pink-dark);
+
     margin-top:10px;
 }
 
 .card-code{
-    font-size:8px;
-    line-height:1.6;
-    text-align:right;
+
     border:1px solid #777;
-    padding:5px;
+
+    padding:6px;
+
+    font-size:8px;
+
+    line-height:1.6;
+
+    text-align:right;
 }
 
 .card-line{
+
     border:0;
+
     border-top:1px dashed #888;
-    margin:22px 0;
+
+    margin:23px 0;
 }
 
 .card-info{
+
     display:grid;
+
     grid-template-columns:1fr 1fr;
-    gap:16px;
+
+    gap:17px;
+
     position:relative;
+
     z-index:2;
 }
 
 .field label{
+
     display:block;
-    color:var(--pink2);
+
+    color:var(--pink-dark);
+
     font-size:8px;
+
     letter-spacing:2px;
 }
 
 .field p{
+
     font-size:13px;
+
     font-weight:bold;
+
     margin-top:3px;
 }
 
@@ -284,27 +393,43 @@ section{
 }
 
 .card-bottom{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:flex-end;
-    margin-top:25px;
+
+    margin-top:27px;
+
     position:relative;
+
     z-index:2;
 }
 
 .stamp{
-    width:92px;
-    height:92px;
+
+    width:95px;
+    height:95px;
+
     border:3px solid var(--blue);
+
     color:var(--blue);
+
     border-radius:50%;
+
     display:flex;
+
     justify-content:center;
     align-items:center;
+
     text-align:center;
+
     font-family:Anton,sans-serif;
+
     font-size:10px;
-    transform:rotate(-12deg);
+
+    transform:rotate(-11deg);
 }
 
 .signature{
@@ -312,74 +437,115 @@ section{
 }
 
 .signature strong{
+
     display:block;
+
     font-family:Caveat,cursive;
-    font-size:33px;
+
+    font-size:35px;
 }
 
 .signature small{
-    font-size:8px;
+
     color:#777;
+
+    font-size:8px;
 }
 
 .barcode{
-    height:28px;
-    margin-top:18px;
+
+    height:29px;
+
+    margin-top:19px;
+
     background:
-    repeating-linear-gradient(
-        90deg,
-        #000 0 2px,
-        transparent 2px 5px,
-        #000 5px 6px,
-        transparent 6px 9px
-    );
+
+        repeating-linear-gradient(
+            90deg,
+
+            #000 0 2px,
+            transparent 2px 5px,
+
+            #000 5px 6px,
+            transparent 6px 9px
+        );
 }
 
 .barcode-number{
+
     text-align:center;
+
     font-size:8px;
+
     letter-spacing:5px;
 }
 
 .card-sticker{
+
     position:absolute;
-    right:-12px;
-    top:85px;
+
+    right:-10px;
+    top:87px;
+
     background:var(--pink);
+
     color:white;
-    padding:8px 15px;
+
+    padding:8px 16px;
+
     font-family:Caveat,cursive;
-    font-size:17px;
+
+    font-size:18px;
+
     transform:rotate(8deg);
+
     z-index:5;
 }
 
 .hero-buttons{
+
     display:flex;
-    gap:10px;
-    margin-top:45px;
-    flex-wrap:wrap;
+
     justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-top:48px;
 }
 
 .btn{
+
+    display:inline-block;
+
     border:1px solid var(--cream);
+
     padding:12px 18px;
-    font-size:10px;
+
+    font-size:9px;
+
     letter-spacing:1px;
+
     transition:.2s;
 }
 
 .btn:hover{
+
     background:var(--pink);
+
     color:#000;
+
     border-color:var(--pink);
 }
 
 .btn.primary{
+
     background:var(--pink);
-    color:#000;
+
     border-color:var(--pink);
+
+    color:#000;
 }
 
 
@@ -392,15 +558,22 @@ section{
 }
 
 .about-grid{
+
     display:grid;
-    grid-template-columns:1.2fr .8fr;
+
+    grid-template-columns:
+        1.2fr .8fr;
+
     gap:60px;
 }
 
 .about-text{
-    font-size:15px;
-    line-height:2;
+
     color:#aaa;
+
+    font-size:14px;
+
+    line-height:2;
 }
 
 .about-text strong{
@@ -408,27 +581,48 @@ section{
 }
 
 .about-quote{
+
     margin-top:30px;
+
     color:var(--pink);
+
     font-family:Caveat,cursive;
-    font-size:30px;
+
+    font-size:32px;
 }
 
 .identity-box{
+
     border:1px dashed #555;
+
     padding:25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.02),
+            transparent
+        );
 }
 
 .identity-row{
+
     display:flex;
+
     justify-content:space-between;
+
+    gap:20px;
+
     border-bottom:1px dashed #333;
+
     padding:13px 0;
-    font-size:10px;
+
+    font-size:9px;
 }
 
 .identity-row span:last-child{
     color:var(--pink);
+    text-align:right;
 }
 
 
@@ -441,23 +635,37 @@ section{
 }
 
 .skill-grid{
+
     display:flex;
+
     flex-wrap:wrap;
+
     gap:14px;
 }
 
 .skill{
+
     background:var(--cream);
+
     color:#000;
+
     padding:13px 17px;
-    box-shadow:4px 4px 0 var(--pink);
-    font-size:11px;
+
+    font-size:10px;
+
+    box-shadow:
+        4px 4px 0 var(--pink);
+
     transition:.2s;
 }
 
 .skill:hover{
-    transform:translateY(-5px)rotate(0);
-    box-shadow:7px 7px 0 var(--pink);
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        7px 7px 0 var(--pink);
 }
 
 
@@ -466,32 +674,51 @@ section{
 ========================================================= */
 
 .software-grid{
+
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(190px,1fr)
+        );
+
     gap:15px;
 }
 
 .software{
+
     border:1px dashed #555;
+
     padding:22px;
+
     transition:.2s;
 }
 
 .software:hover{
+
     border-color:var(--pink);
-    transform:translateY(-4px);
+
+    transform:
+        translateY(-4px);
 }
 
 .software h3{
+
     font-family:Anton,sans-serif;
+
     font-size:21px;
 }
 
 .software span{
-    color:var(--pink);
-    font-size:8px;
+
     display:block;
+
     margin-top:8px;
+
+    color:var(--pink);
+
+    font-size:8px;
 }
 
 
@@ -500,43 +727,72 @@ section{
 ========================================================= */
 
 .timeline{
+
     border-left:1px solid #444;
+
     padding-left:30px;
 }
 
 .job{
+
     position:relative;
-    margin-bottom:50px;
+
+    margin-bottom:55px;
 }
 
 .job::before{
+
     content:"";
-    width:9px;
-    height:9px;
-    border-radius:50%;
-    background:var(--pink);
+
     position:absolute;
+
     left:-35px;
     top:5px;
+
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:var(--pink);
 }
 
 .job-date{
+
     color:var(--pink);
+
     font-size:9px;
+
     letter-spacing:2px;
 }
 
 .job h3{
+
     font-family:Anton,sans-serif;
-    font-size:28px;
+
+    font-size:29px;
+
     margin:8px 0;
 }
 
+.job-company{
+
+    color:#ccc;
+
+    font-size:10px;
+
+    margin-bottom:12px;
+}
+
 .job p{
+
     color:#888;
-    font-size:12px;
-    line-height:1.8;
-    max-width:650px;
+
+    font-size:11px;
+
+    line-height:1.9;
+
+    max-width:720px;
 }
 
 
@@ -549,49 +805,153 @@ section{
 }
 
 .edu-grid{
+
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(250px,1fr)
+        );
+
     gap:20px;
 }
 
 .edu-card{
+
     border:1px solid #333;
+
     padding:25px;
+
+    transition:.2s;
+}
+
+.edu-card:hover{
+
+    border-color:var(--pink);
+
+    transform:translateY(-5px);
 }
 
 .edu-card h3{
+
     font-family:Anton,sans-serif;
-    font-size:25px;
+
+    font-size:24px;
+}
+
+.edu-card p{
+
+    color:#888;
+
+    font-size:10px;
+
+    line-height:1.7;
+
+    margin-top:12px;
 }
 
 .edu-card span{
+
     display:block;
-    margin-top:10px;
+
+    margin-top:14px;
+
     color:var(--pink);
-    font-size:10px;
+
+    font-size:9px;
 }
 
 
 /* =========================================================
-   PORTFOLIO
+   COURSES
+========================================================= */
+
+.course-list{
+
+    display:grid;
+
+    gap:15px;
+}
+
+.course{
+
+    border:1px dashed #444;
+
+    padding:22px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    transition:.2s;
+}
+
+.course:hover{
+
+    border-color:var(--pink);
+
+    background:#0d0d0d;
+}
+
+.course h3{
+
+    font-family:Anton,sans-serif;
+
+    font-size:22px;
+}
+
+.course p{
+
+    color:#777;
+
+    font-size:10px;
+
+    line-height:1.7;
+
+    margin-top:7px;
+
+    max-width:650px;
+}
+
+.course-date{
+
+    color:var(--pink);
+
+    font-size:9px;
+
+    white-space:nowrap;
+}
+
+
+/* =========================================================
+   PROJECTS
 ========================================================= */
 
 .project-grid{
+
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(240px,1fr)
+        );
+
     gap:20px;
 }
 
 .project{
-    background:var(--cream);
-    color:#000;
-    padding:14px;
-    transition:.25s;
-}
 
-.project:hover{
-    transform:translateY(-8px)rotate(0deg)!important;
-    box-shadow:8px 8px 0 var(--pink);
+    background:var(--cream);
+
+    color:#000;
+
+    padding:14px;
+
+    transition:.25s;
 }
 
 .project:nth-child(odd){
@@ -602,35 +962,86 @@ section{
     transform:rotate(1deg);
 }
 
+.project:hover{
+
+    transform:
+        translateY(-8px)
+        rotate(0deg);
+
+    box-shadow:
+        8px 8px 0 var(--pink);
+}
+
 .project-image{
+
     height:170px;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
-    background:
-    radial-gradient(#ffffff33 1px,transparent 1px),
-    linear-gradient(135deg,var(--pink),var(--blue));
-    background-size:6px 6px,auto;
+
     color:white;
+
     font-family:Anton,sans-serif;
+
     font-size:27px;
+
+    text-align:center;
+
+    background:
+
+        radial-gradient(
+            #ffffff33 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--blue)
+        );
+
+    background-size:
+        6px 6px,
+        auto;
 }
 
 .project h3{
+
     font-family:Anton,sans-serif;
+
     font-size:24px;
-    margin:13px 0 5px;
+
+    margin:13px 0 6px;
 }
 
 .project p{
+
     color:#666;
-    font-size:11px;
-    line-height:1.6;
+
+    font-size:10px;
+
+    line-height:1.7;
+}
+
+.project-link{
+
+    display:inline-block;
+
+    margin-top:14px;
+
+    color:var(--pink-dark);
+
+    font-size:9px;
+
+    font-weight:bold;
 }
 
 
 /* =========================================================
-   PHOTO / WRITING
+   ARCHIVE
 ========================================================= */
 
 .archive{
@@ -638,61 +1049,92 @@ section{
 }
 
 .archive-grid{
+
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(250px,1fr)
+        );
+
     gap:15px;
 }
 
 .archive-card{
+
     border:1px solid #333;
+
     padding:25px;
-    min-height:200px;
-    position:relative;
+
+    min-height:210px;
+
     transition:.2s;
 }
 
 .archive-card:hover{
+
     border-color:var(--pink);
+
     transform:translateY(-5px);
 }
 
-.archive-card .number{
+.archive-number{
+
     color:var(--pink);
-    font-size:10px;
+
+    font-size:9px;
 }
 
 .archive-card h3{
+
     font-family:Caveat,cursive;
-    font-size:32px;
-    margin:30px 0 10px;
+
+    font-size:33px;
+
+    margin:28px 0 10px;
 }
 
 .archive-card p{
+
     color:#777;
-    font-size:11px;
-    line-height:1.7;
+
+    font-size:10px;
+
+    line-height:1.8;
 }
 
 
 /* =========================================================
-   CURRENTLY LEARNING
+   LEARNING
 ========================================================= */
 
 .learning-item{
+
     display:flex;
+
     align-items:center;
+
     gap:20px;
+
     border-bottom:1px dashed #333;
+
     padding:18px 0;
 }
 
 .learning-number{
+
     color:var(--pink);
+
     width:30px;
+
+    font-size:10px;
 }
 
 .learning-item h3{
+
     font-family:Anton,sans-serif;
+
     font-size:24px;
 }
 
@@ -702,60 +1144,91 @@ section{
 ========================================================= */
 
 .stats{
+
     background:var(--pink);
+
     color:#000;
+
     padding:90px 0;
 }
 
 .stats-grid{
+
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(130px,1fr)
+        );
+
     gap:20px;
+
     text-align:center;
 }
 
 .stat strong{
+
     display:block;
+
     font-family:Anton,sans-serif;
+
     font-size:55px;
 }
 
 .stat span{
-    font-size:9px;
+
+    font-size:8px;
+
     letter-spacing:2px;
 }
 
 
 /* =========================================================
-   KAMRAN.EXE
+   TERMINAL
 ========================================================= */
 
 .exe{
+
     padding:140px 0;
 }
 
 .terminal{
-    border:1px solid #444;
-    background:#050505;
+
     max-width:750px;
+
     margin:auto;
-    box-shadow:10px 10px 0 var(--pink);
+
+    background:#050505;
+
+    border:1px solid #444;
+
+    box-shadow:
+        10px 10px 0 var(--pink);
 }
 
 .terminal-top{
-    border-bottom:1px solid #333;
+
     padding:12px 15px;
-    font-size:9px;
+
+    border-bottom:1px solid #333;
+
     color:#777;
+
+    font-size:9px;
 }
 
 .terminal-body{
+
     padding:25px;
 }
 
 .terminal-line{
+
     color:#aaa;
-    font-size:11px;
+
+    font-size:10px;
+
     line-height:2;
 }
 
@@ -763,24 +1236,49 @@ section{
     color:var(--pink);
 }
 
+#randomOutput{
+
+    margin-top:20px;
+
+    min-height:25px;
+
+    color:var(--pink);
+
+    font-size:11px;
+}
+
 .terminal-buttons{
+
     display:flex;
+
     flex-wrap:wrap;
+
     gap:8px;
+
     margin-top:20px;
 }
 
 .terminal-buttons button{
+
     background:#111;
-    border:1px solid #555;
+
     color:var(--cream);
+
+    border:1px solid #555;
+
     padding:9px 12px;
-    font-size:9px;
+
+    font-size:8px;
+
     cursor:pointer;
+
+    transition:.2s;
 }
 
 .terminal-buttons button:hover{
+
     background:var(--pink);
+
     color:#000;
 }
 
@@ -790,22 +1288,37 @@ section{
 ========================================================= */
 
 .philosophy{
+
     text-align:center;
-    padding:160px 20px;
+
+    padding:170px 20px;
 }
 
 .philosophy h2{
+
     font-family:Caveat,cursive;
-    font-size:clamp(55px,10vw,120px);
-    line-height:.8;
+
+    font-size:
+        clamp(
+            60px,
+            10vw,
+            125px
+        );
+
+    line-height:.78;
 }
 
 .philosophy p{
-    max-width:650px;
-    margin:35px auto 0;
+
+    max-width:680px;
+
+    margin:38px auto 0;
+
     color:#777;
-    line-height:1.9;
-    font-size:13px;
+
+    font-size:12px;
+
+    line-height:2;
 }
 
 
@@ -814,64 +1327,102 @@ section{
 ========================================================= */
 
 .contact{
+
     background:#0d0d0d;
+
     padding:140px 0;
 }
 
 .contact-title{
+
     font-family:Anton,sans-serif;
-    font-size:clamp(60px,12vw,140px);
-    line-height:.8;
-    margin-bottom:50px;
+
+    font-size:
+        clamp(
+            60px,
+            12vw,
+            145px
+        );
+
+    line-height:.78;
+
+    margin-bottom:55px;
 }
 
 .contact-grid{
+
     display:grid;
+
     grid-template-columns:1fr 1fr;
-    gap:50px;
+
+    gap:60px;
 }
 
 .contact-text{
+
     color:#888;
-    line-height:1.9;
-    font-size:13px;
+
+    font-size:12px;
+
+    line-height:2;
+}
+
+.available{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    border:1px solid var(--pink);
+
+    color:var(--pink);
+
+    padding:9px 13px;
+
+    font-size:8px;
+}
+
+.dot{
+
+    display:inline-block;
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#43d76b;
+
+    margin-right:6px;
 }
 
 .contact-links{
+
     display:flex;
+
     flex-direction:column;
+
     gap:10px;
 }
 
 .contact-link{
+
     border:1px solid #444;
-    padding:15px;
-    font-size:11px;
+
+    padding:16px;
+
+    font-size:9px;
+
     transition:.2s;
 }
 
 .contact-link:hover{
+
     background:var(--pink);
-    color:#000;
+
     border-color:var(--pink);
-}
 
-.available{
-    display:inline-block;
-    margin-top:25px;
-    border:1px solid var(--pink);
-    padding:8px 12px;
-    color:var(--pink);
-    font-size:9px;
-}
-
-.dot{
-    display:inline-block;
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:#42d66b;
-    margin-right:6px;
+    color:#000;
 }
 
 
@@ -880,26 +1431,34 @@ section{
 ========================================================= */
 
 footer{
-    padding:80px 20px;
+
+    padding:90px 20px;
+
     text-align:center;
+
     color:#555;
-    font-size:9px;
+
+    font-size:8px;
+}
+
+.footer-big{
+
+    color:var(--cream);
+
+    font-family:Caveat,cursive;
+
+    font-size:38px;
+
+    margin-bottom:15px;
 }
 
 footer strong{
     color:var(--pink);
 }
 
-.footer-big{
-    font-family:Caveat,cursive;
-    font-size:35px;
-    color:var(--cream);
-    margin-bottom:15px;
-}
-
 
 /* =========================================================
-   RESPONSIVE
+   MOBILE
 ========================================================= */
 
 @media(max-width:750px){
@@ -926,81 +1485,168 @@ footer strong{
     }
 
     .creative{
-        font-size:42px;
+        font-size:43px;
     }
 
     .license{
-        font-size:22px;
+        font-size:23px;
     }
 
     .id-card{
         padding:23px;
     }
 
-    .card-bottom{
+    .card-top{
         gap:10px;
     }
 
+    .card-code{
+        font-size:7px;
+    }
+
     .stamp{
-        width:75px;
-        height:75px;
+
+        width:74px;
+        height:74px;
+
         font-size:8px;
     }
 
     .signature strong{
-        font-size:27px;
+        font-size:28px;
+    }
+
+    .course{
+
+        flex-direction:column;
+
+        gap:12px;
     }
 
     .section{
-        padding:90px 0;
+        padding:95px 0;
     }
+
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.mobile-menu{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:450;
+
+    background:#080808;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-direction:column;
+
+    gap:22px;
+}
+
+.mobile-menu.open{
+    display:flex;
+}
+
+.mobile-menu a{
+
+    font-family:Anton,sans-serif;
+
+    font-size:35px;
+}
+
+.mobile-menu a:hover{
+    color:var(--pink);
 }
 
 </style>
+
 </head>
+
 
 <body>
 
 
 <!-- ======================================================
-     NAV
+     NAVIGATION
 ====================================================== -->
 
 <nav>
 
-    <div class="logo">
-        KAMRAN<span>®</span>
-    </div>
+<div class="logo">
+KAMRAN<span>®</span>
+</div>
 
-    <div class="nav-links">
 
-        <a href="#about">ABOUT</a>
-        <a href="#work">WORK</a>
-        <a href="#experience">EXPERIENCE</a>
-        <a href="#contact">CONTACT</a>
+<div class="nav-links">
 
-    </div>
+<a href="#about">ABOUT</a>
 
-    <button class="menu" onclick="alert('Scroll down — everything is here. ✦')">
-        MENU
-    </button>
+<a href="#experience">EXPERIENCE</a>
+
+<a href="#work">WORK</a>
+
+<a href="#contact">CONTACT</a>
+
+</div>
+
+
+<button
+class="menu"
+onclick="toggleMenu()">
+
+MENU
+
+</button>
 
 </nav>
 
 
+<div
+class="mobile-menu"
+id="mobileMenu">
+
+<a href="#about" onclick="toggleMenu()">ABOUT</a>
+
+<a href="#experience" onclick="toggleMenu()">EXPERIENCE</a>
+
+<a href="#work" onclick="toggleMenu()">WORK</a>
+
+<a href="#contact" onclick="toggleMenu()">CONTACT</a>
+
+</div>
+
+
 <!-- ======================================================
-     HERO / CREATIVE LICENSE
+     HERO
 ====================================================== -->
 
 <section class="hero">
 
 <div class="hero-content">
 
+
 <div class="id-card">
 
-<div class="stars">✦ ✦ ✦</div>
+
+<div class="stars">
+✦ ✦ ✦
+</div>
+
 
 <div class="card-top">
+
 
 <div>
 
@@ -1014,10 +1660,11 @@ LICENSE
 
 </div>
 
+
 <div class="card-code">
 
 ID: KG-2005<br>
-CLASS: CHAOTIC<br>
+CLASS: GENERALIST<br>
 STATUS: ACTIVE
 
 </div>
@@ -1029,6 +1676,7 @@ STATUS: ACTIVE
 
 
 <div class="card-info">
+
 
 <div class="field">
 
@@ -1043,7 +1691,7 @@ STATUS: ACTIVE
 
 <label>USERNAME</label>
 
-<p>@kamithegrape</p>
+<p>@KAMITHEGRAPE</p>
 
 </div>
 
@@ -1070,7 +1718,16 @@ STATUS: ACTIVE
 
 <label>POSITION</label>
 
-<p>CREATIVE GENERALIST / DELULU MANAGER</p>
+<p>CREATIVE GENERALIST</p>
+
+</div>
+
+
+<div class="field full">
+
+<label>SECONDARY POSITION</label>
+
+<p>AI STUDENT / DELULU MANAGER</p>
 
 </div>
 
@@ -1087,6 +1744,7 @@ STATUS: ACTIVE
 
 
 <div class="card-bottom">
+
 
 <div class="stamp">
 
@@ -1107,6 +1765,7 @@ AUTHORIZED CREATIVE
 
 </div>
 
+
 </div>
 
 
@@ -1121,24 +1780,43 @@ AUTHORIZED CREATIVE
 probably making something
 </div>
 
+
 </div>
 
 
 <div class="hero-buttons">
 
-<a class="btn primary" href="#contact">
+
+<a
+class="btn primary"
+href="mailto:muhammadkamrantaj@gmail.com">
+
 HIRE / CONTACT
+
 </a>
 
-<a class="btn" href="#work">
+
+<a
+class="btn"
+href="#work">
+
 VIEW WORK
+
 </a>
 
-<a class="btn" href="#about">
-WHO AM I?
+
+<a
+class="btn"
+href="assets/cv.pdf"
+download>
+
+DOWNLOAD CV
+
 </a>
+
 
 </div>
+
 
 </div>
 
@@ -1149,37 +1827,60 @@ WHO AM I?
      ABOUT
 ====================================================== -->
 
-<section class="about" id="about">
+<section
+class="about"
+id="about">
 
 <div class="container">
+
 
 <div class="eyebrow">
 001 / IDENTITY
 </div>
 
+
 <div class="about-grid">
 
+
 <div>
+
 
 <div class="section-title">
 
 I DON'T<br>
 REALLY HAVE<br>
-A <span style="color:#ed3f86">NICHE.</span>
+A <span style="color:#ed3f86">
+NICHE.
+</span>
 
 </div>
 
 
 <div class="about-text">
 
-I'm <strong>Kamran</strong> — a creative generalist
-who likes knowing a little about a lot of things.
+I'm <strong>Kamran</strong> — a creative generalist,
+AI student and remote healthcare professional
+from Islamabad, Pakistan.
 
 <br><br>
 
-I move between design, photography, writing,
-technology, coding, editing, AI, cybersecurity,
-business and whatever else catches my attention.
+Professionally, I've worked across U.S.-based
+healthcare operations, patient communication,
+insurance verification, EHR management,
+prior authorizations, referrals and administrative
+workflows.
+
+<br><br>
+
+I've also worked in lead generation, cold calling,
+email outreach and CRM management.
+
+<br><br>
+
+Outside of work, I'm interested in graphic design,
+photography, writing, technology, AI, cybersecurity,
+web development and building random things that
+probably didn't need to exist.
 
 <br><br>
 
@@ -1191,9 +1892,7 @@ If I don't know how to do it, I'll probably learn it.
 
 <br><br>
 
-Basically:
-
-<strong>I make things.</strong>
+<strong>I just make stuff.</strong>
 
 </div>
 
@@ -1205,52 +1904,75 @@ I just make stuff."
 
 </div>
 
+
 </div>
 
 
 <div class="identity-box">
+
 
 <div class="identity-row">
 <span>NAME</span>
 <span>KAMRAN</span>
 </div>
 
+
 <div class="identity-row">
 <span>HANDLE</span>
 <span>@KAMITHEGRAPE</span>
 </div>
 
+
 <div class="identity-row">
-<span>AGE</span>
-<span>20</span>
+<span>BORN</span>
+<span>24 SEP 2005</span>
 </div>
+
 
 <div class="identity-row">
 <span>NATIONALITY</span>
 <span>PAKISTANI</span>
 </div>
 
-<div class="identity-row">
-<span>EDUCATION</span>
-<span>BS AI</span>
-</div>
 
 <div class="identity-row">
-<span>TYPE</span>
+<span>LOCATION</span>
+<span>ISLAMABAD</span>
+</div>
+
+
+<div class="identity-row">
+<span>EDUCATION</span>
+<span>BS ARTIFICIAL INTELLIGENCE</span>
+</div>
+
+
+<div class="identity-row">
+<span>PROFESSION</span>
+<span>VIRTUAL MEDICAL ASSISTANT</span>
+</div>
+
+
+<div class="identity-row">
+<span>CREATIVE TYPE</span>
 <span>GENERALIST</span>
 </div>
+
 
 <div class="identity-row">
 <span>NICHE</span>
 <span>NONE</span>
 </div>
 
+
 <div class="identity-row">
-<span>CURRENT STATUS</span>
+<span>STATUS</span>
 <span>BUILDING</span>
 </div>
 
+
 </div>
+
 
 </div>
 
@@ -1260,38 +1982,106 @@ I just make stuff."
 
 
 <!-- ======================================================
-     SKILLS
+     PROFESSIONAL SKILLS
 ====================================================== -->
 
 <section class="section skills">
 
 <div class="container">
 
+
 <div class="eyebrow">
 002 / ABILITIES
 </div>
 
+
 <div class="section-title">
-THINGS I DO
+WHAT I DO
 </div>
 
 
 <div class="skill-grid">
 
-<div class="skill">GRAPHIC DESIGN</div>
-<div class="skill">PHOTOGRAPHY</div>
-<div class="skill">WRITING</div>
-<div class="skill">VIDEO EDITING</div>
-<div class="skill">WEB DESIGN</div>
-<div class="skill">CODING</div>
-<div class="skill">AI</div>
-<div class="skill">CYBERSECURITY</div>
-<div class="skill">MARKETING</div>
-<div class="skill">LEAD GENERATION</div>
-<div class="skill">CREATIVE DIRECTION</div>
-<div class="skill">PROBLEM SOLVING</div>
-<div class="skill">BRANDING</div>
-<div class="skill">CONTENT</div>
+
+<div class="skill">
+PATIENT COMMUNICATION
+</div>
+
+
+<div class="skill">
+INSURANCE VERIFICATION
+</div>
+
+
+<div class="skill">
+EHR MANAGEMENT
+</div>
+
+
+<div class="skill">
+PRIOR AUTHORIZATIONS
+</div>
+
+
+<div class="skill">
+REFERRAL COORDINATION
+</div>
+
+
+<div class="skill">
+HIPAA COMPLIANCE
+</div>
+
+
+<div class="skill">
+LEAD GENERATION
+</div>
+
+
+<div class="skill">
+CRM MANAGEMENT
+</div>
+
+
+<div class="skill">
+GRAPHIC DESIGN
+</div>
+
+
+<div class="skill">
+BRANDING
+</div>
+
+
+<div class="skill">
+PHOTOGRAPHY
+</div>
+
+
+<div class="skill">
+WRITING
+</div>
+
+
+<div class="skill">
+WEB DESIGN
+</div>
+
+
+<div class="skill">
+AI
+</div>
+
+
+<div class="skill">
+CYBERSECURITY
+</div>
+
+
+<div class="skill">
+VIDEO EDITING
+</div>
+
 
 </div>
 
@@ -1308,9 +2098,11 @@ THINGS I DO
 
 <div class="container">
 
+
 <div class="eyebrow">
-003 / TOOLS
+003 / TOOLBOX
 </div>
+
 
 <div class="section-title">
 SOFTWARE
@@ -1319,45 +2111,136 @@ SOFTWARE
 
 <div class="software-grid">
 
-<div class="software">
-<h3>ILLUSTRATOR</h3>
-<span>GRAPHIC DESIGN</span>
-</div>
 
 <div class="software">
-<h3>PHOTOSHOP</h3>
-<span>IMAGE EDITING</span>
+
+<h3>
+ADOBE ILLUSTRATOR
+</h3>
+
+<span>
+ADVANCED GRAPHIC DESIGN
+</span>
+
 </div>
 
-<div class="software">
-<h3>FIGMA</h3>
-<span>UI / UX</span>
-</div>
 
 <div class="software">
-<h3>CAPCUT</h3>
-<span>VIDEO EDITING</span>
+
+<h3>
+PHOTOSHOP
+</h3>
+
+<span>
+IMAGE EDITING
+</span>
+
 </div>
 
-<div class="software">
-<h3>GITHUB</h3>
-<span>CODE / PROJECTS</span>
-</div>
 
 <div class="software">
-<h3>TERMUX</h3>
-<span>LINUX / TECH</span>
+
+<h3>
+FIGMA
+</h3>
+
+<span>
+UI / UX
+</span>
+
 </div>
 
-<div class="software">
-<h3>HTML / CSS</h3>
-<span>WEB DEVELOPMENT</span>
-</div>
 
 <div class="software">
-<h3>JAVA</h3>
-<span>PROGRAMMING</span>
+
+<h3>
+CAPCUT
+</h3>
+
+<span>
+VIDEO EDITING
+</span>
+
 </div>
+
+
+<div class="software">
+
+<h3>
+SALESFORCE
+</h3>
+
+<span>
+CRM / LEAD MANAGEMENT
+</span>
+
+</div>
+
+
+<div class="software">
+
+<h3>
+GITHUB
+</h3>
+
+<span>
+PROJECTS / DEVELOPMENT
+</span>
+
+</div>
+
+
+<div class="software">
+
+<h3>
+HTML / CSS
+</h3>
+
+<span>
+WEB DEVELOPMENT
+</span>
+
+</div>
+
+
+<div class="software">
+
+<h3>
+JAVA
+</h3>
+
+<span>
+PROGRAMMING / OOP
+</span>
+
+</div>
+
+
+<div class="software">
+
+<h3>
+MICROSOFT OFFICE
+</h3>
+
+<span>
+PRODUCTIVITY
+</span>
+
+</div>
+
+
+<div class="software">
+
+<h3>
+GOOGLE WORKSPACE
+</h3>
+
+<span>
+COLLABORATION
+</span>
+
+</div>
+
 
 </div>
 
@@ -1370,16 +2253,21 @@ SOFTWARE
      EXPERIENCE
 ====================================================== -->
 
-<section class="section" id="experience">
+<section
+class="section"
+id="experience">
 
 <div class="container">
+
 
 <div class="eyebrow">
 004 / EXPERIENCE
 </div>
 
+
 <div class="section-title">
-WHERE I'VE<br>WORKED
+WHERE I'VE<br>
+WORKED
 </div>
 
 
@@ -1388,16 +2276,35 @@ WHERE I'VE<br>WORKED
 
 <div class="job">
 
+
 <div class="job-date">
-2025 — PRESENT
+OCT 2025 — PRESENT
 </div>
 
-<h3>MEDIFIER SOLUTIONS</h3>
+
+<h3>
+VIRTUAL MEDICAL ASSISTANT
+</h3>
+
+
+<div class="job-company">
+MEDIFIER SOLUTIONS — ISLAMABAD
+</div>
+
 
 <p>
-Working in medical operations and client support,
-handling communication, requests, workflows and
-day-to-day administrative processes.
+
+Supporting internal medicine physicians at Avita MD
+with full-spectrum virtual administrative care.
+
+Managing 50+ daily patient calls, medication refill
+requests, prior authorizations, prescription
+management, specialist referrals, appointments,
+follow-ups and EHR documentation.
+
+Working alongside clinical and administrative teams
+to improve workflow efficiency and patient experience.
+
 </p>
 
 </div>
@@ -1405,17 +2312,36 @@ day-to-day administrative processes.
 
 <div class="job">
 
+
 <div class="job-date">
-2025 — PRESENT
+FEB 2025 — OCT 2025
 </div>
 
-<h3>DYNAMICZONE</h3>
+
+<h3>
+VIRTUAL MEDICAL ASSISTANT
+</h3>
+
+
+<div class="job-company">
+DYNAMIZONE — ISLAMABAD
+</div>
+
 
 <p>
-Virtual Medical Assistant experience involving
-patient communication, medication requests,
-referrals, administrative workflows and
-healthcare-related systems.
+
+Provided dedicated virtual support to a
+U.S.-based endocrinologist.
+
+Handled insurance eligibility verification across
+Medicare, Medicaid and commercial plans, patient
+intake, demographic verification, appointment
+coordination, prior authorizations, prescription
+refills and EHR workflows.
+
+Maintained HIPAA-compliant handling of sensitive
+patient information.
+
 </p>
 
 </div>
@@ -1423,16 +2349,32 @@ healthcare-related systems.
 
 <div class="job">
 
+
 <div class="job-date">
-2025 — PRESENT
+FEB 2025 — OCT 2025
 </div>
 
-<h3>MEDIZONE BILLING</h3>
+
+<h3>
+LEAD GENERATION SPECIALIST
+</h3>
+
+
+<div class="job-company">
+DYNAMIZONE — ISLAMABAD
+</div>
+
 
 <p>
-Lead generation and cold calling, communicating
-with prospects and helping generate opportunities
-through outbound communication.
+
+Executed targeted cold calling and email outreach
+campaigns to healthcare providers and clinics.
+
+Managed Salesforce CRM pipelines, tracked 100+
+leads, handled follow-ups, built relationships
+with prospects and contributed to business
+development strategies.
+
 </p>
 
 </div>
@@ -1453,9 +2395,11 @@ through outbound communication.
 
 <div class="container">
 
+
 <div class="eyebrow">
 005 / EDUCATION
 </div>
+
 
 <div class="section-title">
 THE PAPERWORK
@@ -1467,10 +2411,17 @@ THE PAPERWORK
 
 <div class="edu-card">
 
-<h3>BS ARTIFICIAL INTELLIGENCE</h3>
+<h3>
+BS ARTIFICIAL INTELLIGENCE
+</h3>
+
+<p>
+Federal Urdu University of Arts,
+Science & Technology
+</p>
 
 <span>
-FUUAST
+2025 — PRESENT
 </span>
 
 </div>
@@ -1478,10 +2429,20 @@ FUUAST
 
 <div class="edu-card">
 
-<h3>FSc — ICS</h3>
+<h3>
+INTERMEDIATE — ICS
+</h3>
+
+<p>
+Physics · Mathematics · Computer Science
+
+<br><br>
+
+Fazaia Inter College, Islamabad
+</p>
 
 <span>
-70%
+2022 — 2024
 </span>
 
 </div>
@@ -1489,10 +2450,20 @@ FUUAST
 
 <div class="edu-card">
 
-<h3>MATRIC</h3>
+<h3>
+MATRICULATION
+</h3>
+
+<p>
+Computer Science
+
+<br><br>
+
+Fazaia Inter College, Islamabad
+</p>
 
 <span>
-92%
+2020 — 2022
 </span>
 
 </div>
@@ -1506,24 +2477,115 @@ FUUAST
 
 
 <!-- ======================================================
-     PORTFOLIO
+     COURSES
 ====================================================== -->
 
-<section class="section" id="work">
+<section class="section">
 
 <div class="container">
 
+
 <div class="eyebrow">
-006 / PORTFOLIO
+006 / CERTIFICATIONS
 </div>
 
+
 <div class="section-title">
-STUFF I'VE<br>MADE
+THINGS I STUDIED
+</div>
+
+
+<div class="course-list">
+
+
+<div class="course">
+
+<div>
+
+<h3>
+GRAPHIC DESIGN COURSE
+</h3>
+
+<p>
+
+Professional posters, banners, brand logos
+and social media content.
+
+Advanced Adobe Illustrator, layout,
+typography, visual hierarchy and branding.
+
+</p>
+
+</div>
+
+
+<div class="course-date">
+JAN — JUL 2025
+</div>
+
+</div>
+
+
+<div class="course">
+
+<div>
+
+<h3>
+TECHNOLOGY EMPOWERMENT
+</h3>
+
+<p>
+
+ICT systems, digital ethics, cybersecurity
+awareness, professional workplace practices,
+communication, remote collaboration and
+AI fundamentals.
+
+</p>
+
+</div>
+
+
+<div class="course-date">
+2024 — 2025
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     PROJECTS
+====================================================== -->
+
+<section
+class="section"
+id="work">
+
+<div class="container">
+
+
+<div class="eyebrow">
+007 / PROJECTS
+</div>
+
+
+<div class="section-title">
+THINGS I'VE<br>
+MADE
 </div>
 
 
 <div class="project-grid">
 
+
+<!-- MOMENTRIX -->
 
 <div class="project">
 
@@ -1531,33 +2593,70 @@ STUFF I'VE<br>MADE
 MOMENTRIX
 </div>
 
-<h3>MOMENTRIX</h3>
+
+<h3>
+MOMENTRIX
+</h3>
+
 
 <p>
-A creative product project involving customized
-calendars, Polaroids, tote bags and personalized
-physical products.
+
+A creative product project focused on
+personalized physical products including
+custom calendars, Polaroids, tote bags
+and other visual keepsakes.
+
 </p>
+
+
+<a
+class="project-link"
+href="https://www.instagram.com/moment.rix/?igsh=MTlvMDl2cGRkeDJ1dA=="
+target="_blank"
+rel="noopener">
+
+VIEW MOMENTRIX →
+
+</a>
 
 </div>
 
+
+<!-- LOST THINGS -->
 
 <div class="project">
 
 <div class="project-image">
-LOST THINGS
+THE LOST THINGS
 </div>
 
-<h3>THE LOST THINGS</h3>
+
+<h3>
+THE LOST THINGS
+</h3>
+
 
 <p>
-A digital museum concept built around forgotten
-objects, experiences and pieces of everyday life
-that used to feel special.
+
+A digital museum concept built around
+forgotten objects, experiences and pieces
+of everyday life that used to feel special.
+
 </p>
+
+
+<a
+class="project-link"
+href="#">
+
+PROJECT IN DEVELOPMENT →
+
+</a>
 
 </div>
 
+
+<!-- DESIGN -->
 
 <div class="project">
 
@@ -1565,15 +2664,34 @@ that used to feel special.
 DESIGN
 </div>
 
-<h3>GRAPHIC DESIGN</h3>
+
+<h3>
+GRAPHIC DESIGN
+</h3>
+
 
 <p>
-Posters, identities, social media graphics,
-typography experiments and visual concepts.
+
+Posters, banners, branding, logos,
+social media graphics and visual
+experiments created across different
+projects.
+
 </p>
+
+
+<a
+class="project-link"
+href="#">
+
+DESIGN ARCHIVE →
+
+</a>
 
 </div>
 
+
+<!-- WRITING -->
 
 <div class="project">
 
@@ -1581,12 +2699,28 @@ typography experiments and visual concepts.
 WRITING
 </div>
 
-<h3>WRITING ARCHIVE</h3>
+
+<h3>
+WRITING ARCHIVE
+</h3>
+
 
 <p>
-Poetry, stories, thoughts and personal writing
-built around memories, people and ideas.
+
+Poetry, stories, personal writing,
+unfinished thoughts and things that
+were easier to write than say.
+
 </p>
+
+
+<a
+class="project-link"
+href="#">
+
+OPEN ARCHIVE →
+
+</a>
 
 </div>
 
@@ -1599,16 +2733,18 @@ built around memories, people and ideas.
 
 
 <!-- ======================================================
-     ARCHIVE
+     CREATIVE ARCHIVE
 ====================================================== -->
 
 <section class="section archive">
 
 <div class="container">
 
+
 <div class="eyebrow">
-007 / ARCHIVE
+008 / CREATIVE ARCHIVE
 </div>
+
 
 <div class="section-title">
 THINGS I KEEP
@@ -1620,16 +2756,22 @@ THINGS I KEEP
 
 <div class="archive-card">
 
-<div class="number">
+<div class="archive-number">
 01 / PHOTOGRAPHY
 </div>
 
-<h3>Through A Camera</h3>
+
+<h3>
+Through A Camera
+</h3>
+
 
 <p>
+
 Street scenes, architecture, people,
 random moments and things that looked
 interesting enough to photograph.
+
 </p>
 
 </div>
@@ -1637,16 +2779,22 @@ interesting enough to photograph.
 
 <div class="archive-card">
 
-<div class="number">
+<div class="archive-number">
 02 / WRITING
 </div>
 
-<h3>The Writing Archive</h3>
+
+<h3>
+The Writing Archive
+</h3>
+
 
 <p>
-Poetry, stories, unfinished thoughts,
-memories and things that were easier
-to write than say.
+
+Poetry, stories, memories, unfinished
+thoughts and words that didn't make it
+into conversations.
+
 </p>
 
 </div>
@@ -1654,16 +2802,22 @@ to write than say.
 
 <div class="archive-card">
 
-<div class="number">
+<div class="archive-number">
 03 / IDEAS
 </div>
 
-<h3>The Idea Drawer</h3>
+
+<h3>
+The Idea Drawer
+</h3>
+
 
 <p>
+
 Projects that exist as sketches,
-notes, concepts or that one random
-idea that refuses to disappear.
+notes, concepts or one random idea
+that refuses to disappear.
+
 </p>
 
 </div>
@@ -1684,9 +2838,11 @@ idea that refuses to disappear.
 
 <div class="container">
 
+
 <div class="eyebrow">
-008 / CURRENTLY
+009 / CURRENTLY
 </div>
+
 
 <div class="section-title">
 LEARNING
@@ -1699,7 +2855,9 @@ LEARNING
 01
 </div>
 
-<h3>ARTIFICIAL INTELLIGENCE</h3>
+<h3>
+ARTIFICIAL INTELLIGENCE
+</h3>
 
 </div>
 
@@ -1710,7 +2868,9 @@ LEARNING
 02
 </div>
 
-<h3>CYBERSECURITY</h3>
+<h3>
+CYBERSECURITY
+</h3>
 
 </div>
 
@@ -1721,7 +2881,9 @@ LEARNING
 03
 </div>
 
-<h3>WEB DEVELOPMENT</h3>
+<h3>
+WEB DEVELOPMENT
+</h3>
 
 </div>
 
@@ -1732,7 +2894,9 @@ LEARNING
 04
 </div>
 
-<h3>JAVA / OOP</h3>
+<h3>
+JAVA / OBJECT ORIENTED PROGRAMMING
+</h3>
 
 </div>
 
@@ -1743,7 +2907,9 @@ LEARNING
 05
 </div>
 
-<h3>UI / UX</h3>
+<h3>
+UI / UX DESIGN
+</h3>
 
 </div>
 
@@ -1761,36 +2927,72 @@ LEARNING
 
 <div class="container">
 
+
 <div class="stats-grid">
 
 
 <div class="stat">
-<strong>20</strong>
-<span>YEARS OLD</span>
+
+<strong>
+20
+</strong>
+
+<span>
+YEARS OLD
+</span>
+
 </div>
 
 
 <div class="stat">
-<strong>∞</strong>
-<span>IDEAS</span>
+
+<strong>
+∞
+</strong>
+
+<span>
+IDEAS
+</span>
+
 </div>
 
 
 <div class="stat">
-<strong>14+</strong>
-<span>SKILLS</span>
+
+<strong>
+16+
+</strong>
+
+<span>
+SKILLS
+</span>
+
 </div>
 
 
 <div class="stat">
-<strong>8+</strong>
-<span>TOOLS</span>
+
+<strong>
+10+
+</strong>
+
+<span>
+TOOLS
+</span>
+
 </div>
 
 
 <div class="stat">
-<strong>0</strong>
-<span>NICHE</span>
+
+<strong>
+0
+</strong>
+
+<span>
+NICHE
+</span>
+
 </div>
 
 
@@ -1809,9 +3011,11 @@ LEARNING
 
 <div class="container">
 
+
 <div class="eyebrow">
-009 / SYSTEM
+010 / SYSTEM
 </div>
+
 
 <div class="section-title">
 KAMRAN.EXE
@@ -1820,6 +3024,7 @@ KAMRAN.EXE
 
 <div class="terminal">
 
+
 <div class="terminal-top">
 KAMRAN.EXE — PERSONAL SYSTEM
 </div>
@@ -1827,48 +3032,67 @@ KAMRAN.EXE — PERSONAL SYSTEM
 
 <div class="terminal-body">
 
+
 <div class="terminal-line">
 > booting Kamran.exe...
 </div>
 
-<div class="terminal-line">
-> loading personality...
-</div>
 
 <div class="terminal-line">
-> loading random interests...
+> loading creative interests...
 </div>
+
+
+<div class="terminal-line">
+> loading random ideas...
+</div>
+
+
+<div class="terminal-line">
+> checking niche...
+</div>
+
+
+<div class="terminal-line">
+> niche: <span>NOT FOUND</span>
+</div>
+
 
 <div class="terminal-line">
 > status: <span>ACTIVE</span>
 </div>
 
 
-<div id="randomOutput"
-style="margin-top:20px;color:#ed3f86;font-size:13px;">
+<div id="randomOutput">
 > waiting for command...
 </div>
 
 
 <div class="terminal-buttons">
 
+
 <button onclick="randomFact()">
 RANDOM FACT
 </button>
+
 
 <button onclick="randomMood()">
 CURRENT STATUS
 </button>
 
+
 <button onclick="randomSkill()">
 RANDOM SKILL
 </button>
+
 
 <button onclick="randomProject()">
 RANDOM PROJECT
 </button>
 
+
 </div>
+
 
 </div>
 
@@ -1885,21 +3109,27 @@ RANDOM PROJECT
 
 <section class="philosophy">
 
+
 <div class="eyebrow">
-010 / PHILOSOPHY
+011 / PHILOSOPHY
 </div>
 
+
 <h2>
+
 I JUST<br>
 MAKE STUFF.
+
 </h2>
+
 
 <p>
 
-I don't think everything needs to become a startup.
+I don't think everything needs to become
+a startup.
 
-Sometimes an idea is worth making simply because
-it wouldn't leave you alone.
+Sometimes an idea is worth making simply
+because it wouldn't leave you alone.
 
 I like learning.
 
@@ -1907,8 +3137,9 @@ I like experimenting.
 
 I like making strange things.
 
-And I like seeing an idea that existed only in my
-head become something another person can actually see.
+And I like seeing an idea that existed only
+in my head become something another person
+can actually see.
 
 </p>
 
@@ -1919,17 +3150,23 @@ head become something another person can actually see.
      CONTACT
 ====================================================== -->
 
-<section class="contact" id="contact">
+<section
+class="contact"
+id="contact">
 
 <div class="container">
 
+
 <div class="eyebrow">
-011 / CONTACT
+012 / CONTACT
 </div>
 
+
 <div class="contact-title">
+
 LET'S MAKE<br>
 SOMETHING.
+
 </div>
 
 
@@ -1940,25 +3177,37 @@ SOMETHING.
 
 Have a project?
 
+<br>
+
 Need a designer?
+
+<br>
 
 Need someone who can figure something out?
 
+<br>
+
 Have a weird idea?
 
+<br>
+
 Want to collaborate?
+
+<br>
 
 Or maybe you just want to say hi.
 
 <br><br>
 
+<strong style="color:#f1eadc;">
 Send me a message.
+</strong>
 
-<br>
 
 <div class="available">
 
 <span class="dot"></span>
+
 OPEN TO OPPORTUNITIES
 
 </div>
@@ -1969,39 +3218,75 @@ OPEN TO OPPORTUNITIES
 <div class="contact-links">
 
 
-<a class="contact-link"
-href="mailto:YOUR_EMAIL@example.com">
+<a
+class="contact-link"
+href="mailto:muhammadkamrantaj@gmail.com">
 
 ✉ EMAIL
+
+<br>
+
+muhammadkamrantaj@gmail.com
+
 </a>
 
 
-<a class="contact-link"
+<a
+class="contact-link"
 href="https://github.com/kamithegrape"
-target="_blank">
+target="_blank"
+rel="noopener">
 
-⌘ GITHUB — @kamithegrape
+⌘ GITHUB
+
+<br>
+
+github.com/kamithegrape
+
 </a>
 
 
-<a class="contact-link"
-href="#">
+<a
+class="contact-link"
+href="https://www.linkedin.com/in/muhammad-kamran-6b134633b"
+target="_blank"
+rel="noopener">
 
-LINKEDIN
+◈ LINKEDIN
+
+<br>
+
+Muhammad Kamran
+
 </a>
 
 
-<a class="contact-link"
-href="#">
+<a
+class="contact-link"
+href="https://www.instagram.com/moment.rix/?igsh=MTlvMDl2cGRkeDJ1dA=="
+target="_blank"
+rel="noopener">
 
-INSTAGRAM
+◉ MOMENTRIX
+
+<br>
+
+@moment.rix
+
 </a>
 
 
-<a class="contact-link"
-href="#">
+<a
+class="contact-link"
+href="assets/cv.pdf"
+download>
 
-DOWNLOAD CV
+↓ DOWNLOAD CV
+
+<br>
+
+Muhammad_Kamran_CV.pdf
+
 </a>
 
 
@@ -2020,23 +3305,33 @@ DOWNLOAD CV
 
 <footer>
 
+
 <div class="footer-big">
+
 You made it this far.
+
 </div>
 
+
 <p>
+
 So you probably have an idea.
+
 </p>
 
+
 <br>
+
 
 <strong>
 @kamithegrape
 </strong>
 
+
 <br><br>
 
-© 2026 KAMRAN
+
+© 2026 KAMRAN — CREATIVE LICENSE
 
 </footer>
 
@@ -2047,30 +3342,49 @@ So you probably have an idea.
 
 <script>
 
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+function toggleMenu(){
+
+    const menu =
+        document.getElementById("mobileMenu");
+
+    menu.classList.toggle("open");
+
+}
+
+
+/* =========================================================
+   RANDOM TERMINAL
+========================================================= */
+
 const output =
-document.getElementById("randomOutput");
+    document.getElementById("randomOutput");
+
 
 const facts = [
-
-"I probably have another project idea saved somewhere.",
 
 "I don't really have a niche.",
 
 "I like learning things just because they're interesting.",
 
-"Photography started as a hobby and became an excuse to notice things.",
+"Photography is mostly an excuse to notice things.",
 
 "I can spend way too long making something look slightly better.",
 
-"Some of my best ideas appear at completely unreasonable hours.",
+"Some ideas are born at completely unreasonable hours.",
 
-"Jack of all trades. Still working on the master part."
+"Jack of all trades. Still working on the master part.",
+
+"I probably have another project idea somewhere."
 
 ];
 
-const moods = [
 
-"currently pretending this is organized.",
+const moods = [
 
 "probably thinking about another project.",
 
@@ -2078,13 +3392,16 @@ const moods = [
 
 "learning something random.",
 
-"opening another browser tab.",
-
 "creative mode: ON.",
 
-"professional overthinker mode: ACTIVE."
+"opening another browser tab.",
+
+"professional overthinker mode: ACTIVE.",
+
+"trying to make the idea in my head actually work."
 
 ];
+
 
 const skills = [
 
@@ -2100,15 +3417,20 @@ const skills = [
 
 "Java",
 
-"AI",
+"Artificial Intelligence",
 
 "Cybersecurity",
 
 "Marketing",
 
-"Creative Direction"
+"Creative Direction",
+
+"Lead Generation",
+
+"Healthcare Operations"
 
 ];
+
 
 const projects = [
 
@@ -2116,13 +3438,13 @@ const projects = [
 
 "The Lost Things",
 
-"Graphic Design",
+"Graphic Design Archive",
 
 "Writing Archive",
 
 "Photography Archive",
 
-"The Next Random Idea"
+"The next random idea"
 
 ];
 
@@ -2130,10 +3452,14 @@ const projects = [
 function randomFact(){
 
     const item =
-    facts[Math.floor(Math.random()*facts.length)];
+        facts[
+            Math.floor(
+                Math.random()*facts.length
+            )
+        ];
 
     output.innerHTML =
-    "> " + item;
+        "> " + item;
 
 }
 
@@ -2141,10 +3467,14 @@ function randomFact(){
 function randomMood(){
 
     const item =
-    moods[Math.floor(Math.random()*moods.length)];
+        moods[
+            Math.floor(
+                Math.random()*moods.length
+            )
+        ];
 
     output.innerHTML =
-    "> STATUS: " + item;
+        "> STATUS: " + item;
 
 }
 
@@ -2152,10 +3482,14 @@ function randomMood(){
 function randomSkill(){
 
     const item =
-    skills[Math.floor(Math.random()*skills.length)];
+        skills[
+            Math.floor(
+                Math.random()*skills.length
+            )
+        ];
 
     output.innerHTML =
-    "> RANDOM SKILL: " + item;
+        "> RANDOM SKILL: " + item;
 
 }
 
@@ -2163,14 +3497,20 @@ function randomSkill(){
 function randomProject(){
 
     const item =
-    projects[Math.floor(Math.random()*projects.length)];
+        projects[
+            Math.floor(
+                Math.random()*projects.length
+            )
+        ];
 
     output.innerHTML =
-    "> PROJECT DETECTED: " + item;
+        "> PROJECT DETECTED: " + item;
 
 }
 
+
 </script>
+
 
 </body>
 </html>
