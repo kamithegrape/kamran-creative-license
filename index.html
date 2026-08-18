@@ -1,4972 +1,908 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#11100e">
+<meta name="description" content="Kamran — a personal digital archive. Creative generalist, writer, designer, builder.">
+<title>KAMRAN — The Archive</title>
 
-<title>KAMRAN — Creative License</title>
-
-<meta name="description"
-content="Kamran — Creative Generalist, AI Student, Designer and Remote Healthcare Professional.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500;700&family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-/* =========================================================
-   KAMRAN — CREATIVE LICENSE
-   PERSONAL WEBSITE
-   SINGLE FILE — GITHUB PAGES READY
-========================================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap');
-
-
 :root{
-    --black:#080808;
-    --black2:#101010;
-    --cream:#f1eadc;
-    --pink:#ed3f86;
-    --pink-dark:#ad1c5b;
-    --blue:#2450c5;
-    --gray:#77736d;
-    --light:#f9f7f1;
+  --bg:#11100e;
+  --paper:#eee7d8;
+  --paper2:#e3dac8;
+  --ink:#171512;
+  --muted:#9b9385;
+  --pink:#ef3f87;
+  --blue:#6ca8ff;
+  --line:rgba(238,231,216,.18);
+  --white:#f8f5ee;
+  --shadow:0 25px 80px rgba(0,0,0,.45);
+  --mono:"DM Mono",monospace;
+  --display:"Anton",sans-serif;
+  --sans:"Space Grotesk",sans-serif;
+  --hand:"Caveat",cursive;
 }
-
-
-/* =========================================================
-   RESET
-========================================================= */
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-    background:var(--black);
-    color:var(--cream);
-    font-family:"Space Mono",monospace;
-    overflow-x:hidden;
+  margin:0;background:var(--bg);color:var(--paper);
+  font-family:var(--sans);overflow-x:hidden;
 }
+body.modal-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+::selection{background:var(--pink);color:#111}
 
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    pointer-events:none;
-    opacity:.035;
-
-    background-image:
-        radial-gradient(#fff 1px,transparent 1px);
-
-    background-size:5px 5px;
+.noise{
+  position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.045;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-
-a{
-    color:inherit;
-    text-decoration:none;
+.cursor{
+  width:10px;height:10px;border-radius:50%;background:var(--pink);
+  position:fixed;z-index:1000;pointer-events:none;transform:translate(-50%,-50%);
+  mix-blend-mode:difference;display:none;
 }
+@media(min-width:900px){.cursor{display:block}}
 
-button{
-    font:inherit;
+.wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+.mono{font-family:var(--mono)}
+.pink{color:var(--pink)}
+.muted{color:var(--muted)}
+.hand{font-family:var(--hand)}
+.display{font-family:var(--display);letter-spacing:.02em}
+.smallcaps{font:500 10px var(--mono);letter-spacing:.18em;text-transform:uppercase}
+
+.topbar{
+  position:fixed;left:0;right:0;top:0;z-index:100;
+  padding:16px 20px;display:flex;justify-content:space-between;align-items:center;
+  mix-blend-mode:normal;
 }
-
-::selection{
-    background:var(--pink);
-    color:#000;
-}
-
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-nav{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    z-index:500;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:18px 25px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(8,8,8,.95),
-            rgba(8,8,8,.55),
-            transparent
-        );
-}
-
 .logo{
-    background:#080808;
-    border:1px solid var(--cream);
-    padding:7px 11px;
-
-    font-size:10px;
-    letter-spacing:1px;
+  background:var(--paper);color:var(--ink);padding:8px 11px;
+  border:1px solid var(--ink);font:500 11px var(--mono);letter-spacing:.1em;
+  box-shadow:4px 4px 0 var(--pink);
 }
-
-.logo span{
-    color:var(--pink);
-}
-
-.nav-links{
-    display:flex;
-    gap:6px;
-}
-
-.nav-links a{
-    padding:7px 10px;
-
-    border:1px solid #444;
-
-    background:#080808dd;
-
-    font-size:9px;
-    letter-spacing:1px;
-
-    transition:.2s;
-}
-
-.nav-links a:hover{
-    background:var(--pink);
-    border-color:var(--pink);
-    color:#000;
-}
-
+.logo b{color:var(--pink)}
 .menu{
-    display:none;
-
-    background:#080808;
-    color:var(--cream);
-
-    border:1px solid var(--cream);
-
-    padding:8px 12px;
-
-    cursor:pointer;
+  display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end
 }
-
-
-/* =========================================================
-   GENERAL
-========================================================= */
-
-.container{
-    width:min(1120px,92%);
-    margin:auto;
+.menu a{
+  font:500 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;
+  padding:7px 9px;border:1px solid var(--line);background:rgba(17,16,14,.8);
+  transition:.2s;
 }
-
-.section{
-    padding:130px 0;
+.menu a:hover{background:var(--pink);color:var(--ink);border-color:var(--pink)}
+.menuBtn{display:none;background:var(--paper);border:0;padding:9px 12px;font:500 11px var(--mono)}
+@media(max-width:760px){
+  .menu{display:none}.menuBtn{display:block}
 }
-
-.eyebrow{
-    color:var(--pink);
-
-    font-size:10px;
-    letter-spacing:4px;
-
-    margin-bottom:18px;
-}
-
-.section-title{
-    font-family:Anton,sans-serif;
-
-    font-size:
-        clamp(55px,9vw,110px);
-
-    line-height:.84;
-
-    margin-bottom:50px;
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
 
 .hero{
-
-    min-height:100vh;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    padding:120px 20px 80px;
-
-    background:
-
-        radial-gradient(
-            circle at 15% 15%,
-            rgba(237,63,134,.12),
-            transparent 35%
-        ),
-
-        radial-gradient(
-            circle at 85% 80%,
-            rgba(36,80,197,.12),
-            transparent 35%
-        );
+  min-height:100svh;display:flex;align-items:center;position:relative;
+  padding:120px 0 70px;overflow:hidden;
 }
-
-.hero-content{
-    width:100%;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+.hero:before{
+  content:"";position:absolute;width:55vw;height:55vw;right:-20vw;top:15vh;
+  background:radial-gradient(circle,rgba(239,63,135,.18),transparent 68%);
+  filter:blur(10px);pointer-events:none;
 }
-
-
-/* =========================================================
-   ID CARD
-========================================================= */
-
-.id-card{
-
-    width:min(650px,95vw);
-
-    min-height:400px;
-
-    background:var(--cream);
-    color:#080808;
-
-    border-radius:20px;
-
-    padding:30px;
-
-    position:relative;
-
-    overflow:hidden;
-
-    transform:rotate(-1deg);
-
-    box-shadow:
-        0 35px 90px rgba(0,0,0,.9),
-        8px 8px 0 var(--pink);
-
-    transition:.35s;
+.hero-grid{
+  display:grid;grid-template-columns:1.25fr .75fr;gap:50px;align-items:end;
 }
-
-.id-card:hover{
-    transform:rotate(0deg) translateY(-8px);
+@media(max-width:850px){.hero-grid{grid-template-columns:1fr}}
+.kicker{
+  display:inline-block;border:1px solid var(--pink);color:var(--pink);
+  padding:6px 9px;font:500 10px var(--mono);letter-spacing:.15em;
+  transform:rotate(-1deg);margin-bottom:20px;
 }
-
-.id-card::after{
-
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    pointer-events:none;
-
-    opacity:.22;
-
-    background-image:
-        radial-gradient(
-            #000 1px,
-            transparent 1px
-        );
-
-    background-size:5px 5px;
+.hero h1{
+  font:400 clamp(78px,15vw,190px)/.78 var(--display);
+  margin:0;letter-spacing:-.015em;
 }
-
-.stars{
-
-    position:absolute;
-
-    top:13px;
-    left:17px;
-
-    color:var(--pink);
-
-    font-size:15px;
-
-    z-index:2;
+.hero h1 span{display:block}
+.hero h1 .outline{
+  color:transparent;-webkit-text-stroke:1px var(--paper);
+  margin-left:10vw;
 }
-
-.card-top{
-
-    display:flex;
-    justify-content:space-between;
-
-    position:relative;
-
-    z-index:2;
+.hero-copy{
+  margin-top:35px;max-width:600px;font:400 clamp(16px,2vw,21px)/1.55 var(--sans);
+  color:#c7c0b3;
 }
-
-.creative{
-
-    font-family:Caveat,cursive;
-
-    font-size:61px;
-    font-weight:700;
-
-    line-height:.7;
-
-    transform:rotate(-3deg);
-}
-
-.license{
-
-    font-family:Anton,sans-serif;
-
-    font-size:31px;
-
-    color:var(--pink-dark);
-
-    margin-top:10px;
-}
-
-.card-code{
-
-    border:1px solid #777;
-
-    padding:6px;
-
-    font-size:8px;
-
-    line-height:1.6;
-
-    text-align:right;
-}
-
-.card-line{
-
-    border:0;
-
-    border-top:1px dashed #888;
-
-    margin:23px 0;
-}
-
-.card-info{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:17px;
-
-    position:relative;
-
-    z-index:2;
-}
-
-.field label{
-
-    display:block;
-
-    color:var(--pink-dark);
-
-    font-size:8px;
-
-    letter-spacing:2px;
-}
-
-.field p{
-
-    font-size:13px;
-
-    font-weight:bold;
-
-    margin-top:3px;
-}
-
-.full{
-    grid-column:1/-1;
-}
-
-.card-bottom{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:flex-end;
-
-    margin-top:27px;
-
-    position:relative;
-
-    z-index:2;
-}
-
-.stamp{
-
-    width:95px;
-    height:95px;
-
-    border:3px solid var(--blue);
-
-    color:var(--blue);
-
-    border-radius:50%;
-
-    display:flex;
-
-    justify-content:center;
-    align-items:center;
-
-    text-align:center;
-
-    font-family:Anton,sans-serif;
-
-    font-size:10px;
-
-    transform:rotate(-11deg);
-}
-
-.signature{
-    text-align:right;
-}
-
-.signature strong{
-
-    display:block;
-
-    font-family:Caveat,cursive;
-
-    font-size:35px;
-}
-
-.signature small{
-
-    color:#777;
-
-    font-size:8px;
-}
-
-.barcode{
-
-    height:29px;
-
-    margin-top:19px;
-
-    background:
-
-        repeating-linear-gradient(
-            90deg,
-
-            #000 0 2px,
-            transparent 2px 5px,
-
-            #000 5px 6px,
-            transparent 6px 9px
-        );
-}
-
-.barcode-number{
-
-    text-align:center;
-
-    font-size:8px;
-
-    letter-spacing:5px;
-}
-
-.card-sticker{
-
-    position:absolute;
-
-    right:-10px;
-    top:87px;
-
-    background:var(--pink);
-
-    color:white;
-
-    padding:8px 16px;
-
-    font-family:Caveat,cursive;
-
-    font-size:18px;
-
-    transform:rotate(8deg);
-
-    z-index:5;
-}
-
-.hero-buttons{
-
-    display:flex;
-
-    justify-content:center;
-
-    flex-wrap:wrap;
-
-    gap:10px;
-
-    margin-top:48px;
-}
-
+.hero-copy strong{color:var(--paper)}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
 .btn{
-
-    display:inline-block;
-
-    border:1px solid var(--cream);
-
-    padding:12px 18px;
-
-    font-size:9px;
-
-    letter-spacing:1px;
-
-    transition:.2s;
+  display:inline-flex;align-items:center;gap:8px;padding:12px 15px;
+  border:1px solid var(--paper);font:500 11px var(--mono);
+  text-transform:uppercase;letter-spacing:.07em;transition:.2s;cursor:pointer;
+  background:transparent;color:var(--paper);
 }
+.btn:hover{background:var(--paper);color:var(--ink);transform:translateY(-2px)}
+.btn.primary{background:var(--pink);color:var(--ink);border-color:var(--pink)}
+.btn.primary:hover{background:var(--paper);border-color:var(--paper)}
 
-.btn:hover{
-
-    background:var(--pink);
-
-    color:#000;
-
-    border-color:var(--pink);
+.hero-card{
+  background:var(--paper);color:var(--ink);padding:22px;position:relative;
+  transform:rotate(2.2deg);box-shadow:var(--shadow);max-width:430px;margin-left:auto;
 }
-
-.btn.primary{
-
-    background:var(--pink);
-
-    border-color:var(--pink);
-
-    color:#000;
+.hero-card:before{
+  content:"";position:absolute;inset:9px;border:1px dashed rgba(23,21,18,.45);pointer-events:none;
 }
-
-
-/* =========================================================
-   ABOUT
-========================================================= */
-
-.about{
-    padding:140px 0;
+.hero-card-top{display:flex;justify-content:space-between;position:relative;z-index:2}
+.hero-card-title{font:400 38px/.9 var(--display)}
+.hero-card-code{font:500 9px/1.4 var(--mono);text-align:right}
+.card-divider{border:0;border-top:1px dashed #777;margin:20px 0}
+.card-body{display:grid;grid-template-columns:90px 1fr;gap:18px;position:relative;z-index:2}
+.fake-photo{
+  height:112px;background:
+  radial-gradient(circle at 50% 36%,#b7a58e 0 20%,transparent 20.5%),
+  linear-gradient(145deg,#24211d 0 50%,#806b5c 50%);
+  filter:grayscale(.15);border:2px solid var(--ink);
 }
-
-.about-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        1.2fr .8fr;
-
-    gap:60px;
+.card-info{font:500 11px/1.7 var(--mono)}
+.card-info b{font-size:15px}
+.card-stamp{
+  position:absolute;right:18px;bottom:34px;width:78px;height:78px;border:3px solid var(--blue);
+  color:var(--blue);border-radius:50%;display:grid;place-items:center;
+  text-align:center;font:500 8px/1.15 var(--mono);transform:rotate(-12deg);
+  opacity:.8;
 }
+.card-foot{display:flex;justify-content:space-between;align-items:end;margin-top:20px;position:relative;z-index:2}
+.barcode{width:170px;height:27px;background:repeating-linear-gradient(90deg,#171512 0 2px,transparent 2px 4px,#171512 4px 5px,transparent 5px 8px)}
+.card-sign{font:700 28px var(--hand);transform:rotate(-5deg)}
+.starfield{position:absolute;inset:0;pointer-events:none}
+.star{position:absolute;color:var(--pink);font-size:18px;animation:twinkle 3s infinite ease-in-out}
+@keyframes twinkle{50%{opacity:.25;transform:scale(.7) rotate(20deg)}}
 
-.about-text{
-
-    color:#aaa;
-
-    font-size:14px;
-
-    line-height:2;
+section{padding:120px 0;position:relative}
+.section-head{
+  display:flex;justify-content:space-between;align-items:end;gap:30px;
+  border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:35px;
 }
-
-.about-text strong{
-    color:var(--cream);
-}
-
-.about-quote{
-
-    margin-top:30px;
-
-    color:var(--pink);
-
-    font-family:Caveat,cursive;
-
-    font-size:32px;
-}
-
-.identity-box{
-
-    border:1px dashed #555;
-
-    padding:25px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.02),
-            transparent
-        );
-}
-
-.identity-row{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:20px;
-
-    border-bottom:1px dashed #333;
-
-    padding:13px 0;
-
-    font-size:9px;
-}
-
-.identity-row span:last-child{
-    color:var(--pink);
-    text-align:right;
-}
-
-
-/* =========================================================
-   SKILLS
-========================================================= */
-
-.skills{
-    background:#0d0d0d;
-}
-
-.skill-grid{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:14px;
-}
-
-.skill{
-
-    background:var(--cream);
-
-    color:#000;
-
-    padding:13px 17px;
-
-    font-size:10px;
-
-    box-shadow:
-        4px 4px 0 var(--pink);
-
-    transition:.2s;
-}
-
-.skill:hover{
-
-    transform:
-        translateY(-5px);
-
-    box-shadow:
-        7px 7px 0 var(--pink);
-}
-
-
-/* =========================================================
-   SOFTWARE
-========================================================= */
-
-.software-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(190px,1fr)
-        );
-
-    gap:15px;
-}
-
-.software{
-
-    border:1px dashed #555;
-
-    padding:22px;
-
-    transition:.2s;
-}
-
-.software:hover{
-
-    border-color:var(--pink);
-
-    transform:
-        translateY(-4px);
-}
-
-.software h3{
-
-    font-family:Anton,sans-serif;
-
-    font-size:21px;
-}
-
-.software span{
-
-    display:block;
-
-    margin-top:8px;
-
-    color:var(--pink);
-
-    font-size:8px;
-}
-
-
-/* =========================================================
-   EXPERIENCE
-========================================================= */
-
-.timeline{
-
-    border-left:1px solid #444;
-
-    padding-left:30px;
-}
-
-.job{
-
-    position:relative;
-
-    margin-bottom:55px;
-}
-
-.job::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:-35px;
-    top:5px;
-
-    width:9px;
-    height:9px;
-
-    border-radius:50%;
-
-    background:var(--pink);
-}
-
-.job-date{
-
-    color:var(--pink);
-
-    font-size:9px;
-
-    letter-spacing:2px;
-}
-
-.job h3{
-
-    font-family:Anton,sans-serif;
-
-    font-size:29px;
-
-    margin:8px 0;
-}
-
-.job-company{
-
-    color:#ccc;
-
-    font-size:10px;
-
-    margin-bottom:12px;
-}
-
-.job p{
-
-    color:#888;
-
-    font-size:11px;
-
-    line-height:1.9;
-
-    max-width:720px;
-}
-
-
-/* =========================================================
-   EDUCATION
-========================================================= */
-
-.education{
-    background:#0d0d0d;
-}
-
-.edu-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(250px,1fr)
-        );
-
-    gap:20px;
-}
-
-.edu-card{
-
-    border:1px solid #333;
-
-    padding:25px;
-
-    transition:.2s;
-}
-
-.edu-card:hover{
-
-    border-color:var(--pink);
-
-    transform:translateY(-5px);
-}
-
-.edu-card h3{
-
-    font-family:Anton,sans-serif;
-
-    font-size:24px;
-}
-
-.edu-card p{
-
-    color:#888;
-
-    font-size:10px;
-
-    line-height:1.7;
-
-    margin-top:12px;
-}
-
-.edu-card span{
-
-    display:block;
-
-    margin-top:14px;
-
-    color:var(--pink);
-
-    font-size:9px;
-}
-
-
-/* =========================================================
-   COURSES
-========================================================= */
-
-.course-list{
-
-    display:grid;
-
-    gap:15px;
-}
-
-.course{
-
-    border:1px dashed #444;
-
-    padding:22px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:20px;
-
-    transition:.2s;
-}
-
-.course:hover{
-
-    border-color:var(--pink);
-
-    background:#0d0d0d;
-}
-
-.course h3{
-
-    font-family:Anton,sans-serif;
-
-    font-size:22px;
-}
-
-.course p{
-
-    color:#777;
-
-    font-size:10px;
-
-    line-height:1.7;
-
-    margin-top:7px;
-
-    max-width:650px;
-}
-
-.course-date{
-
-    color:var(--pink);
-
-    font-size:9px;
-
-    white-space:nowrap;
-}
-
-
-/* =========================================================
-   PROJECTS
-========================================================= */
-
-.project-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(240px,1fr)
-        );
-
-    gap:20px;
-}
-
-.project{
-
-    background:var(--cream);
-
-    color:#000;
-
-    padding:14px;
-
-    transition:.25s;
-}
-
-.project:nth-child(odd){
-    transform:rotate(-1deg);
-}
-
-.project:nth-child(even){
-    transform:rotate(1deg);
-}
-
-.project:hover{
-
-    transform:
-        translateY(-8px)
-        rotate(0deg);
-
-    box-shadow:
-        8px 8px 0 var(--pink);
-}
-
-.project-image{
-
-    height:170px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:white;
-
-    font-family:Anton,sans-serif;
-
-    font-size:27px;
-
-    text-align:center;
-
-    background:
-
-        radial-gradient(
-            #ffffff33 1px,
-            transparent 1px
-        ),
-
-        linear-gradient(
-            135deg,
-            var(--pink),
-            var(--blue)
-        );
-
-    background-size:
-        6px 6px,
-        auto;
-}
-
-.project h3{
-
-    font-family:Anton,sans-serif;
-
-    font-size:24px;
-
-    margin:13px 0 6px;
-}
-
-.project p{
-
-    color:#666;
-
-    font-size:10px;
-
-    line-height:1.7;
-}
-
-.project-link{
-
-    display:inline-block;
-
-    margin-top:14px;
-
-    color:var(--pink-dark);
-
-    font-size:9px;
-
-    font-weight:bold;
-}
-
-
-/* =========================================================
-   ARCHIVE
-========================================================= */
-
-.archive{
-    background:#0d0d0d;
-}
+.section-title{font:400 clamp(48px,8vw,90px)/.85 var(--display)}
+.section-number{font:500 11px var(--mono);color:var(--pink);letter-spacing:.12em}
+.intro{max-width:650px;color:#b7afa1;line-height:1.7;font-size:16px}
 
 .archive-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:15px;
+}
+@media(max-width:900px){.archive-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:580px){.archive-grid{grid-template-columns:1fr}}
+.archive-item{
+  min-height:240px;border:1px solid var(--line);padding:20px;
+  position:relative;overflow:hidden;cursor:pointer;transition:.25s;
+  background:linear-gradient(145deg,rgba(255,255,255,.045),transparent);
+}
+.archive-item:hover{transform:translateY(-7px);border-color:var(--pink);box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.archive-item .num{font:500 10px var(--mono);color:var(--pink)}
+.archive-item h3{font:400 42px/.9 var(--display);margin:40px 0 12px}
+.archive-item p{font-size:13px;color:var(--muted);line-height:1.55;max-width:280px}
+.archive-item .arrow{position:absolute;right:18px;bottom:15px;font:22px var(--mono);color:var(--pink)}
+.archive-item .scribble{position:absolute;right:-15px;top:20px;font:700 70px var(--hand);opacity:.09;transform:rotate(-12deg)}
 
-    display:grid;
+.current{
+  display:grid;grid-template-columns:1fr 1fr;gap:20px;
+}
+@media(max-width:760px){.current{grid-template-columns:1fr}}
+.current-card{
+  background:var(--paper);color:var(--ink);padding:28px;min-height:260px;
+  position:relative;box-shadow:9px 9px 0 var(--pink);transform:rotate(-.5deg);
+}
+.current-card:nth-child(2){transform:rotate(.6deg);box-shadow:9px 9px 0 var(--blue)}
+.current-card h3{font:400 43px/.9 var(--display);margin:30px 0 16px}
+.current-card p{font-size:14px;line-height:1.65;max-width:500px}
+.status{
+  display:flex;justify-content:space-between;gap:15px;border-top:1px solid #aaa;
+  margin-top:24px;padding-top:12px;font:500 9px var(--mono);text-transform:uppercase;
+}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#36d681;margin-right:6px}
 
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(250px,1fr)
-        );
+.projects{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:18px;
+}
+@media(max-width:700px){.projects{grid-template-columns:1fr}}
+.project{
+  border:1px solid var(--line);padding:24px;min-height:290px;position:relative;
+  transition:.25s;background:#151411;
+}
+.project:hover{border-color:var(--paper);transform:rotate(-.5deg)}
+.project .tag{font:500 9px var(--mono);color:var(--pink);letter-spacing:.12em;text-transform:uppercase}
+.project h3{font:400 48px/.88 var(--display);margin:55px 0 12px}
+.project p{color:var(--muted);font-size:13px;line-height:1.6;max-width:520px}
+.project .project-no{position:absolute;right:20px;top:20px;font:500 10px var(--mono);color:var(--muted)}
+.project .project-link{position:absolute;right:20px;bottom:20px;color:var(--pink);font:500 10px var(--mono)}
 
-    gap:15px;
+.skills-wrap{display:flex;flex-wrap:wrap;gap:10px;max-width:900px}
+.skill{
+  padding:11px 14px;border:1px solid var(--line);font:500 11px var(--mono);
+  color:var(--paper);transition:.2s;transform:rotate(var(--r));
+}
+.skill:hover{background:var(--pink);color:var(--ink);border-color:var(--pink);transform:rotate(0) scale(1.05)}
+.skill.big{font-family:var(--hand);font-size:20px;border-color:var(--pink);color:var(--pink)}
+
+.writing-list{display:grid;gap:12px}
+.writing{
+  display:grid;grid-template-columns:80px 1fr 40px;gap:20px;align-items:center;
+  border-top:1px solid var(--line);padding:24px 8px;cursor:pointer;transition:.2s;
+}
+.writing:last-child{border-bottom:1px solid var(--line)}
+.writing:hover{background:rgba(239,63,135,.07);padding-left:18px}
+.writing-num{font:500 11px var(--mono);color:var(--pink)}
+.writing h3{font:400 clamp(25px,4vw,44px)/.95 var(--display)}
+.writing p{font:13px/1.5 var(--sans);color:var(--muted);margin-top:7px}
+.writing-arrow{font:25px var(--mono);color:var(--pink)}
+@media(max-width:580px){
+  .writing{grid-template-columns:45px 1fr 20px;gap:10px}
 }
 
-.archive-card{
-
-    border:1px solid #333;
-
-    padding:25px;
-
-    min-height:210px;
-
-    transition:.2s;
+.notebook{
+  background:var(--paper);color:var(--ink);padding:35px;max-width:900px;
+  margin:auto;position:relative;box-shadow:12px 12px 0 var(--pink);transform:rotate(-.4deg);
 }
-
-.archive-card:hover{
-
-    border-color:var(--pink);
-
-    transform:translateY(-5px);
+.notebook:before{
+  content:"";position:absolute;inset:0;opacity:.16;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent 0 31px,rgba(30,60,130,.35) 32px);
 }
+.notebook h3{font:400 56px/.9 var(--display);position:relative}
+.notebook p{font:17px/1.8 var(--hand);position:relative;max-width:760px;margin-top:25px}
+.notebook .signature{font:700 38px var(--hand);text-align:right;margin-top:25px;position:relative}
 
-.archive-number{
-
-    color:var(--pink);
-
-    font-size:9px;
+.experiment-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
 }
-
-.archive-card h3{
-
-    font-family:Caveat,cursive;
-
-    font-size:33px;
-
-    margin:28px 0 10px;
+@media(max-width:850px){.experiment-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.experiment-grid{grid-template-columns:1fr}}
+.experiment{
+  aspect-ratio:1/1;border:1px solid var(--line);padding:17px;display:flex;
+  flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;
 }
-
-.archive-card p{
-
-    color:#777;
-
-    font-size:10px;
-
-    line-height:1.8;
-}
-
-
-/* =========================================================
-   LEARNING
-========================================================= */
-
-.learning-item{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:20px;
-
-    border-bottom:1px dashed #333;
-
-    padding:18px 0;
-}
-
-.learning-number{
-
-    color:var(--pink);
-
-    width:30px;
-
-    font-size:10px;
-}
-
-.learning-item h3{
-
-    font-family:Anton,sans-serif;
-
-    font-size:24px;
-}
-
-
-/* =========================================================
-   STATS
-========================================================= */
-
-.stats{
-
-    background:var(--pink);
-
-    color:#000;
-
-    padding:90px 0;
-}
-
-.stats-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(130px,1fr)
-        );
-
-    gap:20px;
-
-    text-align:center;
-}
-
-.stat strong{
-
-    display:block;
-
-    font-family:Anton,sans-serif;
-
-    font-size:55px;
-}
-
-.stat span{
-
-    font-size:8px;
-
-    letter-spacing:2px;
-}
-
-
-/* =========================================================
-   TERMINAL
-========================================================= */
-
-.exe{
-
-    padding:140px 0;
-}
+.experiment:nth-child(1){background:#e9d5bf;color:#171512}
+.experiment:nth-child(2){background:#1b1d25}
+.experiment:nth-child(3){background:#d7e0d0;color:#171512}
+.experiment:nth-child(4){background:#ef3f87;color:#171512}
+.experiment .exp-label{font:500 9px var(--mono);letter-spacing:.12em}
+.experiment h3{font:400 34px/.85 var(--display)}
+.experiment small{font:500 9px var(--mono);opacity:.7}
+.exp-shape{position:absolute;width:120px;height:120px;border:2px solid currentColor;border-radius:50%;right:-35px;top:35px;opacity:.22}
+.exp-shape:after{content:"";position:absolute;inset:20px;border:1px solid currentColor;border-radius:50%}
 
 .terminal{
-
-    max-width:750px;
-
-    margin:auto;
-
-    background:#050505;
-
-    border:1px solid #444;
-
-    box-shadow:
-        10px 10px 0 var(--pink);
+  background:#080908;border:1px solid #30342f;padding:22px;
+  font:500 12px/1.8 var(--mono);color:#a8f5ae;max-width:850px;
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
 }
-
-.terminal-top{
-
-    padding:12px 15px;
-
-    border-bottom:1px solid #333;
-
-    color:#777;
-
-    font-size:9px;
+.terminal .pinkline{color:var(--pink)}
+.terminal .blue{color:var(--blue)}
+.terminal-input{
+  display:flex;gap:8px;margin-top:5px;
 }
-
-.terminal-body{
-
-    padding:25px;
+.terminal-input input{
+  background:transparent;border:0;outline:0;color:#a8f5ae;flex:1;font:inherit;
 }
-
-.terminal-line{
-
-    color:#aaa;
-
-    font-size:10px;
-
-    line-height:2;
-}
-
-.terminal-line span{
-    color:var(--pink);
-}
-
-#randomOutput{
-
-    margin-top:20px;
-
-    min-height:25px;
-
-    color:var(--pink);
-
-    font-size:11px;
-}
-
-.terminal-buttons{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:8px;
-
-    margin-top:20px;
-}
-
-.terminal-buttons button{
-
-    background:#111;
-
-    color:var(--cream);
-
-    border:1px solid #555;
-
-    padding:9px 12px;
-
-    font-size:8px;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-.terminal-buttons button:hover{
-
-    background:var(--pink);
-
-    color:#000;
-}
-
-
-/* =========================================================
-   PHILOSOPHY
-========================================================= */
-
-.philosophy{
-
-    text-align:center;
-
-    padding:170px 20px;
-}
-
-.philosophy h2{
-
-    font-family:Caveat,cursive;
-
-    font-size:
-        clamp(
-            60px,
-            10vw,
-            125px
-        );
-
-    line-height:.78;
-}
-
-.philosophy p{
-
-    max-width:680px;
-
-    margin:38px auto 0;
-
-    color:#777;
-
-    font-size:12px;
-
-    line-height:2;
-}
-
-
-/* =========================================================
-   CONTACT
-========================================================= */
+.prompt-btn{background:none;border:0;color:#a8f5ae;padding:0;cursor:pointer}
 
 .contact{
-
-    background:#0d0d0d;
-
-    padding:140px 0;
+  min-height:70vh;display:flex;align-items:center;
 }
-
-.contact-title{
-
-    font-family:Anton,sans-serif;
-
-    font-size:
-        clamp(
-            60px,
-            12vw,
-            145px
-        );
-
-    line-height:.78;
-
-    margin-bottom:55px;
-}
-
-.contact-grid{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:60px;
-}
-
-.contact-text{
-
-    color:#888;
-
-    font-size:12px;
-
-    line-height:2;
-}
-
-.available{
-
-    display:inline-block;
-
-    margin-top:25px;
-
-    border:1px solid var(--pink);
-
-    color:var(--pink);
-
-    padding:9px 13px;
-
-    font-size:8px;
-}
-
-.dot{
-
-    display:inline-block;
-
-    width:7px;
-    height:7px;
-
-    border-radius:50%;
-
-    background:#43d76b;
-
-    margin-right:6px;
-}
-
-.contact-links{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:10px;
-}
-
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:end}
+@media(max-width:760px){.contact-grid{grid-template-columns:1fr}}
+.contact h2{font:400 clamp(70px,12vw,150px)/.78 var(--display)}
+.contact h2 span{color:var(--pink)}
+.contact-links{display:grid;gap:9px}
 .contact-link{
-
-    border:1px solid #444;
-
-    padding:16px;
-
-    font-size:9px;
-
-    transition:.2s;
+  border-bottom:1px solid var(--line);padding:13px 0;
+  display:flex;justify-content:space-between;font:500 12px var(--mono);
+  transition:.2s;
 }
-
-.contact-link:hover{
-
-    background:var(--pink);
-
-    border-color:var(--pink);
-
-    color:#000;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
+.contact-link:hover{color:var(--pink);padding-left:8px}
 footer{
-
-    padding:90px 20px;
-
-    text-align:center;
-
-    color:#555;
-
-    font-size:8px;
-}
-
-.footer-big{
-
-    color:var(--cream);
-
-    font-family:Caveat,cursive;
-
-    font-size:38px;
-
-    margin-bottom:15px;
-}
-
-footer strong{
-    color:var(--pink);
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:750px){
-
-    .nav-links{
-        display:none;
-    }
-
-    .menu{
-        display:block;
-    }
-
-    .about-grid,
-    .contact-grid{
-        grid-template-columns:1fr;
-    }
-
-    .card-info{
-        grid-template-columns:1fr;
-    }
-
-    .full{
-        grid-column:auto;
-    }
-
-    .creative{
-        font-size:43px;
-    }
-
-    .license{
-        font-size:23px;
-    }
-
-    .id-card{
-        padding:23px;
-    }
-
-    .card-top{
-        gap:10px;
-    }
-
-    .card-code{
-        font-size:7px;
-    }
-
-    .stamp{
-
-        width:74px;
-        height:74px;
-
-        font-size:8px;
-    }
-
-    .signature strong{
-        font-size:28px;
-    }
-
-    .course{
-
-        flex-direction:column;
-
-        gap:12px;
-    }
-
-    .section{
-        padding:95px 0;
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE MENU
-========================================================= */
-
-.mobile-menu{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:450;
-
-    background:#080808;
-
-    display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    flex-direction:column;
-
-    gap:22px;
-}
-
-.mobile-menu.open{
-    display:flex;
-}
-
-.mobile-menu a{
-
-    font-family:Anton,sans-serif;
-
-    font-size:35px;
-}
-
-.mobile-menu a:hover{
-    color:var(--pink);
-}
-
-
-/* =========================================================
-   KAMRAN — WRITING ARCHIVE ADD-ON
-   Combined with the original Creative License site.
-========================================================= */
-.wa-archive, .wa-interlude, .wa-reader {
-    --paper:#f3eee2;
-    --dark-pink:#a91f5d;
-    --light-gray:#b8b2a6;
-}
-/* =========================================================
-   ARCHIVE INTRO
-========================================================= */
-
-.wa-archive {
-    padding: 130px 20px;
-    position: relative;
-}
-
-.wa-container {
-    max-width: 1100px;
-    margin: auto;
-}
-
-.wa-section-number {
-    font-size: 10px;
-    color: var(--pink);
-    letter-spacing: .2em;
-    margin-bottom: 15px;
-}
-
-.wa-archive-title {
-    font-family: var(--anton);
-    font-size: clamp(55px, 9vw, 110px);
-    line-height: .9;
-}
-
-.wa-archive-description {
-    max-width: 600px;
-    margin-top: 25px;
-    color: var(--gray);
-    line-height: 1.8;
-    font-size: 13px;
-}
-
-/* =========================================================
-   WRITING CARDS
-========================================================= */
-
-.wa-writings {
-    margin-top: 80px;
-    display: grid;
-    gap: 35px;
-}
-
-.wa-writing-card {
-    position: relative;
-    background: var(--paper);
-    color: #111;
-    padding: 35px;
-    cursor: pointer;
-    transition:
-        transform .35s cubic-bezier(.2,.8,.2,1),
-        box-shadow .35s ease;
-    box-shadow: 8px 10px 0 rgba(232,62,134,.18);
-    overflow: hidden;
-}
-
-.wa-writing-card:nth-child(1) {
-    transform: rotate(-1deg);
-}
-
-.wa-writing-card:nth-child(2) {
-    transform: rotate(.8deg);
-}
-
-.wa-writing-card:nth-child(3) {
-    transform: rotate(-.5deg);
-}
-
-.wa-writing-card:nth-child(4) {
-    transform: rotate(1deg);
-}
-
-.wa-writing-card:hover {
-    transform: rotate(0deg) translateY(-10px) scale(1.01);
-    box-shadow: 12px 18px 0 rgba(232,62,134,.35);
-}
-
-.wa-writing-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    opacity: .13;
-    pointer-events: none;
-    background-image:
-        radial-gradient(
-            circle,
-            #111 1px,
-            transparent 1.4px
-        );
-    background-size: 7px 7px;
-}
-
-.wa-paper-tape {
-    position: absolute;
-    top: -7px;
-    left: 45%;
-    width: 90px;
-    height: 23px;
-    background: rgba(232,62,134,.45);
-    transform: rotate(-3deg);
-}
-
-.wa-writing-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    position: relative;
-    z-index: 2;
-}
-
-.wa-writing-number {
-    font-size: 11px;
-    color: var(--dark-pink);
-    letter-spacing: .15em;
-}
-
-.wa-writing-date {
-    font-size: 9px;
-    color: #777;
-}
-
-.wa-writing-title {
-    font-family: var(--anton);
-    font-size: clamp(38px, 6vw, 70px);
-    line-height: .9;
-    margin-top: 40px;
-}
-
-.wa-writing-subtitle {
-    font-family: var(--hand);
-    font-size: 25px;
-    color: var(--dark-pink);
-    margin-top: 15px;
-}
-
-.wa-writing-tags {
-    display: flex;
-    gap: 7px;
-    flex-wrap: wrap;
-    margin-top: 25px;
-}
-
-.wa-tag {
-    border: 1px solid #111;
-    padding: 5px 8px;
-    font-size: 8px;
-    letter-spacing: .1em;
-}
-
-.wa-read {
-    margin-top: 35px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px dashed #888;
-    padding-top: 15px;
-    font-size: 10px;
-    letter-spacing: .15em;
-}
-
-.wa-read-arrow {
-    font-size: 20px;
-    transition: transform .2s;
-}
-
-.wa-writing-card:hover .wa-read-arrow {
-    transform: translateX(8px);
-}
-
-/* =========================================================
-   RANDOM HANDWRITING
-========================================================= */
-
-.wa-note {
-    position: absolute;
-    font-family: var(--hand);
-    color: var(--pink);
-    font-size: 28px;
-    transform: rotate(-8deg);
-    pointer-events: none;
-}
-
-.wa-note.one {
-    top: 25%;
-    right: 3%;
-}
-
-.wa-note.two {
-    bottom: 10%;
-    left: 2%;
-    transform: rotate(8deg);
-}
-
-/* =========================================================
-   READER MODAL
-========================================================= */
-
-.wa-reader {
-    position: fixed;
-    inset: 0;
-    z-index: 5000;
-    background: rgba(9,9,9,.96);
-    display: none;
-    overflow-y: auto;
-    padding: 70px 20px;
-}
-
-.wa-reader.active {
-    display: block;
-    animation: readerIn .4s ease;
-}
-
-@keyframes readerIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-.wa-reader-inner {
-    max-width: 850px;
-    margin: auto;
-}
-
-.wa-reader-close {
-    position: fixed;
-    top: 22px;
-    right: 25px;
-    z-index: 10;
-    background: var(--pink);
-    color: #090909;
-    border: none;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.wa-reader-meta {
-    color: var(--pink);
-    font-size: 10px;
-    letter-spacing: .2em;
-    margin-bottom: 25px;
-}
-
-.wa-reader-title {
-    font-family: var(--anton);
-    font-size: clamp(55px, 10vw, 120px);
-    line-height: .85;
-    margin-bottom: 50px;
-}
-
-.wa-reader-paper {
-    background: var(--paper);
-    color: #111;
-    padding: clamp(30px, 6vw, 70px);
-    position: relative;
-    box-shadow: 15px 18px 0 rgba(232,62,134,.25);
-}
-
-.wa-reader-paper::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: .08;
-    background-image:
-        radial-gradient(
-            circle,
-            #111 1px,
-            transparent 1.5px
-        );
-    background-size: 7px 7px;
-}
-
-.wa-reader-content {
-    position: relative;
-    z-index: 2;
-    font-family: Georgia, serif;
-    font-size: clamp(16px, 2vw, 20px);
-    line-height: 1.95;
-}
-
-.wa-reader-content p {
-    margin-bottom: 25px;
-}
-
-.wa-reader-content .quote {
-    font-family: var(--hand);
-    color: var(--dark-pink);
-    font-size: 28px;
-    line-height: 1.3;
-    margin: 35px 0;
-}
-
-.wa-reader-footer {
-    margin-top: 50px;
-    padding-top: 20px;
-    border-top: 1px dashed #888;
-    display: flex;
-    justify-content: space-between;
-    font-size: 9px;
-    color: #777;
-}
-
-/* =========================================================
-   TYPEWRITER EFFECT
-========================================================= */
-
-.wa-typewriter {
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 2px solid var(--pink);
-    width: 0;
-    animation:
-        typing 4s steps(50,end) forwards,
-        cursorblink .8s infinite;
+  border-top:1px solid var(--line);padding:22px 0;
+  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  color:var(--muted);font:500 9px var(--mono);letter-spacing:.08em;text-transform:uppercase;
+}
+
+/* modal */
+.modal{
+  position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:500;
+  display:none;align-items:center;justify-content:center;padding:20px;
+  backdrop-filter:blur(7px);
+}
+.modal.open{display:flex}
+.modal-box{
+  background:var(--paper);color:var(--ink);width:min(850px,100%);
+  max-height:88svh;overflow:auto;padding:35px;position:relative;
+  box-shadow:0 30px 100px rgba(0,0,0,.7);
+}
+.close{
+  position:absolute;right:15px;top:15px;width:34px;height:34px;
+  border:0;background:var(--ink);color:var(--paper);border-radius:50%;cursor:pointer;
+}
+.modal-meta{font:500 10px var(--mono);color:#9c2859;letter-spacing:.13em;text-transform:uppercase}
+.modal-title{font:400 clamp(45px,8vw,80px)/.88 var(--display);margin:20px 0}
+.modal-text{font:400 17px/1.8 var(--sans);white-space:pre-line}
+.modal-text .quote{font-family:var(--hand)}
+.modal-foot{margin-top:30px;border-top:1px solid #aaa;padding-top:14px;font:500 10px var(--mono)}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.show{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation:none!important;transition:none!important}
 }
-
-@keyframes typing {
-    from {
-        width: 0;
-    }
-
-    to {
-        width: 100%;
-    }
-}
-
-@keyframes cursorblink {
-    50% {
-        border-color: transparent;
-    }
-}
-
-/* =========================================================
-   BETWEEN SECTION
-========================================================= */
-
-.wa-interlude {
-    min-height: 55vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 100px 20px;
-    position: relative;
-    overflow: hidden;
-}
-
-.wa-interlude-text {
-    font-family: var(--hand);
-    font-size: clamp(38px, 7vw, 80px);
-    max-width: 850px;
-    color: var(--cream);
-}
-
-.wa-interlude-text span {
-    color: var(--pink);
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-    border-top: 1px solid rgba(238,233,221,.15);
-    padding: 80px 25px 40px;
-}
-
-.footer-inner {
-    max-width: 1100px;
-    margin: auto;
-}
-
-.footer-title {
-    font-family: var(--anton);
-    font-size: clamp(60px, 12vw, 150px);
-    line-height: .8;
-}
-
-.footer-title span {
-    color: var(--pink);
-}
-
-.footer-message {
-    margin-top: 30px;
-    font-family: var(--hand);
-    font-size: 30px;
-    color: var(--gray);
-}
-
-.footer-links {
-    margin-top: 70px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.footer-links a {
-    border: 1px solid rgba(238,233,221,.4);
-    padding: 10px 14px;
-    font-size: 10px;
-    transition: .2s;
-}
-
-.footer-links a:hover {
-    background: var(--pink);
-    color: #090909;
-    border-color: var(--pink);
-}
-
-.copyright {
-    margin-top: 80px;
-    display: flex;
-    justify-content: space-between;
-    color: var(--gray);
-    font-size: 9px;
-    letter-spacing: .1em;
-}
-
-@media(max-width:600px) {
-
-    .wa-writing-card {
-        padding: 25px;
-    }
-
-    .wa-writing-title {
-        font-size: 45px;
-    }
-
-    .wa-reader {
-        padding: 70px 10px 30px;
-    }
-
-    .wa-reader-paper {
-        padding: 30px 22px;
-    }
-
-    .copyright {
-        flex-direction: column;
-        gap: 10px;
-    }
-}
-
-/* =========================================================
-   SCROLL REVEAL
-========================================================= */
-
-.wa-reveal {
-    opacity: 0;
-    transform: translateY(35px);
-    transition:
-        opacity .8s ease,
-        transform .8s cubic-bezier(.2,.8,.2,1);
-}
-
-.wa-reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media(prefers-reduced-motion:reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
-        scroll-behavior: auto !important;
-    }
-}
-
-
 </style>
-
 </head>
 
-
 <body>
+<div class="noise"></div>
+<div class="cursor" id="cursor"></div>
 
+<header class="topbar">
+  <a class="logo" href="#top">KAMRAN<span>_</span><b>ARCHIVE</b></a>
+  <nav class="menu">
+    <a href="#about">about</a>
+    <a href="#archive">archive</a>
+    <a href="#work">work</a>
+    <a href="#writing">writing</a>
+    <a href="#contact">contact</a>
+  </nav>
+  <button class="menuBtn" id="menuBtn">MENU +</button>
+</header>
 
-<!-- ======================================================
-     NAVIGATION
-====================================================== -->
-
-<nav>
-
-<div class="logo">
-KAMRAN<span>®</span>
-</div>
-
-
-<div class="nav-links">
-
-<a href="#about">ABOUT</a>
-
-<a href="#experience">EXPERIENCE</a>
-
-<a href="#work">WORK</a>
-
-<a href="#writing-archive">WRITINGS</a>
-
-<a href="#contact">CONTACT</a>
-
-</div>
-
-
-<button
-class="menu"
-onclick="toggleMenu()">
-
-MENU
-
-</button>
-
-</nav>
-
-
-<div
-class="mobile-menu"
-id="mobileMenu">
-
-<a href="#about" onclick="toggleMenu()">ABOUT</a>
-
-<a href="#experience" onclick="toggleMenu()">EXPERIENCE</a>
-
-<a href="#work" onclick="toggleMenu()">WORK</a>
-
-<a href="#writing-archive" onclick="toggleMenu()">WRITINGS</a>
-
-<a href="#contact" onclick="toggleMenu()">CONTACT</a>
-
-</div>
-
-
-<!-- ======================================================
-     HERO
-====================================================== -->
-
+<main id="top">
 <section class="hero">
-
-<div class="hero-content">
-
-
-<div class="id-card">
-
-
-<div class="stars">
-✦ ✦ ✦
-</div>
-
-
-<div class="card-top">
-
-
-<div>
-
-<div class="creative">
-CREATIVE
-</div>
-
-<div class="license">
-LICENSE
-</div>
-
-</div>
-
-
-<div class="card-code">
-
-ID: KG-2005<br>
-CLASS: GENERALIST<br>
-STATUS: ACTIVE
-
-</div>
-
-</div>
-
-
-<hr class="card-line">
-
-
-<div class="card-info">
-
-
-<div class="field">
-
-<label>NAME</label>
-
-<p>KAMRAN</p>
-
-</div>
-
-
-<div class="field">
-
-<label>USERNAME</label>
-
-<p>@KAMITHEGRAPE</p>
-
-</div>
-
-
-<div class="field">
-
-<label>DATE OF BIRTH</label>
-
-<p>24 SEP 2005</p>
-
-</div>
-
-
-<div class="field">
-
-<label>NATIONALITY</label>
-
-<p>PAKISTANI</p>
-
-</div>
-
-
-<div class="field full">
-
-<label>POSITION</label>
-
-<p>CREATIVE GENERALIST</p>
-
-</div>
-
-
-<div class="field full">
-
-<label>SECONDARY POSITION</label>
-
-<p>AI STUDENT / DELULU MANAGER</p>
-
-</div>
-
-
-<div class="field full">
-
-<label>CLASSIFICATION</label>
-
-<p>JACK OF ALL TRADES</p>
-
-</div>
-
-</div>
-
-
-<div class="card-bottom">
-
-
-<div class="stamp">
-
-LICENSED<br>
-TO CREATE<br>
-CHAOS
-
-</div>
-
-
-<div class="signature">
-
-<strong>Kamran</strong>
-
-<small>
-AUTHORIZED CREATIVE
-</small>
-
-</div>
-
-
-</div>
-
-
-<div class="barcode"></div>
-
-<div class="barcode-number">
-97820050924
-</div>
-
-
-<div class="card-sticker">
-probably making something
-</div>
-
-
-</div>
-
-
-<div class="hero-buttons">
-
-
-<a
-class="btn primary"
-href="mailto:muhammadkamrantaj@gmail.com">
-
-HIRE / CONTACT
-
-</a>
-
-
-<a
-class="btn"
-href="#work">
-
-VIEW WORK
-
-</a>
-
-
-<a
-class="btn"
-href="assets/cv.pdf"
-download>
-
-DOWNLOAD CV
-
-</a>
-
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<!-- ======================================================
-     ABOUT
-====================================================== -->
-
-<section
-class="about"
-id="about">
-
-<div class="container">
-
-
-<div class="eyebrow">
-001 / IDENTITY
-</div>
-
-
-<div class="about-grid">
-
-
-<div>
-
-
-<div class="section-title">
-
-I DON'T<br>
-REALLY HAVE<br>
-A <span style="color:#ed3f86">
-NICHE.
-</span>
-
-</div>
-
-
-<div class="about-text">
-
-I'm <strong>Kamran</strong> — a creative generalist,
-AI student and remote healthcare professional
-from Islamabad, Pakistan.
-
-<br><br>
-
-Professionally, I've worked across U.S.-based
-healthcare operations, patient communication,
-insurance verification, EHR management,
-prior authorizations, referrals and administrative
-workflows.
-
-<br><br>
-
-I've also worked in lead generation, cold calling,
-email outreach and CRM management.
-
-<br><br>
-
-Outside of work, I'm interested in graphic design,
-photography, writing, technology, AI, cybersecurity,
-web development and building random things that
-probably didn't need to exist.
-
-<br><br>
-
-I don't really believe in staying inside one box.
-
-If something looks interesting, I'll probably try it.
-
-If I don't know how to do it, I'll probably learn it.
-
-<br><br>
-
-<strong>I just make stuff.</strong>
-
-</div>
-
-
-<div class="about-quote">
-
-"I don't really have a niche.
-I just make stuff."
-
-</div>
-
-
-</div>
-
-
-<div class="identity-box">
-
-
-<div class="identity-row">
-<span>NAME</span>
-<span>KAMRAN</span>
-</div>
-
-
-<div class="identity-row">
-<span>HANDLE</span>
-<span>@KAMITHEGRAPE</span>
-</div>
-
-
-<div class="identity-row">
-<span>BORN</span>
-<span>24 SEP 2005</span>
-</div>
-
-
-<div class="identity-row">
-<span>NATIONALITY</span>
-<span>PAKISTANI</span>
-</div>
-
-
-<div class="identity-row">
-<span>LOCATION</span>
-<span>ISLAMABAD</span>
-</div>
-
-
-<div class="identity-row">
-<span>EDUCATION</span>
-<span>BS ARTIFICIAL INTELLIGENCE</span>
-</div>
-
-
-<div class="identity-row">
-<span>PROFESSION</span>
-<span>VIRTUAL MEDICAL ASSISTANT</span>
-</div>
-
-
-<div class="identity-row">
-<span>CREATIVE TYPE</span>
-<span>GENERALIST</span>
-</div>
-
-
-<div class="identity-row">
-<span>NICHE</span>
-<span>NONE</span>
-</div>
-
-
-<div class="identity-row">
-<span>STATUS</span>
-<span>BUILDING</span>
-</div>
-
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ======================================================
-     PROFESSIONAL SKILLS
-====================================================== -->
-
-<section class="section skills">
-
-<div class="container">
-
-
-<div class="eyebrow">
-002 / ABILITIES
-</div>
-
-
-<div class="section-title">
-WHAT I DO
-</div>
-
-
-<div class="skill-grid">
-
-
-<div class="skill">
-PATIENT COMMUNICATION
-</div>
-
-
-<div class="skill">
-INSURANCE VERIFICATION
-</div>
-
-
-<div class="skill">
-EHR MANAGEMENT
-</div>
-
-
-<div class="skill">
-PRIOR AUTHORIZATIONS
-</div>
-
-
-<div class="skill">
-REFERRAL COORDINATION
-</div>
-
-
-<div class="skill">
-HIPAA COMPLIANCE
-</div>
-
-
-<div class="skill">
-LEAD GENERATION
-</div>
-
-
-<div class="skill">
-CRM MANAGEMENT
-</div>
-
-
-<div class="skill">
-GRAPHIC DESIGN
-</div>
-
-
-<div class="skill">
-BRANDING
-</div>
-
-
-<div class="skill">
-PHOTOGRAPHY
-</div>
-
-
-<div class="skill">
-WRITING
-</div>
-
-
-<div class="skill">
-WEB DESIGN
-</div>
-
-
-<div class="skill">
-AI
-</div>
-
-
-<div class="skill">
-CYBERSECURITY
-</div>
-
-
-<div class="skill">
-VIDEO EDITING
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ======================================================
-     SOFTWARE
-====================================================== -->
-
-<section class="section">
-
-<div class="container">
-
-
-<div class="eyebrow">
-003 / TOOLBOX
-</div>
-
-
-<div class="section-title">
-SOFTWARE
-</div>
-
-
-<div class="software-grid">
-
-
-<div class="software">
-
-<h3>
-ADOBE ILLUSTRATOR
-</h3>
-
-<span>
-ADVANCED GRAPHIC DESIGN
-</span>
-
-</div>
-
-
-<div class="software">
-
-<h3>
-PHOTOSHOP
-</h3>
-
-<span>
-IMAGE EDITING
-</span>
-
-</div>
-
-
-<div class="software">
-
-<h3>
-FIGMA
-</h3>
-
-<span>
-UI / UX
-</span>
-
-</div>
-
-
-<div class="software">
-
-<h3>
-CAPCUT
-</h3>
-
-<span>
-VIDEO EDITING
-</span>
-
-</div>
-
-
-<div class="software">
-
-<h3>
-SALESFORCE
-</h3>
-
-<span>
-CRM / LEAD MANAGEMENT
-</span>
-
-</div>
-
-
-<div class="software">
-
-<h3>
-GITHUB
-</h3>
-
-<span>
-PROJECTS / DEVELOPMENT
-</span>
-
-</div>
-
-
-<div class="software">
-
-<h3>
-HTML / CSS
-</h3>
-
-<span>
-WEB DEVELOPMENT
-</span>
-
-</div>
-
-
-<div class="software">
-
-<h3>
-JAVA
-</h3>
-
-<span>
-PROGRAMMING / OOP
-</span>
-
-</div>
-
-
-<div class="software">
-
-<h3>
-MICROSOFT OFFICE
-</h3>
-
-<span>
-PRODUCTIVITY
-</span>
-
-</div>
-
-
-<div class="software">
-
-<h3>
-GOOGLE WORKSPACE
-</h3>
-
-<span>
-COLLABORATION
-</span>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ======================================================
-     EXPERIENCE
-====================================================== -->
-
-<section
-class="section"
-id="experience">
-
-<div class="container">
-
-
-<div class="eyebrow">
-004 / EXPERIENCE
-</div>
-
-
-<div class="section-title">
-WHERE I'VE<br>
-WORKED
-</div>
-
-
-<div class="timeline">
-
-
-<div class="job">
-
-
-<div class="job-date">
-OCT 2025 — PRESENT
-</div>
-
-
-<h3>
-VIRTUAL MEDICAL ASSISTANT
-</h3>
-
-
-<div class="job-company">
-MEDIFIER SOLUTIONS — ISLAMABAD
-</div>
-
-
-<p>
-
-Supporting internal medicine physicians at Avita MD
-with full-spectrum virtual administrative care.
-
-Managing 50+ daily patient calls, medication refill
-requests, prior authorizations, prescription
-management, specialist referrals, appointments,
-follow-ups and EHR documentation.
-
-Working alongside clinical and administrative teams
-to improve workflow efficiency and patient experience.
-
-</p>
-
-</div>
-
-
-<div class="job">
-
-
-<div class="job-date">
-FEB 2025 — OCT 2025
-</div>
-
-
-<h3>
-VIRTUAL MEDICAL ASSISTANT
-</h3>
-
-
-<div class="job-company">
-DYNAMIZONE — ISLAMABAD
-</div>
-
-
-<p>
-
-Provided dedicated virtual support to a
-U.S.-based endocrinologist.
-
-Handled insurance eligibility verification across
-Medicare, Medicaid and commercial plans, patient
-intake, demographic verification, appointment
-coordination, prior authorizations, prescription
-refills and EHR workflows.
-
-Maintained HIPAA-compliant handling of sensitive
-patient information.
-
-</p>
-
-</div>
-
-
-<div class="job">
-
-
-<div class="job-date">
-FEB 2025 — OCT 2025
-</div>
-
-
-<h3>
-LEAD GENERATION SPECIALIST
-</h3>
-
-
-<div class="job-company">
-DYNAMIZONE — ISLAMABAD
-</div>
-
-
-<p>
-
-Executed targeted cold calling and email outreach
-campaigns to healthcare providers and clinics.
-
-Managed Salesforce CRM pipelines, tracked 100+
-leads, handled follow-ups, built relationships
-with prospects and contributed to business
-development strategies.
-
-</p>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ======================================================
-     EDUCATION
-====================================================== -->
-
-<section class="section education">
-
-<div class="container">
-
-
-<div class="eyebrow">
-005 / EDUCATION
-</div>
-
-
-<div class="section-title">
-THE PAPERWORK
-</div>
-
-
-<div class="edu-grid">
-
-
-<div class="edu-card">
-
-<h3>
-BS ARTIFICIAL INTELLIGENCE
-</h3>
-
-<p>
-Federal Urdu University of Arts,
-Science & Technology
-</p>
-
-<span>
-2025 — PRESENT
-</span>
-
-</div>
-
-
-<div class="edu-card">
-
-<h3>
-INTERMEDIATE — ICS
-</h3>
-
-<p>
-Physics · Mathematics · Computer Science
-
-<br><br>
-
-Fazaia Inter College, Islamabad
-</p>
-
-<span>
-2022 — 2024
-</span>
-
-</div>
-
-
-<div class="edu-card">
-
-<h3>
-MATRICULATION
-</h3>
-
-<p>
-Computer Science
-
-<br><br>
-
-Fazaia Inter College, Islamabad
-</p>
-
-<span>
-2020 — 2022
-</span>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ======================================================
-     COURSES
-====================================================== -->
-
-<section class="section">
-
-<div class="container">
-
-
-<div class="eyebrow">
-006 / CERTIFICATIONS
-</div>
-
-
-<div class="section-title">
-THINGS I STUDIED
-</div>
-
-
-<div class="course-list">
-
-
-<div class="course">
-
-<div>
-
-<h3>
-GRAPHIC DESIGN COURSE
-</h3>
-
-<p>
-
-Professional posters, banners, brand logos
-and social media content.
-
-Advanced Adobe Illustrator, layout,
-typography, visual hierarchy and branding.
-
-</p>
-
-</div>
-
-
-<div class="course-date">
-JAN — JUL 2025
-</div>
-
-</div>
-
-
-<div class="course">
-
-<div>
-
-<h3>
-TECHNOLOGY EMPOWERMENT
-</h3>
-
-<p>
-
-ICT systems, digital ethics, cybersecurity
-awareness, professional workplace practices,
-communication, remote collaboration and
-AI fundamentals.
-
-</p>
-
-</div>
-
-
-<div class="course-date">
-2024 — 2025
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ======================================================
-     PROJECTS
-====================================================== -->
-
-<section
-class="section"
-id="work">
-
-<div class="container">
-
-
-<div class="eyebrow">
-007 / PROJECTS
-</div>
-
-
-<div class="section-title">
-THINGS I'VE<br>
-MADE
-</div>
-
-
-<div class="project-grid">
-
-
-<!-- MOMENTRIX -->
-
-<div class="project">
-
-<div class="project-image">
-MOMENTRIX
-</div>
-
-
-<h3>
-MOMENTRIX
-</h3>
-
-
-<p>
-
-A creative product project focused on
-personalized physical products including
-custom calendars, Polaroids, tote bags
-and other visual keepsakes.
-
-</p>
-
-
-<a
-class="project-link"
-href="https://www.instagram.com/moment.rix/?igsh=MTlvMDl2cGRkeDJ1dA=="
-target="_blank"
-rel="noopener">
-
-VIEW MOMENTRIX →
-
-</a>
-
-</div>
-
-
-<!-- LOST THINGS -->
-
-<div class="project">
-
-<div class="project-image">
-THE LOST THINGS
-</div>
-
-
-<h3>
-THE LOST THINGS
-</h3>
-
-
-<p>
-
-A digital museum concept built around
-forgotten objects, experiences and pieces
-of everyday life that used to feel special.
-
-</p>
-
-
-<a
-class="project-link"
-href="#">
-
-PROJECT IN DEVELOPMENT →
-
-</a>
-
-</div>
-
-
-<!-- DESIGN -->
-
-<div class="project">
-
-<div class="project-image">
-DESIGN
-</div>
-
-
-<h3>
-GRAPHIC DESIGN
-</h3>
-
-
-<p>
-
-Posters, banners, branding, logos,
-social media graphics and visual
-experiments created across different
-projects.
-
-</p>
-
-
-<a
-class="project-link"
-href="#">
-
-DESIGN ARCHIVE →
-
-</a>
-
-</div>
-
-
-<!-- WRITING -->
-
-<div class="project">
-
-<div class="project-image">
-WRITING
-</div>
-
-
-<h3>
-WRITING ARCHIVE
-</h3>
-
-
-<p>
-
-Poetry, stories, personal writing,
-unfinished thoughts and things that
-were easier to write than say.
-
-</p>
-
-
-<a
-class="project-link"
-href="#">
-
-OPEN ARCHIVE →
-
-</a>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ======================================================
-     CREATIVE ARCHIVE
-====================================================== -->
-
-<section class="section archive">
-
-<div class="container">
-
-
-<div class="eyebrow">
-008 / CREATIVE ARCHIVE
-</div>
-
-
-<div class="section-title">
-THINGS I KEEP
-</div>
-
-
-<div class="archive-grid">
-
-
-<div class="archive-card">
-
-<div class="archive-number">
-01 / PHOTOGRAPHY
-</div>
-
-
-<h3>
-Through A Camera
-</h3>
-
-
-<p>
-
-Street scenes, architecture, people,
-random moments and things that looked
-interesting enough to photograph.
-
-</p>
-
-</div>
-
-
-<div class="archive-card">
-
-<div class="archive-number">
-02 / WRITING
-</div>
-
-
-<h3>
-The Writing Archive
-</h3>
-
-
-<p>
-
-Poetry, stories, memories, unfinished
-thoughts and words that didn't make it
-into conversations.
-
-</p>
-
-</div>
-
-
-<div class="archive-card">
-
-<div class="archive-number">
-03 / IDEAS
-</div>
-
-
-<h3>
-The Idea Drawer
-</h3>
-
-
-<p>
-
-Projects that exist as sketches,
-notes, concepts or one random idea
-that refuses to disappear.
-
-</p>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ======================================================
-     CURRENTLY LEARNING
-====================================================== -->
-
-<section class="section">
-
-<div class="container">
-
-
-<div class="eyebrow">
-009 / CURRENTLY
-</div>
-
-
-<div class="section-title">
-LEARNING
-</div>
-
-
-<div class="learning-item">
-
-<div class="learning-number">
-01
-</div>
-
-<h3>
-ARTIFICIAL INTELLIGENCE
-</h3>
-
-</div>
-
-
-<div class="learning-item">
-
-<div class="learning-number">
-02
-</div>
-
-<h3>
-CYBERSECURITY
-</h3>
-
-</div>
-
-
-<div class="learning-item">
-
-<div class="learning-number">
-03
-</div>
-
-<h3>
-WEB DEVELOPMENT
-</h3>
-
-</div>
-
-
-<div class="learning-item">
-
-<div class="learning-number">
-04
-</div>
-
-<h3>
-JAVA / OBJECT ORIENTED PROGRAMMING
-</h3>
-
-</div>
-
-
-<div class="learning-item">
-
-<div class="learning-number">
-05
-</div>
-
-<h3>
-UI / UX DESIGN
-</h3>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<!-- ======================================================
-     STATS
-====================================================== -->
-
-<section class="stats">
-
-<div class="container">
-
-
-<div class="stats-grid">
-
-
-<div class="stat">
-
-<strong>
-20
-</strong>
-
-<span>
-YEARS OLD
-</span>
-
-</div>
-
-
-<div class="stat">
-
-<strong>
-∞
-</strong>
-
-<span>
-IDEAS
-</span>
-
-</div>
-
-
-<div class="stat">
-
-<strong>
-16+
-</strong>
-
-<span>
-SKILLS
-</span>
-
-</div>
-
-
-<div class="stat">
-
-<strong>
-10+
-</strong>
-
-<span>
-TOOLS
-</span>
-
-</div>
-
-
-<div class="stat">
-
-<strong>
-0
-</strong>
-
-<span>
-NICHE
-</span>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ======================================================
-     KAMRAN.EXE
-====================================================== -->
-
-<section class="exe">
-
-<div class="container">
-
-
-<div class="eyebrow">
-010 / SYSTEM
-</div>
-
-
-<div class="section-title">
-KAMRAN.EXE
-</div>
-
-
-<div class="terminal">
-
-
-<div class="terminal-top">
-KAMRAN.EXE — PERSONAL SYSTEM
-</div>
-
-
-<div class="terminal-body">
-
-
-<div class="terminal-line">
-> booting Kamran.exe...
-</div>
-
-
-<div class="terminal-line">
-> loading creative interests...
-</div>
-
-
-<div class="terminal-line">
-> loading random ideas...
-</div>
-
-
-<div class="terminal-line">
-> checking niche...
-</div>
-
-
-<div class="terminal-line">
-> niche: <span>NOT FOUND</span>
-</div>
-
-
-<div class="terminal-line">
-> status: <span>ACTIVE</span>
-</div>
-
-
-<div id="randomOutput">
-> waiting for command...
-</div>
-
-
-<div class="terminal-buttons">
-
-
-<button onclick="randomFact()">
-RANDOM FACT
-</button>
-
-
-<button onclick="randomMood()">
-CURRENT STATUS
-</button>
-
-
-<button onclick="randomSkill()">
-RANDOM SKILL
-</button>
-
-
-<button onclick="randomProject()">
-RANDOM PROJECT
-</button>
-
-
-</div>
-
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ======================================================
-     PHILOSOPHY
-====================================================== -->
-
-<section class="philosophy">
-
-
-<div class="eyebrow">
-011 / PHILOSOPHY
-</div>
-
-
-<h2>
-
-I JUST<br>
-MAKE STUFF.
-
-</h2>
-
-
-<p>
-
-I don't think everything needs to become
-a startup.
-
-Sometimes an idea is worth making simply
-because it wouldn't leave you alone.
-
-I like learning.
-
-I like experimenting.
-
-I like making strange things.
-
-And I like seeing an idea that existed only
-in my head become something another person
-can actually see.
-
-</p>
-
-</section>
-
-
-<!-- ======================================================
-     CONTACT
-====================================================== -->
-
-<section
-class="contact"
-id="contact">
-
-<div class="container">
-
-
-<div class="eyebrow">
-012 / CONTACT
-</div>
-
-
-<div class="contact-title">
-
-LET'S MAKE<br>
-SOMETHING.
-
-</div>
-
-
-<div class="contact-grid">
-
-
-<div class="contact-text">
-
-Have a project?
-
-<br>
-
-Need a designer?
-
-<br>
-
-Need someone who can figure something out?
-
-<br>
-
-Have a weird idea?
-
-<br>
-
-Want to collaborate?
-
-<br>
-
-Or maybe you just want to say hi.
-
-<br><br>
-
-<strong style="color:#f1eadc;">
-Send me a message.
-</strong>
-
-
-<div class="available">
-
-<span class="dot"></span>
-
-OPEN TO OPPORTUNITIES
-
-</div>
-
-</div>
-
-
-<div class="contact-links">
-
-
-<a
-class="contact-link"
-href="mailto:muhammadkamrantaj@gmail.com">
-
-✉ EMAIL
-
-<br>
-
-muhammadkamrantaj@gmail.com
-
-</a>
-
-
-<a
-class="contact-link"
-href="https://github.com/kamithegrape"
-target="_blank"
-rel="noopener">
-
-⌘ GITHUB
-
-<br>
-
-github.com/kamithegrape
-
-</a>
-
-
-<a
-class="contact-link"
-href="https://www.linkedin.com/in/muhammad-kamran-6b134633b"
-target="_blank"
-rel="noopener">
-
-◈ LINKEDIN
-
-<br>
-
-Muhammad Kamran
-
-</a>
-
-
-<a
-class="contact-link"
-href="https://www.instagram.com/moment.rix/?igsh=MTlvMDl2cGRkeDJ1dA=="
-target="_blank"
-rel="noopener">
-
-◉ MOMENTRIX
-
-<br>
-
-@moment.rix
-
-</a>
-
-
-<a
-class="contact-link"
-href="assets/cv.pdf"
-download>
-
-↓ DOWNLOAD CV
-
-<br>
-
-Muhammad_Kamran_CV.pdf
-
-</a>
-
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ======================================================
-     WRITING ARCHIVE — ADDED TO ORIGINAL SITE
-====================================================== -->
-<section class="wa-archive" id="writing-archive">
-
-    <div class="wa-container">
-
-        <div class="wa-section-number">
-            01 / WRITINGS
-        </div>
-
-        <h2 class="wa-archive-title wa-reveal">
-            THE THINGS<br>
-            I NEVER SAID.
-        </h2>
-
-        <p class="wa-archive-description wa-reveal">
-            Some things are easier to write than they are to say.
-            These are pieces of memory, love, loss, regret,
-            growing up, and everything that somehow ended up
-            on a page.
-        </p>
-
-
-        <div class="wa-writings">
-
-
-            <!-- ==================================================
-                 WRITING 01
-            ================================================== -->
-
-            <article
-                class="wa-writing-card wa-reveal"
-                onclick="waOpenReader(1)"
-            >
-
-                <div class="wa-paper-tape"></div>
-
-                <div class="wa-writing-top">
-
-                    <div class="wa-writing-number">
-                        001 / POET
-                    </div>
-
-                    <div class="wa-writing-date">
-                        PERSONAL
-                    </div>
-
-                </div>
-
-                <h3 class="wa-writing-title">
-                    THE POET
-                </h3>
-
-                <div class="wa-writing-subtitle">
-                    "a poet fell in love with you..."
-                </div>
-
-                <div class="wa-writing-tags">
-                    <span class="wa-tag">LOVE</span>
-                    <span class="wa-tag">LOSS</span>
-                    <span class="wa-tag">POETRY</span>
-                    <span class="wa-tag">UNWRITTEN</span>
-                </div>
-
-                <div class="wa-read">
-                    <span>OPEN THE PAGE</span>
-                    <span class="wa-read-arrow">→</span>
-                </div>
-
-            </article>
-
-
-            <!-- ==================================================
-                 WRITING 02
-            ================================================== -->
-
-            <article
-                class="wa-writing-card wa-reveal"
-                onclick="waOpenReader(2)"
-            >
-
-                <div class="wa-paper-tape"></div>
-
-                <div class="wa-writing-top">
-
-                    <div class="wa-writing-number">
-                        002 / THE LAST VOICE
-                    </div>
-
-                    <div class="wa-writing-date">
-                        MEMORY
-                    </div>
-
-                </div>
-
-                <h3 class="wa-writing-title">
-                    THE LAST<br>VOICE
-                </h3>
-
-                <div class="wa-writing-subtitle">
-                    "you never think the last time is the last time."
-                </div>
-
-                <div class="wa-writing-tags">
-                    <span class="wa-tag">GOODBYE</span>
-                    <span class="wa-tag">MEMORY</span>
-                    <span class="wa-tag">SILENCE</span>
-                </div>
-
-                <div class="wa-read">
-                    <span>OPEN THE PAGE</span>
-                    <span class="wa-read-arrow">→</span>
-                </div>
-
-            </article>
-
-
-            <!-- ==================================================
-                 WRITING 03
-            ================================================== -->
-
-            <article
-                class="wa-writing-card wa-reveal"
-                onclick="waOpenReader(3)"
-            >
-
-                <div class="wa-paper-tape"></div>
-
-                <div class="wa-writing-top">
-
-                    <div class="wa-writing-number">
-                        003 / THE FIRST MORNING
-                    </div>
-
-                    <div class="wa-writing-date">
-                        AFTER
-                    </div>
-
-                </div>
-
-                <h3 class="wa-writing-title">
-                    THE FIRST<br>MORNING
-                </h3>
-
-                <div class="wa-writing-subtitle">
-                    "there's death, and then there's the first morning..."
-                </div>
-
-                <div class="wa-writing-tags">
-                    <span class="wa-tag">LOSS</span>
-                    <span class="wa-tag">LONELINESS</span>
-                    <span class="wa-tag">LOVE</span>
-                </div>
-
-                <div class="wa-read">
-                    <span>OPEN THE PAGE</span>
-                    <span class="wa-read-arrow">→</span>
-                </div>
-
-            </article>
-
-
-            <!-- ==================================================
-                 WRITING 04
-            ================================================== -->
-
-            <article
-                class="wa-writing-card wa-reveal"
-                onclick="waOpenReader(4)"
-            >
-
-                <div class="wa-paper-tape"></div>
-
-                <div class="wa-writing-top">
-
-                    <div class="wa-writing-number">
-                        004 / SEVEN MINUTES
-                    </div>
-
-                    <div class="wa-writing-date">
-                        LAST WORDS
-                    </div>
-
-                </div>
-
-                <h3 class="wa-writing-title">
-                    MY LAST<br>SEVEN MINUTES
-                </h3>
-
-                <div class="wa-writing-subtitle">
-                    "what will I think about in my last seven minutes?"
-                </div>
-
-                <div class="wa-writing-tags">
-                    <span class="wa-tag">LIFE</span>
-                    <span class="wa-tag">FAMILY</span>
-                    <span class="wa-tag">REGRET</span>
-                    <span class="wa-tag">MEMORY</span>
-                </div>
-
-                <div class="wa-read">
-                    <span>OPEN THE PAGE</span>
-                    <span class="wa-read-arrow">→</span>
-                </div>
-
-            </article>
-
-        </div>
-
+  <div class="starfield">
+    <span class="star" style="left:9%;top:24%">✦</span>
+    <span class="star" style="left:78%;top:17%;animation-delay:.7s">✦</span>
+    <span class="star" style="left:88%;top:70%;animation-delay:1.2s">✦</span>
+    <span class="star" style="left:18%;top:78%;animation-delay:1.8s">✦</span>
+  </div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker">PERSONAL DIGITAL ARCHIVE / EST. 2005</div>
+      <h1><span>KAMRAN</span><span class="outline">MAKES.</span></h1>
+      <p class="hero-copy">
+        I don't really have a niche. <strong>I just make stuff.</strong><br>
+        A collection of projects, writing, experiments, skills, ideas and whatever else I happen to be building.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#archive">ENTER THE ARCHIVE →</a>
+        <a class="btn" href="assets/CV.pdf" target="_blank" rel="noopener">VIEW CV ↗</a>
+      </div>
     </div>
 
+    <div class="hero-card">
+      <div class="hero-card-top">
+        <div class="hero-card-title">CREATIVE<br>LICENSE</div>
+        <div class="hero-card-code">#KAM-2005<br>NO. 0024<br>ACTIVE</div>
+      </div>
+      <hr class="card-divider">
+      <div class="card-body">
+        <div class="fake-photo" aria-label="Creative license photo placeholder"></div>
+        <div class="card-info">
+          NAME<br><b>MUHAMMAD KAMRAN</b><br>
+          USERNAME<br><b>@KAMITHEGRAPE</b><br>
+          D.O.B. <b>24 / 09 / 2005</b><br>
+          NATIONALITY <b>PAKISTANI</b><br>
+          TITLE <b>CREATIVE GENERALIST</b>
+        </div>
+      </div>
+      <div class="card-stamp">LICENSED<br>TO<br>CREATE</div>
+      <div class="card-foot">
+        <div><div class="barcode"></div><div class="mono" style="font-size:8px;margin-top:3px">KAMITHEGRAPE / ARCHIVE</div></div>
+        <div class="card-sign">Kamran</div>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;bottom:22px;left:0;right:0;text-align:center" class="smallcaps muted">SCROLL TO OPEN FILES ↓</div>
 </section>
 
-
-
-<!-- ======================================================
-     READER
-====================================================== -->
-
-<div class="wa-reader" id="wa-reader">
-
-    <button
-        class="wa-reader-close"
-        onclick="waCloseReader()"
-        aria-label="Close"
-    >
-        ×
-    </button>
-
-    <div class="wa-reader-inner">
-
-        <div class="wa-reader-meta" id="wa-readerMeta">
-            001 / ARCHIVE
-        </div>
-
-        <h2
-            class="wa-reader-title"
-            id="wa-readerTitle"
-        ></h2>
-
-        <div class="wa-reader-paper">
-
-            <div
-                class="wa-reader-content"
-                id="wa-readerContent"
-            ></div>
-
-            <div class="wa-reader-footer">
-
-                <span>
-                    END OF PAGE
-                </span>
-
-                <span>
-                    KAMRAN'S ARCHIVE
-                </span>
-
-            </div>
-
-        </div>
-
+<section id="about">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div><div class="section-number">01 / IDENTITY</div><div class="section-title">WHO AM I?</div></div>
     </div>
+    <div class="intro">
+      I'm Kamran — a creative generalist who keeps moving between design, writing, coding, ideas and projects.
+      I like making things that feel a little different instead of forcing everything into one category.
+      This website is less of a traditional portfolio and more of a record of the things I've made, learned, written and experimented with.
+    </div>
+  </div>
+</section>
 
-</div>
+<section id="archive">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div><div class="section-number">02 / THE CABINET</div><div class="section-title">THE ARCHIVE</div></div>
+      <div class="smallcaps muted">OPEN A DRAWER</div>
+    </div>
+    <div class="archive-grid">
+      <article class="archive-item" data-scroll="#work">
+        <div class="num">FILE 001</div><div class="scribble">MAKE</div>
+        <h3>PROJECTS</h3><p>Things I've built, designed, planned or thrown into existence.</p><div class="arrow">↗</div>
+      </article>
+      <article class="archive-item" data-scroll="#writing">
+        <div class="num">FILE 002</div><div class="scribble">WORDS</div>
+        <h3>WRITING</h3><p>Poems, reflections, memories and things I couldn't say out loud.</p><div class="arrow">↗</div>
+      </article>
+      <article class="archive-item" data-scroll="#skills">
+        <div class="num">FILE 003</div><div class="scribble">TOOLS</div>
+        <h3>SKILLS</h3><p>A deliberately messy collection of things I know and things I'm learning.</p><div class="arrow">↗</div>
+      </article>
+      <article class="archive-item" data-scroll="#experiments">
+        <div class="num">FILE 004</div><div class="scribble">IDEAS</div>
+        <h3>EXPERIMENTS</h3><p>Small ideas, strange concepts and projects that don't need a category.</p><div class="arrow">↗</div>
+      </article>
+      <article class="archive-item" data-scroll="#terminal">
+        <div class="num">FILE 005</div><div class="scribble">SYS</div>
+        <h3>TERMINAL</h3><p>Ask the archive a question. There may or may not be a useful answer.</p><div class="arrow">↗</div>
+      </article>
+      <article class="archive-item" data-scroll="#contact">
+        <div class="num">FILE 006</div><div class="scribble">HELLO</div>
+        <h3>CONTACT</h3><p>Want to work together, talk about an idea or just say hello?</p><div class="arrow">↗</div>
+      </article>
+    </div>
+  </div>
+</section>
 
+<section>
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div><div class="section-number">03 / CURRENT STATE</div><div class="section-title">CURRENTLY...</div></div>
+    </div>
+    <div class="current">
+      <div class="current-card">
+        <div class="smallcaps">NOW / 01</div>
+        <h3>LEARNING</h3>
+        <p>AI, programming, web development and the never-ending process of figuring out how things work.</p>
+        <div class="status"><span><i class="dot"></i>ACTIVE</span><span>STILL LEARNING</span></div>
+      </div>
+      <div class="current-card">
+        <div class="smallcaps">NOW / 02</div>
+        <h3>MAKING</h3>
+        <p>Personal websites, creative concepts, graphic work, experiments and projects that start with “what if...”</p>
+        <div class="status"><span><i class="dot"></i>BUILDING</span><span>NO FIXED NICHE</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section id="work">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div><div class="section-number">04 / OUTPUT</div><div class="section-title">THINGS I MADE</div></div>
+    </div>
+    <div class="projects">
+      <article class="project">
+        <div class="project-no">001</div><div class="tag">CREATIVE PROJECT / BRAND</div>
+        <h3>MOMENTRIX</h3>
+        <p>A creative project built around personalized, memorable products and visual experiences.</p>
+        <a class="project-link" href="https://www.instagram.com/moment.rix" target="_blank" rel="noopener">OPEN INSTAGRAM ↗</a>
+      </article>
+      <article class="project">
+        <div class="project-no">002</div><div class="tag">CONCEPT / WEB</div>
+        <h3>THE LOST THINGS</h3>
+        <p>A digital museum of ordinary things that used to make life feel special — rebuilt without the annoying parts.</p>
+        <span class="project-link">ARCHIVE CONCEPT</span>
+      </article>
+      <article class="project">
+        <div class="project-no">003</div><div class="tag">DESIGN / EDITORIAL</div>
+        <h3>GREENUP</h3>
+        <p>An editorial-style magazine project exploring visual communication and graphic design.</p>
+        <span class="project-link">DESIGN PROJECT</span>
+      </article>
+      <article class="project">
+        <div class="project-no">004</div><div class="tag">DESIGN / BRANDING</div>
+        <h3>URBAN RETRO</h3>
+        <p>A visual direction built around retro aesthetics, identity and product-style creative work.</p>
+        <span class="project-link">CREATIVE PROJECT</span>
+      </article>
+    </div>
+  </div>
+</section>
 
+<section id="skills">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div><div class="section-number">05 / TOOLBOX</div><div class="section-title">SKILLS</div></div>
+    </div>
+    <div class="intro" style="margin-bottom:28px">
+      Not a list of things I claim to have mastered. More like a map of the territory I like working in.
+    </div>
+    <div class="skills-wrap">
+      <span class="skill big" style="--r:-2deg">Creative Generalist</span>
+      <span class="skill" style="--r:1deg">Graphic Design</span>
+      <span class="skill" style="--r:-1deg">Adobe Illustrator</span>
+      <span class="skill" style="--r:2deg">Adobe Photoshop</span>
+      <span class="skill" style="--r:-2deg">Visual Design</span>
+      <span class="skill" style="--r:.5deg">Writing</span>
+      <span class="skill" style="--r:-1.5deg">Photography</span>
+      <span class="skill" style="--r:2deg">Video Editing</span>
+      <span class="skill" style="--r:-.5deg">Content Ideas</span>
+      <span class="skill" style="--r:1deg">Branding</span>
+      <span class="skill" style="--r:-2deg">UI / Web Concepts</span>
+      <span class="skill" style="--r:.8deg">HTML / CSS / JS</span>
+      <span class="skill" style="--r:-1deg">GitHub</span>
+      <span class="skill" style="--r:1.5deg">AI</span>
+      <span class="skill" style="--r:-.7deg">Cybersecurity Learning</span>
+      <span class="skill" style="--r:1deg">CRM</span>
+      <span class="skill" style="--r:-1.5deg">EHR Systems</span>
+      <span class="skill" style="--r:.5deg">Virtual Medical Assistance</span>
+      <span class="skill" style="--r:-2deg">Lead Generation</span>
+    </div>
+  </div>
+</section>
 
-<!-- ======================================================
-     FOOTER
-====================================================== -->
+<section id="writing">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div><div class="section-number">06 / PRIVATE FILES</div><div class="section-title">THE WRITINGS</div></div>
+      <div class="smallcaps muted">CLICK TO READ</div>
+    </div>
+    <div class="writing-list">
+      <article class="writing" data-writing="0">
+        <div class="writing-num">WR.001</div>
+        <div><h3>A POET FELL IN LOVE WITH YOU</h3><p>On becoming a poet, losing someone, and finally writing about yourself.</p></div>
+        <div class="writing-arrow">→</div>
+      </article>
+      <article class="writing" data-writing="1">
+        <div class="writing-num">WR.002</div>
+        <div><h3>THE LAST TIME I HEARD YOUR VOICE</h3><p>Sometimes you don't realize a goodbye is a goodbye until the silence arrives.</p></div>
+        <div class="writing-arrow">→</div>
+      </article>
+      <article class="writing" data-writing="2">
+        <div class="writing-num">WR.003</div>
+        <div><h3>THE FIRST MORNING</h3><p>There is death, and then there is the first morning after letting someone go.</p></div>
+        <div class="writing-arrow">→</div>
+      </article>
+      <article class="writing" data-writing="3">
+        <div class="writing-num">WR.004</div>
+        <div><h3>MY LAST SEVEN MINUTES</h3><p>A question about memory, regret, family, friendship, love and the life we keep postponing.</p></div>
+        <div class="writing-arrow">→</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap reveal">
+    <div class="notebook">
+      <div class="smallcaps">NOTE FOUND / UNSORTED</div>
+      <h3>WHY I WRITE</h3>
+      <p>Maybe writing isn't about being understood. Maybe sometimes it's just about leaving proof that you felt something.</p>
+      <div class="signature">— Kamran</div>
+    </div>
+  </div>
+</section>
+
+<section id="experiments">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div><div class="section-number">07 / UNSORTED</div><div class="section-title">EXPERIMENTS</div></div>
+    </div>
+    <div class="experiment-grid">
+      <div class="experiment"><div class="exp-label">01 / CONCEPT</div><div class="exp-shape"></div><h3>CREATIVE<br>LICENSE</h3><small>PERSONAL IDENTITY SYSTEM</small></div>
+      <div class="experiment"><div class="exp-label">02 / IDEA</div><div class="exp-shape"></div><h3>THE LOST<br>THINGS</h3><small>DIGITAL MUSEUM</small></div>
+      <div class="experiment"><div class="exp-label">03 / DESIGN</div><div class="exp-shape"></div><h3>RETRO<br>OBJECTS</h3><small>VISUAL EXPERIMENT</small></div>
+      <div class="experiment"><div class="exp-label">04 / RANDOM</div><div class="exp-shape"></div><h3>WHAT IF<br>?</h3><small>IDEAS WELCOME</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="terminal">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div><div class="section-number">08 / SYSTEM</div><div class="section-title">KAMRAN_OS</div></div>
+    </div>
+    <div class="terminal">
+      <div>&gt; booting KAMRAN_OS...</div>
+      <div>&gt; loading archive...</div>
+      <div class="blue">&gt; user: kamithegrape</div>
+      <div>&gt; status: <span class="pinkline">probably making something</span></div>
+      <br>
+      <div>AVAILABLE COMMANDS:</div>
+      <div class="blue">about &nbsp; work &nbsp; writing &nbsp; skills &nbsp; contact &nbsp; help</div>
+      <div class="terminal-input">
+        <span>&gt;</span><input id="terminalInput" autocomplete="off" placeholder="type a command..." aria-label="Terminal command">
+      </div>
+      <div id="terminalOutput"></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap reveal contact-grid">
+    <div>
+      <div class="smallcaps pink">09 / OPEN CHANNEL</div>
+      <h2>LET'S<br><span>TALK.</span></h2>
+    </div>
+    <div>
+      <p class="intro" style="margin-bottom:25px">
+        For work, collaborations, ideas, projects or if you simply want to say hello.
+      </p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:muhammadkamrantaj@gmail.com"><span>EMAIL</span><span>↗</span></a>
+        <a class="contact-link" href="https://github.com/kamithegrape" target="_blank" rel="noopener"><span>GITHUB</span><span>↗</span></a>
+        <a class="contact-link" href="https://www.linkedin.com/in/muhammad-kamran-6b134633b" target="_blank" rel="noopener"><span>LINKEDIN</span><span>↗</span></a>
+        <a class="contact-link" href="https://www.instagram.com/moment.rix" target="_blank" rel="noopener"><span>MOMENTRIX / INSTAGRAM</span><span>↗</span></a>
+        <a class="contact-link" href="assets/CV.pdf" target="_blank" rel="noopener"><span>CURRICULUM VITAE</span><span>↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
 
 <footer>
-
-
-<div class="footer-big">
-
-You made it this far.
-
-</div>
-
-
-<p>
-
-So you probably have an idea.
-
-</p>
-
-
-<br>
-
-
-<strong>
-@kamithegrape
-</strong>
-
-
-<br><br>
-
-
-© 2026 KAMRAN — CREATIVE LICENSE
-
+  <div>© <span id="year"></span> KAMRAN / KAMITHEGRAPE</div>
+  <div>JACK OF ALL TRADES — MASTER OF NONE</div>
+  <div>BUILT WITH HTML / CSS / JS</div>
 </footer>
 
-
-<!-- ======================================================
-     JAVASCRIPT
-====================================================== -->
+<div class="modal" id="writingModal" aria-hidden="true">
+  <div class="modal-box">
+    <button class="close" id="closeModal" aria-label="Close">×</button>
+    <div class="modal-meta" id="modalMeta"></div>
+    <h2 class="modal-title" id="modalTitle"></h2>
+    <div class="modal-text" id="modalText"></div>
+    <div class="modal-foot">END OF FILE / RETURN TO ARCHIVE</div>
+  </div>
+</div>
 
 <script>
+const writings = [
+{
+meta:"WR.001 / PERSONAL / POETRY",
+title:"A POET FELL IN LOVE WITH YOU",
+text:`A poet fell in love with you, and you thought you'd walk away unwritten?
 
+Yeah, I used to feel the same. Like, who are these people who are always writing about someone's eyes, their smile, their love? I never understood it. Until I saw you for the very first time.
 
-/* =========================================================
-   MOBILE MENU
-========================================================= */
+And suddenly, I wanted to be a poet.
 
-function toggleMenu(){
+I wanted to write something about you, something like Faiz wrote, "تیری آنکھوں کے سوا دنیا میں رکھا کیا ہے". I wanted all of my pen to write about you. Every page, every empty space, every stupid little thought I had. Somehow, you made me understand why people write about the person they love.
 
-    const menu =
-        document.getElementById("mobileMenu");
+But I never thought it was a curse.
 
-    menu.classList.toggle("open");
+I never knew I was digging a hole for myself.
 
+Because at the end, all of my writings were still with me, all those pages, all those words, all those things I never said—and you were not.
+
+At the end, it was just me, my pen, and a pile of papers full of someone who no longer existed in my life.
+
+And I never dared to show any of it to you. Maybe because somewhere inside me, I always felt like it was never enough for you. Like no matter how beautifully I wrote about you, I could never write something beautiful enough to make you stay.
+
+And there was another curse to it.
+
+I became a poet, but I was never the poem.
+
+For once in my life, I wanted to be the poem so badly. I wanted someone to look at me and feel the need to write. I wanted someone to sit with a pen in their hand and think, how do I put this person into words?
+
+But I guess that's the cruel part of being a poet—you spend so much of your life turning someone else into poetry that you forget you were waiting for someone to do the same for you.
+
+Being a poet who writes for someone who no longer exists in their life is heavier than one kilogram of steel.
+
+Maybe I should smoke a cigarette and write something about you again.
+
+But this time, I think I'll write about me.
+
+Not about the way you looked at me.
+Not about your eyes.
+Not about how much I loved you.
+
+Just me.
+
+The person who stayed after you left.
+The person who kept all those poems.
+The person who was so busy writing about someone else
+that he forgot he deserved to be written about too.`
+},
+{
+meta:"WR.002 / MEMORY / GOODBYE",
+title:"THE LAST TIME I HEARD YOUR VOICE",
+text:`They say if I knew it was the last time I'd hear your voice, I would've memorized it better.
+
+But the truth is, I did hear it and I still can't remember how it sounded. Not exactly. Not clearly. It slips away when I try too hard.
+
+I remember everything else from that day. The way the light hit her face through the windshield. The quiet hum of the engine waiting. My heart was racing like it always did when I was near her, but somehow heavier, quieter this time, like even it knew something I didn't.
+
+We stood by her car, and the goodbye was… not what I expected.
+
+I told her I loved her because I did. I still do, maybe. Maybe always will in some cursed, quiet corner of me.
+
+She looked at me with eyes that didn't match the smile she tried to wear. And then she said, almost like a whisper wrapped in a sigh:
+
+"Just... take care of yourself, okay?"
+
+And that was it.
+
+No promises. No “I'll see you soon.” Just a line that felt like the closing of a chapter I didn't want to finish reading.
+
+She got into the car. Sat there for a second that felt like a lifetime. And then she drove off.
+
+No look back.
+
+Not even in the mirror.
+
+I stood there like a fool, staring at the road long after she was gone, half-expecting the car to turn around, half-hoping this was just one of those weird dreams where the ending rewrites itself if you wait long enough.
+
+But it didn't.
+
+She was gone.
+
+And now, sometimes I try to replay that last moment in my head. I can see her driving off. I can remember the cold in my chest.
+
+But I still can't hear her voice.
+
+Funny, isn't it? You never think the last time is the last time.
+
+And even when you do, it still doesn't prepare you for the silence that comes after.`
+},
+{
+meta:"WR.003 / LOSS / MORNING",
+title:"THE FIRST MORNING",
+text:`There's death,
+and then there's the first morning after letting someone go.
+
+For most of my life, I thought it was just a myth, this idea that the first morning hurts the most.
+
+But it's not. It's real.
+
+You spend the whole night unable to sleep, your mind replaying everything.
+
+And when you finally do drift off for a little while, you wake up and the first thing you do is check your phone.
+
+But there are no good morning messages.
+No calls. No trace of them.
+
+That's when it truly hits you.
+
+You've lost the love of your life.
+
+So you just lay back down, take a deep breath, and start thinking.
+
+What really happened? How did it all slip away so quickly?
+
+You stare at the ceiling, or the wall, and suddenly,
+there's this strange, heavy kind of loneliness sitting in your chest.
+
+It's not just sadness, it's emptiness.
+
+It physically hurts.
+
+Yes, there's death.
+
+And then there's the first morning after letting someone go.`
+},
+{
+meta:"WR.004 / REFLECTION / LIFE",
+title:"MY LAST SEVEN MINUTES",
+text:`What will I think about in my last seven minutes?
+
+Will I think about the happy moments I made with my family and friends, or will I think about every regret I've carried my whole life? Will my mind go back to those cold winter mornings when I used to sit beside my dadi, and we would just sit there in silence without saying a single word, yet somehow that silence meant everything? Or will I remember the days I was lying in a hospital bed while she stayed by my side, making me feel like nothing bad could ever happen to me? Or maybe I'll think about the day she left this world and took a part of me with her, because the truth is, I was never really complete after that.
+
+Will I think about my childhood friends? The endless cricket matches in the streets, the football games that made us forget time, the scraped knees, the arguments over whose turn it was, and how every evening felt like it would last forever. Back then, happiness was so simple.
+
+Or maybe I'll think about the girl I loved with everything I had. The one who knew every broken part of me, every fear, every dream, every scar, yet still chose to leave. Maybe I'll remember how the whole world disappeared whenever I was with her, and how empty the world felt when she wasn't.
+
+Will I think about my college friends? The random jokes, the loud laughter, the unforgettable memories, the days that didn't seem important back then but somehow became the moments I miss the most. Or maybe I'll remember the version of myself that used to be the loudest person in the room, the one who laughed without forcing it, before life slowly taught me how to stay quiet.
+
+Will I think about the people who hurt me the most, or the people I hurt without ever getting the chance to say I'm sorry? Maybe both. Maybe regret doesn't care whose fault it was.
+
+Will I think about my amma and abba? About how they gave me everything they could, while I kept telling myself I'd spend more time with them tomorrow. Tomorrow became next week, next month, next year, and somehow life kept getting in the way. I spent so much time chasing a future that I forgot to live in the present with the people who mattered the most.
+
+Maybe I'll think about all those evenings after work, exhausted, convincing myself I was doing it all for a better tomorrow. The nights that turned into mornings before I even realized another day had passed. The responsibilities I carried so quietly that nobody noticed how heavy they actually were.
+
+Or maybe I'll think about football. About the feeling of stepping onto the pitch, where for ninety minutes nothing else existed. No stress, no overthinking, no responsibilities—just the ball, the game, and the feeling of being free.
+
+Maybe I'll think about all the words I never said but wrote instead. Every page that knew my secrets better than people did. Every sentence that carried the weight I couldn't explain out loud.
+
+Will I think about my colleagues? The people who, even for a little while, made me forget that life was falling apart outside those walls. The random conversations, the stupid jokes, the moments that made difficult days a little easier.
+
+Or maybe I'll think about the afterlife. About finally getting the chance to meet Allah and telling Him everything I couldn't explain to anyone else. Every fear, every mistake, every prayer I whispered at 3 a.m., every time I thought I wasn't strong enough but somehow kept going anyway.
+
+Will I think about everything I wanted but never had? The dreams I kept postponing. The words I never said. The people I never became brave enough to hold onto. Or will I just lie there, staring at the ceiling, wondering what I'm supposed to think when I only have seven minutes left?
+
+Maybe I won't think about anything at all. Maybe I'll just be numb.
+
+But what scares me the most is this...
+
+For most of my life, whenever I needed someone, there were only a few people standing beside me. Yet when I'm finally lying on my deathbed, everyone might gather around me when I don't need them anymore. Isn't that strange? We spend our whole lives waiting for people to stay, and they only realize our value when we're about to leave.
+
+Maybe my last seven minutes won't be filled with fear.
+
+Maybe they'll be filled with regret.
+
+The regret of sleeping instead of trying one more time. The regret of believing I wasn't enough for someone to choose me. The regret of letting people leave without asking them to stay. The regret of wasting time thinking I had more of it.
+
+Or maybe those happy memories weren't really as happy as I remember them. Maybe my mind only paints them that way because it's about to lose them forever.
+
+I don't know what I'll think about in my last seven minutes.
+
+I just hope... when those seven minutes finally come, I won't spend them wishing I had lived differently.`
 }
-
-
-/* =========================================================
-   RANDOM TERMINAL
-========================================================= */
-
-const output =
-    document.getElementById("randomOutput");
-
-
-const facts = [
-
-"I don't really have a niche.",
-
-"I like learning things just because they're interesting.",
-
-"Photography is mostly an excuse to notice things.",
-
-"I can spend way too long making something look slightly better.",
-
-"Some ideas are born at completely unreasonable hours.",
-
-"Jack of all trades. Still working on the master part.",
-
-"I probably have another project idea somewhere."
-
 ];
 
+const modal=document.getElementById("writingModal");
+const modalTitle=document.getElementById("modalTitle");
+const modalText=document.getElementById("modalText");
+const modalMeta=document.getElementById("modalMeta");
 
-const moods = [
-
-"probably thinking about another project.",
-
-"building something that didn't need to exist.",
-
-"learning something random.",
-
-"creative mode: ON.",
-
-"opening another browser tab.",
-
-"professional overthinker mode: ACTIVE.",
-
-"trying to make the idea in my head actually work."
-
-];
-
-
-const skills = [
-
-"Graphic Design",
-
-"Photography",
-
-"Writing",
-
-"Video Editing",
-
-"Web Design",
-
-"Java",
-
-"Artificial Intelligence",
-
-"Cybersecurity",
-
-"Marketing",
-
-"Creative Direction",
-
-"Lead Generation",
-
-"Healthcare Operations"
-
-];
-
-
-const projects = [
-
-"Momentrix",
-
-"The Lost Things",
-
-"Graphic Design Archive",
-
-"Writing Archive",
-
-"Photography Archive",
-
-"The next random idea"
-
-];
-
-
-function randomFact(){
-
-    const item =
-        facts[
-            Math.floor(
-                Math.random()*facts.length
-            )
-        ];
-
-    output.innerHTML =
-        "> " + item;
-
+document.querySelectorAll(".writing").forEach(el=>{
+  el.addEventListener("click",()=>{
+    const w=writings[Number(el.dataset.writing)];
+    modalMeta.textContent=w.meta;
+    modalTitle.textContent=w.title;
+    modalText.textContent=w.text;
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden","false");
+    document.body.classList.add("modal-open");
+  });
+});
+function closeModal(){
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden","true");
+  document.body.classList.remove("modal-open");
 }
-
-
-function randomMood(){
-
-    const item =
-        moods[
-            Math.floor(
-                Math.random()*moods.length
-            )
-        ];
-
-    output.innerHTML =
-        "> STATUS: " + item;
-
-}
-
-
-function randomSkill(){
-
-    const item =
-        skills[
-            Math.floor(
-                Math.random()*skills.length
-            )
-        ];
-
-    output.innerHTML =
-        "> RANDOM SKILL: " + item;
-
-}
-
-
-function randomProject(){
-
-    const item =
-        projects[
-            Math.floor(
-                Math.random()*projects.length
-            )
-        ];
-
-    output.innerHTML =
-        "> PROJECT DETECTED: " + item;
-
-}
-
-
-
-
-/* =========================================================
-   WRITING ARCHIVE JAVASCRIPT
-========================================================= */
-
-
-/* =========================================================
-   WRITINGS
-========================================================= */
-
-const waWritings = {
-
-    1: {
-
-        meta: "001 / LOVE / LOSS / UNWRITTEN",
-
-        title: "THE POET",
-
-        content: `
-
-        <p>
-        a poet fell in love with you, and you thought you'd walk away unwritten?
-        </p>
-
-        <p>
-        yeah, i used to feel the same. like, who are these people who are always writing about someone's eyes, their smile, their love? i never understood it. until i saw you for the very first time.
-        </p>
-
-        <p>
-        and suddenly, i wanted to be a poet.
-        </p>
-
-        <p>
-        i wanted to write something about you, something like Faiz wrote,
-        </p>
-
-        <p class="quote">
-        "تیری آنکھوں کے سوا دنیا میں رکھا کیا ہے"
-        </p>
-
-        <p>
-        i wanted all of my pen to write about you. every page, every empty space, every stupid little thought i had. somehow, you made me understand why people write about the person they love.
-        </p>
-
-        <p>
-        but i never thought it was a curse.
-        </p>
-
-        <p>
-        i never knew i was digging a hole for myself.
-        </p>
-
-        <p>
-        because at the end, all of my writings were still with me, all those pages, all those words, all those things i never said—and you were not.
-        </p>
-
-        <p>
-        at the end, it was just me, my pen, and a pile of papers full of someone who no longer existed in my life.
-        </p>
-
-        <p>
-        and i never dared to show any of it to you. maybe because somewhere inside me, i always felt like it was never enough for you. like no matter how beautifully i wrote about you, i could never write something beautiful enough to make you stay.
-        </p>
-
-        <p>
-        and there was another curse to it.
-        </p>
-
-        <p>
-        i became a poet, but i was never the poem.
-        </p>
-
-        <p>
-        for once in my life, i wanted to be the poem so badly. i wanted someone to look at me and feel the need to write. i wanted someone to sit with a pen in their hand and think, how do i put this person into words?
-        </p>
-
-        <p>
-        but i guess that's the cruel part of being a poet—you spend so much of your life turning someone else into poetry that you forget you were waiting for someone to do the same for you.
-        </p>
-
-        <p>
-        being a poet who writes for someone who no longer exists in their life is heavier than one kilogram of steel.
-        </p>
-
-        <p>
-        maybe i should smoke a cigarette and write something about you again.
-        </p>
-
-        <p>
-        but this time, i think i'll write about me.
-        </p>
-
-        <p>
-        not about the way you looked at me.
-        </p>
-
-        <p>
-        not about your eyes.
-        </p>
-
-        <p>
-        not about how much i loved you.
-        </p>
-
-        <p>
-        just me.
-        </p>
-
-        <p>
-        the person who stayed after you left.
-        </p>
-
-        <p>
-        the person who kept all those poems.
-        </p>
-
-        <p>
-        the person who was so busy writing about someone else
-        that he forgot he deserved to be written about too.
-        </p>
-
-        `
-
-    },
-
-
-    2: {
-
-        meta: "002 / MEMORY / GOODBYE / SILENCE",
-
-        title: "THE LAST VOICE",
-
-        content: `
-
-        <p>
-        They say if I knew it was the last time I’d hear your voice, I would’ve memorized it better.
-        </p>
-
-        <p>
-        But the truth is, I did hear it and I still can't remember how it sounded. Not exactly. Not clearly. It slips away when I try too hard.
-        </p>
-
-        <p>
-        I remember everything else from that day. The way the light hit her face through the windshield. The quiet hum of the engine waiting. My heart was racing like it always did when I was near her, but somehow heavier, quieter this time, like even it knew something I didn’t.
-        </p>
-
-        <p>
-        We stood by her car, and the goodbye was… not what I expected.
-        </p>
-
-        <p>
-        I told her I loved her because I did. I still do, maybe. Maybe always will in some cursed, quiet corner of me.
-        </p>
-
-        <p>
-        She looked at me with eyes that didn’t match the smile she tried to wear. And then she said, almost like a whisper wrapped in a sigh:
-        </p>
-
-        <p class="quote">
-        "Just... take care of yourself, okay?"
-        </p>
-
-        <p>
-        And that was it.
-        </p>
-
-        <p>
-        No promises. No “I’ll see you soon.” Just a line that felt like the closing of a chapter I didn’t want to finish reading.
-        </p>
-
-        <p>
-        She got into her car.
-        </p>
-
-        <p>
-        Sat there for a second that felt like a lifetime. And then she drove off.
-        </p>
-
-        <p>
-        No look back.
-        </p>
-
-        <p>
-        Not even in the mirror.
-        </p>
-
-        <p>
-        I stood there like a fool, staring at the road long after she was gone, half-expecting the car to turn around, half-hoping this was just one of those weird dreams where the ending rewrites itself if you wait long enough.
-        </p>
-
-        <p>
-        But it didn’t.
-        </p>
-
-        <p>
-        She was gone.
-        </p>
-
-        <p>
-        And now, sometimes I try to replay that last moment in my head. I can see her driving off. I can remember the cold in my chest.
-        </p>
-
-        <p>
-        But I still can't hear her voice.
-        </p>
-
-        <p>
-        Funny, isn’t it? You never think the last time is the last time.
-        </p>
-
-        <p>
-        And even when you do, it still doesn’t prepare you for the silence that comes after.
-        </p>
-
-        `
-
-    },
-
-
-    3: {
-
-        meta: "003 / LOSS / LONELINESS / LOVE",
-
-        title: "THE FIRST MORNING",
-
-        content: `
-
-        <p>
-        There’s death,
-        </p>
-
-        <p>
-        and then there’s the first morning after letting someone go.
-        </p>
-
-        <p>
-        For most of my life, I thought it was just a myth, this idea that the first morning hurts the most.
-        </p>
-
-        <p>
-        But it’s not. It’s real.
-        </p>
-
-        <p>
-        You spend the whole night unable to sleep, your mind replaying everything.
-        </p>
-
-        <p>
-        And when you finally do drift off for a little while, you wake up and the first thing you do is check your phone.
-        </p>
-
-        <p>
-        But there are no good morning messages.
-        </p>
-
-        <p>
-        No calls.
-        </p>
-
-        <p>
-        No trace of them.
-        </p>
-
-        <p>
-        That’s when it truly hits you.
-        </p>
-
-        <p>
-        You’ve lost the love of your life.
-        </p>
-
-        <p>
-        So you just lay back down, take a deep breath, and start thinking.
-        </p>
-
-        <p>
-        What really happened? How did it all slip away so quickly?
-        </p>
-
-        <p>
-        You stare at the ceiling, or the wall, and suddenly,
-        there’s this strange, heavy kind of loneliness sitting in your chest.
-        </p>
-
-        <p>
-        It’s not just sadness.
-        </p>
-
-        <p>
-        It’s emptiness.
-        </p>
-
-        <p>
-        It physically hurts.
-        </p>
-
-        <p class="quote">
-        Yes, there’s death.
-        <br>
-        And then there’s the first morning after letting someone go.
-        </p>
-
-        `
-
-    },
-
-
-    4: {
-
-        meta: "004 / LIFE / FAMILY / REGRET / MEMORY",
-
-        title: "MY LAST SEVEN MINUTES",
-
-        content: `
-
-        <p>
-        What will I think about in my last seven minutes?
-        </p>
-
-        <p>
-        Will I think about the happy moments I made with my family and friends, or will I think about every regret I've carried my whole life?
-        </p>
-
-        <p>
-        Will my mind go back to those cold winter mornings when I used to sit beside my dadi, and we would just sit there in silence without saying a single word, yet somehow that silence meant everything?
-        </p>
-
-        <p>
-        Or will I remember the days I was lying in a hospital bed while she stayed by my side, making me feel like nothing bad could ever happen to me?
-        </p>
-
-        <p>
-        Or maybe I'll think about the day she left this world and took a part of me with her, because the truth is, I was never really complete after that.
-        </p>
-
-        <p>
-        Will I think about my childhood friends?
-        </p>
-
-        <p>
-        The endless cricket matches in the streets, the football games that made us forget time, the scraped knees, the arguments over whose turn it was, and how every evening felt like it would last forever.
-        </p>
-
-        <p>
-        Back then, happiness was so simple.
-        </p>
-
-        <p>
-        Or maybe I'll think about the girl I loved with everything I had.
-        </p>
-
-        <p>
-        The one who knew every broken part of me, every fear, every dream, every scar, yet still chose to leave.
-        </p>
-
-        <p>
-        Maybe I'll remember how the whole world disappeared whenever I was with her, and how empty the world felt when she wasn't.
-        </p>
-
-        <p>
-        Will I think about my college friends?
-        </p>
-
-        <p>
-        The random jokes, the loud laughter, the unforgettable memories, the days that didn't seem important back then but somehow became the moments I miss the most.
-        </p>
-
-        <p>
-        Or maybe I'll remember the version of myself that used to be the loudest person in the room, the one who laughed without forcing it, before life slowly taught me how to stay quiet.
-        </p>
-
-        <p>
-        Will I think about the people who hurt me the most, or the people I hurt without ever getting the chance to say I'm sorry?
-        </p>
-
-        <p>
-        Maybe both.
-        </p>
-
-        <p>
-        Maybe regret doesn't care whose fault it was.
-        </p>
-
-        <p>
-        Will I think about my amma and abba?
-        </p>
-
-        <p>
-        About how they gave me everything they could, while I kept telling myself I'd spend more time with them tomorrow.
-        </p>
-
-        <p>
-        Tomorrow became next week, next month, next year, and somehow life kept getting in the way.
-        </p>
-
-        <p>
-        I spent so much time chasing a future that I forgot to live in the present with the people who mattered the most.
-        </p>
-
-        <p>
-        Maybe I'll think about all those evenings after work, exhausted, convincing myself I was doing it all for a better tomorrow.
-        </p>
-
-        <p>
-        The nights that turned into mornings before I even realized another day had passed.
-        </p>
-
-        <p>
-        The responsibilities I carried so quietly that nobody noticed how heavy they actually were.
-        </p>
-
-        <p>
-        Or maybe I'll think about football.
-        </p>
-
-        <p>
-        About the feeling of stepping onto the pitch, where for ninety minutes nothing else existed.
-        </p>
-
-        <p>
-        No stress, no overthinking, no responsibilities—just the ball, the game, and the feeling of being free.
-        </p>
-
-        <p>
-        Maybe I'll think about all the words I never said but wrote instead.
-        </p>
-
-        <p>
-        Every page that knew my secrets better than people did.
-        </p>
-
-        <p>
-        Every sentence that carried the weight I couldn't explain out loud.
-        </p>
-
-        <p>
-        Will I think about my colleagues?
-        </p>
-
-        <p>
-        The people who, even for a little while, made me forget that life was falling apart outside those walls.
-        </p>
-
-        <p>
-        The random conversations, the stupid jokes, the moments that made difficult days a little easier.
-        </p>
-
-        <p>
-        Or maybe I'll think about the afterlife.
-        </p>
-
-        <p>
-        About finally getting the chance to meet Allah and telling Him everything I couldn't explain to anyone else.
-        </p>
-
-        <p>
-        Every fear, every mistake, every prayer I whispered at 3 a.m., every time I thought I wasn't strong enough but somehow kept going anyway.
-        </p>
-
-        <p>
-        Will I think about everything I wanted but never had?
-        </p>
-
-        <p>
-        The dreams I kept postponing.
-        </p>
-
-        <p>
-        The words I never said.
-        </p>
-
-        <p>
-        The people I never became brave enough to hold onto.
-        </p>
-
-        <p>
-        Or will I just lie there, staring at the ceiling, wondering what I'm supposed to think when I only have seven minutes left?
-        </p>
-
-        <p>
-        Maybe I won't think about anything at all.
-        </p>
-
-        <p>
-        Maybe I'll just be numb.
-        </p>
-
-        <p>
-        But what scares me the most is this...
-        </p>
-
-        <p>
-        For most of my life, whenever I needed someone, there were only a few people standing beside me.
-        </p>
-
-        <p>
-        Yet when I'm finally lying on my deathbed, everyone might gather around me when I don't need them anymore.
-        </p>
-
-        <p>
-        Isn't that strange?
-        </p>
-
-        <p>
-        We spend our whole lives waiting for people to stay, and they only realize our value when we're about to leave.
-        </p>
-
-        <p>
-        Maybe my last seven minutes won't be filled with fear.
-        </p>
-
-        <p>
-        Maybe they'll be filled with regret.
-        </p>
-
-        <p>
-        The regret of sleeping instead of trying one more time.
-        </p>
-
-        <p>
-        The regret of believing I wasn't enough for someone to choose me.
-        </p>
-
-        <p>
-        The regret of letting people leave without asking them to stay.
-        </p>
-
-        <p>
-        The regret of wasting time thinking I had more of it.
-        </p>
-
-        <p>
-        Or maybe those happy memories weren't really as happy as I remember them.
-        </p>
-
-        <p>
-        Maybe my mind only paints them that way because it's about to lose them forever.
-        </p>
-
-        <p>
-        I don't know what I'll think about in my last seven minutes.
-        </p>
-
-        <p class="quote">
-        I just hope... when those seven minutes finally come,
-        I won't spend them wishing I had lived differently.
-        </p>
-
-        `
-
-    }
-
-};
-
-
-/* =========================================================
-   OPEN READER
-========================================================= */
-
-function waOpenReader(number) {
-
-    const article = waWritings[number];
-
-    document.getElementById("wa-readerMeta").textContent =
-        article.meta;
-
-    document.getElementById("wa-readerTitle").textContent =
-        article.title;
-
-    document.getElementById("wa-readerContent").innerHTML =
-        article.content;
-
-    document.getElementById("wa-reader").classList.add("active");
-
-    document.body.style.overflow = "hidden";
-
-    window.scrollTo(0, 0);
-}
-
-
-/* =========================================================
-   CLOSE READER
-========================================================= */
-
-function waCloseReader() {
-
-    document.getElementById("wa-reader").classList.remove("active");
-
-    document.body.style.overflow = "";
-
-}
-
-
-/* =========================================================
-   ESC KEY
-========================================================= */
-
-document.addEventListener("keydown", function(event) {
-
-    if (event.key === "Escape") {
-        waCloseReader();
-    }
-
+document.getElementById("closeModal").addEventListener("click",closeModal);
+modal.addEventListener("click",e=>{if(e.target===modal)closeModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+
+document.querySelectorAll("[data-scroll]").forEach(el=>{
+  el.addEventListener("click",()=>document.querySelector(el.dataset.scroll)?.scrollIntoView({behavior:"smooth"}));
 });
 
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")});
+},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(e=>observer.observe(e));
 
-/* =========================================================
-   SCROLL REVEAL
-========================================================= */
-
-const observer = new IntersectionObserver(
-
-    entries => {
-
-        entries.forEach(entry => {
-
-            if (entry.isIntersecting) {
-
-                entry.target.classList.add("visible");
-
-            }
-
-        });
-
-    },
-
-    {
-        threshold: .12
-    }
-
-);
-
-
-document.querySelectorAll(".wa-reveal").forEach(element => {
-
-    observer.observe(element);
-
+const cursor=document.getElementById("cursor");
+document.addEventListener("mousemove",e=>{
+  cursor.style.left=e.clientX+"px";
+  cursor.style.top=e.clientY+"px";
 });
 
+document.getElementById("year").textContent=new Date().getFullYear();
 
-/* =========================================================
-   CARD PARALLAX
-========================================================= */
-
-document.querySelectorAll(".wa-writing-card").forEach(card => {
-
-    card.addEventListener("mousemove", function(event) {
-
-        const rect = card.getBoundingClientRect();
-
-        const x =
-            event.clientX - rect.left;
-
-        const y =
-            event.clientY - rect.top;
-
-        const centerX =
-            rect.width / 2;
-
-        const centerY =
-            rect.height / 2;
-
-        const rotateX =
-            ((y - centerY) / centerY) * -2;
-
-        const rotateY =
-            ((x - centerX) / centerX) * 2;
-
-        card.style.transform =
-            `perspective(800px)
-             rotateX(${rotateX}deg)
-             rotateY(${rotateY}deg)
-             translateY(-8px)`;
-
-    });
-
-
-    card.addEventListener("mouseleave", function() {
-
-        card.style.transform = "";
-
-    });
-
+const input=document.getElementById("terminalInput");
+const output=document.getElementById("terminalOutput");
+function terminalCommand(cmd){
+  const c=cmd.trim().toLowerCase();
+  const answers={
+    help:"commands: about, work, writing, skills, contact, hello, status, clear",
+    about:"Kamran. @kamithegrape. Creative generalist. No fixed niche.",
+    work:"Projects include Momentrix, The Lost Things, GreenUp and Urban Retro.",
+    writing:"Four writing files are currently indexed. Scroll to THE WRITINGS.",
+    skills:"design / writing / photography / web / AI / cybersecurity learning / CRM / EHR / lead generation",
+    contact:"muhammadkamrantaj@gmail.com",
+    hello:"hello, stranger.",
+    status:"STATUS: ACTIVE / CURIOUS / PROBABLY MAKING SOMETHING",
+  };
+  if(c==="clear"){output.innerHTML="";return}
+  const reply=answers[c]||"unknown command. type 'help'.";
+  output.innerHTML+=`<div><span class="pinkline">&gt; ${escapeHtml(cmd)}</span></div><div>${escapeHtml(reply)}</div>`;
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+input.addEventListener("keydown",e=>{
+  if(e.key==="Enter"){terminalCommand(input.value);input.value=""}
 });
 
-
+const menuBtn=document.getElementById("menuBtn");
+menuBtn.addEventListener("click",()=>{
+  const nav=document.querySelector(".menu");
+  const visible=nav.style.display==="flex";
+  nav.style.display=visible?"none":"flex";
+  if(!visible){
+    nav.style.position="absolute";nav.style.right="20px";nav.style.top="60px";
+    nav.style.flexDirection="column";nav.style.background="var(--bg)";
+    nav.style.padding="10px";nav.style.border="1px solid var(--line)";
+  }
+});
 </script>
-
-
 </body>
 </html>
